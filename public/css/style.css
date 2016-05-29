@@ -1,0 +1,337 @@
+@font-face{
+  font-family: 'Roboto';
+  src: url('../fonts/roboto/Roboto-Regular.woff');
+}
+body{
+  font-size: 18px;
+  background: #eee;
+  font-family: 'Roboto';
+  overflow-x: hidden;
+}
+select span{
+  min-width: 200px !important;
+}
+.select2-container--default {min-width: 200px;}
+.login-holder{
+  width: 75%;
+  padding: 5%;
+}
+.login-holder h4{
+  font-size: 30px;
+  text-align: center;
+}
+.login-holder form{
+  padding: 10%;
+}
+.login-holder button{
+  padding: 0px;
+  width: 100%;
+  background-color: #00ac37;
+  padding: 2%;
+  border: none;
+  position: absolute;
+  top: 76.5%;
+  margin-left: -56.3%;
+  color: white;
+  font-weight: bold;
+  margin-top: 7%;
+}
+.login-holder button:focus{
+  border: none;
+  padding: 2%;
+}
+.login-holder button:active{
+  padding: 0px;
+  background-color: #00ac37;
+  padding: 2%;
+  border: none;
+}
+.submit-button{
+  width: 100%;
+  background-color: rgb(0,223,143);
+  padding: 2%;
+  border: none;
+  color: white;
+}
+.submit-button:focus{
+  border: none;
+  padding: 2%;
+}
+.submit-button:active{
+  border: none;
+}
+/*Styling For Mobile Devices*/
+@media screen and (max-width: 420px){
+  body{
+    font-size: 20px;
+  }
+  .login-holder{
+    width: 50%;
+    padding-right: 0px!important;
+    padding: 2%;
+    margin-right: 0px;
+  }
+  .login-holder h4{
+    font-size: 30px!important;
+    text-align: center;
+  }
+  .login-holder form{
+    padding: 10%;
+    width: auto;
+  }
+  .login-holder form label{
+    font-size: 18px;
+  }
+  .login-holder button{
+    width: 100%;
+    background-color: #00ac37;
+    text-align: center;
+    padding: 2%;
+    font-size: 20px;
+    border: none;
+    position: absolute;
+    margin-left: -15.6%;
+    color: white;
+    font-weight: bold;
+    margin-top: 8%;
+  }
+  .login-holder button:focus{
+    border: none;
+    padding: 2%;
+  }
+  .login-holder button:active{
+    padding: 0px;
+    background-color: #00ac37;
+    padding: 2%;
+    border: none;
+  }
+}
+
+
+
+
+
+/*Timetable page styles*/
+.timetable-title-panel{
+  width: 100%;
+  color: white;
+  text-align: left;
+  background-color: rgb(73,97,109);
+  font-size: 18px;
+  /*position: fixed;*/
+}
+.valign-wrapper{
+  padding: 0px;
+  margin: 0px;
+}
+.timetable-title-panel a{
+  text-decoration: none;
+  color: white;
+}
+.timetable-title-panel h4{
+  font-size: 25px;
+  padding: 1%;
+}
+.timetable-title-panel .submit-button{
+  width: 50%;
+  background: rgb(0,233,143);
+}
+.timetable-title-panel .submit-button:focus{
+  width: 50%;
+  background: rgb(0,233,143);
+}
+.timetable-title-panel .submit-button:active{
+  width: 50%;
+  background: rgb(0,233,143);
+}
+.timetable-menu-list{
+  background: rgb(73,97,109);
+  width: 100%;
+  padding: 3%;
+}
+.timetable-menu-list .course-list-1{
+  width: 30%;
+}
+.timetable-menu-list .slot-list-1{
+  width: 15%;
+  margin-left: 10px;
+}
+.timetable-menu-list .faculty-list-1{
+  width: 30%;
+  margin-left: 10px;
+}
+.timetable-menu-list .submit-button{
+  background: rgb(0,233,143);
+  width: 10%;
+  margin-left: 5px;
+  padding: 1%;
+}
+.timetable-menu-list .close{
+  float: right;
+  clear: both;
+  margin-top: 0px;
+  margin-bottom: 2%;
+  padding: 0%;
+}
+.select2-search input{
+  outline: none!important;
+  border: none;
+  height: 70%;
+  font-size: 15px;
+  width: 100%;
+  background-color: rgb(127,144,153);
+  color: rgb(215,220,219);
+}
+.select2-container{
+  font-size: 14px;
+  font-weight: 200%;
+}
+
+.select2-container .select2-choice .select2-chosen{
+  background-color: rgb(127,144,153);
+}
+#select2-course-list-container,#select2-slot-list-container,#select2-faculty-list-container{
+  background-color: rgb(127,144,153);
+  color: rgb(215,220,219);
+  font-size: 18px;
+}
+.select2-search,.select2-search--dropdown{
+  background-color: rgb(127,144,153);
+}
+.select2-container--default .select2-results{
+  background: grey;
+  color: rgb(215,220,219);
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: rgb(127,144,153);
+}
+
+.timetable-results{
+  background: rgb(96,125,139);
+  padding: 3%;
+  font-size: 15px;
+  margin-top: 0px;
+  overflow-x: scroll;
+}
+.timetable-results .custom-card h5{
+  font-size: 18px;
+  font-weight: 500;
+}
+.timetable-results .custom-card{
+  background: white;
+  font-size: 15px;
+  border-radius: 2px;
+  margin-right: 5%;
+}
+.timetable-results .custom-card-slot{
+  height: 10%;
+  padding: 0px;
+  color: rgb(123,123,123);
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  left: -3.8%;
+  width: 107.5%;
+  font-size: 15px;
+  font-weight: 400;
+  border-top: 1px solid;
+  border-color: rgb(123,123,123);
+  background-color: rgb(233,233,233);
+}
+.timetable-results .front:hover{
+  cursor: pointer;
+}
+.timetable-results .edit:hover{
+  cursor: pointer;
+}
+.timetable-results .custom-card-action-active:hover{
+  cursor: pointer;
+}
+.timetable-results{
+
+}
+.timetable{
+  color: white;
+  font-size: 18px;
+  padding: 2%;
+}
+.timetable .timetable-timing{
+  background-color: #8faec2;
+  padding: 1.5%;
+}
+.timetable td{
+  border: 1px solid;
+  border-color: rgba(128,128,128,0.2);
+  border-bottom: 2px solid white;
+  padding: 1%;
+}
+.timetable .timetable-header{
+  border-bottom: 2px solid white!important;
+  border: 1px solid rgba(128,128,128,0.2);
+  background: #8faec2;
+  padding: 2%;
+}
+
+.timetable .inactive{
+  padding: 2.5%;
+}
+.timetable .inactive:nth-child(even){
+  background: #ddd;
+  padding: 3%;
+}
+.timetable-seminar{
+  padding: 2%;
+  color: #555;
+  text-align: center;
+}
+.timetable .active{
+  background: #00e676;
+}
+.timetable td{
+  border-radius: 0px!important;
+}
+
+.timetable-selected-list{
+  margin: 3%!important;
+}
+.timetable-selected-list .timetable-selected-table .timetable-selected-headings{
+  background-color: rgb(73,97,109);
+  color: white;
+}
+.sub-text{
+  font-weight: 200;
+  font-size: 15px;
+}
+.sub-text-inside{
+  font-weight: 300;
+  font-size: 15px;
+  color: #666;
+}
+.timetable-selected-list table{
+  border-radius: 5px;
+}
+.timetable-selected-list td{
+  border-radius: 0px;
+}
+.timetable-selected-subject{
+  background: white;
+}
+.timetable-selected-faculty{
+  border-right: 1px solid grey;
+}
+.timetable-selected-subject{
+  background: white;
+}
+.timetable-selected-subject:hover{
+  background: rgb(0,233,143);
+  transition: 0.3s;
+}
+.timetable-selected-subject:after{
+  background: white;
+  transition: 0.3s;
+}
+.material-icons:hover{
+  cursor: pointer;
+  margin: 0px!important;
+  padding: 0px!important;
+}

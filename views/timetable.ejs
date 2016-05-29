@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MY FFCS | Timetable</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/select2.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--JS-->
+    <script   src="js/jquery.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/select2.min.js"></script>
+  </head>
+  <body>
+    <div class="timetable-menu-list">
+      <div class="close">
+        <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 l12 ">
+          <select id="course-list" class="course-list-1" name="course-list" style="min-width: 200px">
+              <option value="0">Search Course</option>
+              <option value="CSE1002">CSE1002-Problem Solving And Programming</option>
+              <option value="ITE1001">ITE1001-Digital Logic And Microprocessor</option>
+              <option value="ITE1004">ITE1004-Data Structures And Algorithms</option>
+              <option value="MAT1014">MAT1014-Discrete Mathematics And Graph Theory</option>
+              <option value="MAT2001">MAT2001-Statistics For Engineers</option>
+            </select>
+            <select id="slot-list" class="slot-list-1" name="slot-list" style="min-width: 200px">
+              <option value="0">Search Slot</option>
+              <option value="L31+L32+L33+L34+L35+L36">L31+L32+L33+L34+L35+L36</option>
+              <option value="A1">A1</option>
+            </select>
+            <select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px">
+              <option value="0">Search Faculty</option>
+              <option value="SenthilKumar">Senthil Kumar</option>
+              <option value="Varalakshmi">Varalakshmi</option>
+            </select>
+            <button class="submit-button timetable-results-trigger">Save</button>
+        </div>
+      </div>
+    </div>
+    <div class="row timetable-title-panel valign-wrapper" style="padding-bottom: 1%;">
+      <div class="col s12 m8 l8 valign">
+        <a href="#"><h4>My FFCS</h4></a>
+      </div>
+      <div class="col s12 m3 l3 push-l1 valign">
+        <button class="submit-button">Add Course</button>
+      </div>
+    </div>
+    <div class="row timetable-results">
+      <div class="custom-card z-depth-1 col s12 m3 push-m1 l3 push-l1">
+        <div class="custom-card-header">
+          <div class="custom-card-front">
+            <h5>Introduction To Innovative Projects</h5>
+            <p>Prof. Gandhimati S.N.S.</p></div>
+            <div class="custom-card-edit" style="display:none">
+              <img src="images/edit.png" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" />
+              <img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" />
+            </div>
+        </div>
+        <div class="custom-card-slot row valign-wrapper">
+          <div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p>PHY1011<span class="right">F2</span></p></div>
+          <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="custom-card z-depth-1 col s12 m3 push-m1 l3 push-l1">
+        <div class="custom-card-header">
+          <div class="custom-card-front">
+            <h5>Introduction To Innovative Projects</h5>
+            <p>Prof. Gandhimati S.N.S.</p></div>
+            <div class="custom-card-edit" style="display:none">
+              <img src="images/edit.png" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" />
+              <img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" />
+            </div>
+        </div>
+        <div class="custom-card-slot row valign-wrapper">
+          <div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p>PHY1011<span class="right">F2</span></p></div>
+          <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="custom-card z-depth-1 col s12 m3 push-m1 l3 push-l1">
+        <div class="custom-card-header">
+          <div class="custom-card-front">
+            <h5>Introduction To Innovative Projects</h5>
+            <p>Prof. Gandhimati S.N.S.</p></div>
+            <div class="custom-card-edit" style="display:none">
+              <img src="images/edit.png" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" />
+              <img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" />
+            </div>
+        </div>
+        <div class="custom-card-slot row valign-wrapper">
+          <div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p>PHY1011<span class="right">F2</span></p></div>
+          <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="row timetable">
+      <table>
+        <tr class="timetable-headings">
+          <td class="timetable-header">Time</td>
+          <td class="timetable-timing" style="padding: 1.8%">8:00-8:50</td>
+          <td class="timetable-timing" style="padding: 1.8%">9:00-9:50</td>
+          <td class="timetable-timing">10:00-10:50</td>
+          <td class="timetable-timing" style="padding: 1.8%">11:00-11:50</td>
+          <td class="timetable-timing">12:00-12:50</td>
+          <td class="timetable-timing" style="padding: 1.8%">1:00-1:30</td>
+          <td class="timetable-timing" style="padding: 0%;" rowspan=6><p style="letter-spacing: 7px;transform: rotate(270deg)">LUNCH</p></td>
+          <td class="timetable-timing">14:00-14:50</td>
+          <td class="timetable-timing">15:00-15:50</td>
+          <td class="timetable-timing">16:00-16:50</td>
+          <td class="timetable-timing">17:00-17:50</td>
+          <td class="timetable-timing">18:00-18:50</td>
+          <td class="timetable-timing">19:00-19:30</td>
+        </tr>
+        <tr class="monday">
+          <td class="timetable-header">Monday</td>
+          <td class="tg1 l1 inactive"></td>
+          <td class="a1 l2 inactive"></td>
+          <td class="f1 l3 inactive"></td>
+          <td class="d1 l4 inactive"></td>
+          <td class="tb1 l5 inactive"></td>
+          <td class="l6 inactive"></td>
+          <td class="a2 l31 inactive"></td>
+          <td class="f2 l32 inactive"></td>
+          <td class="d2 l33 inactive"></td>
+          <td class="tb2 l34 inactive"></td>
+          <td class="tg2 l35 inactive"></td>
+          <td class="l36 inactive"></td>
+        </tr>
+        <tr class="tuesday">
+          <td class="timetable-header">Tuesday</td>
+          <td class="taa1 l7 inactive"></td>
+          <td class="b1 l8 inactive"></td>
+          <td class="g1 l9 inactive"></td>
+          <td class="e1 l10 inactive"></td>
+          <td class="tc1 l11 inactive"></td>
+          <td class="l12 inactive"></td>
+          <td class="b2 l37 inactive"></td>
+          <td class="g2 l38 inactive"></td>
+          <td class="e2 l39 inactive"></td>
+          <td class="tc2 l40 inactive"></td>
+          <td class="taa2 l41 inactive"></td>
+          <td class="l42 inactive"></td>
+        </tr>
+        <tr class="wednesday">
+          <td class="timetable-header">Wednesday</td>
+          <td class="c1 l13 inactive"></td>
+          <td class="a1 l14 inactive"></td>
+          <td class="f1 inactive"></td>
+          <td class="timetable-seminar" colspan=3>Extramural Hour</td>
+          <td class="c2 l43 inactive"></td>
+          <td class="a2 l44 inactive"></td>
+          <td class="f2 l45 inactive"></td>
+          <td class="td2 l46 inactive"></td>
+          <td class="tbb2 l47 inactive"></td>
+          <td class="l48 inactive"></td>
+        </tr>
+        <tr class="thursday">
+          <td class="timetable-header">Thursday</td>
+          <td class="tcc1 l19 inactive"></td>
+          <td class="d1 l20 inactive"></td>
+          <td class="b1 l21 inactive"></td>
+          <td class="g1 l22 inactive"></td>
+          <td class="te1 l23 inactive"></td>
+          <td class="l24 inactive"></td>
+          <td class="d2 l49 inactive"></td>
+          <td class="b2 l50 inactive"></td>
+          <td class="g2 l51 inactive"></td>
+          <td class="te2 l52 inactive"></td>
+          <td class="tcc2 l53 inactive"></td>
+          <td class="l54 inactive"></td>
+        </tr>
+        <tr class="friday">
+          <td class="timetable-header">Friday</td>
+          <td class="td1 l25 inactive"></td>
+          <td class="e1 l26 inactive"></td>
+          <td class="c1 l27 inactive"></td>
+          <td class="ta1 l28 inactive"></td>
+          <td class="tf1 l29 inactive"></td>
+          <td class="l30 inactive"></td>
+          <td class="f2 l55 inactive"></td>
+          <td class="c2 l56 inactive"></td>
+          <td class="ta2 l57 inactive"></td>
+          <td class="tf2 l58 inactive"></td>
+          <td class="tdd2 l59 inactive"></td>
+          <td class="l60 inactive"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="row timetable-selected-list z-depth-1">
+      <table class="timetable-selected-table table centered">
+        <tr class="timetable-selected-headings">
+          <td>S.No.</td>
+          <td>Course Code</td>
+          <td>Course Name<br><span class="sub-text">Course Type</span></td>
+          <td>Slot</td>
+          <td>Faculty<br><span class="sub-text">School</span></td>
+          <td></td>
+        </tr>
+        <tr class="timetable-selected-subject">
+          <td>1</td>
+          <td>CSE1002</td>
+          <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
+          <td>L1 + L2 + L11  + L12 + L21 + L22</td>
+          <td><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><br><span class="sub-text-inside">SCOPE</span></td>
+          <td><i class="small material-icons">delete</i></td>
+        </tr>
+        <tr class="timetable-selected-subject">
+          <td>2</td>
+          <td>CSE1002</td>
+          <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
+          <td>L1 + L2 + L11  + L12 + L21 + L22</td>
+          <td class=""><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><br><span class="sub-text-inside">SCOPE</span></td>
+          <td><i class="small material-icons">delete</i></td>
+        </tr>
+        <tr class="timetable-selected-subject">
+          <td>3</td>
+          <td>CSE1002</td>
+          <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
+          <td>L1 + L2 + L11  + L12 + L21 + L22</td>
+          <td class=""><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><br><span class="sub-text-inside">SCOPE</span></td>
+          <td><i class="small material-icons">delete</i></td>
+        </tr>
+        <tr class="timetable-selected-subject">
+          <td>4</td>
+          <td>CSE1002</td>
+          <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
+          <td>L1 + L2 + L11  + L12 + L21 + L22</td>
+          <td class=""><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><br><span class="sub-text-inside">SCOPE</span></td>
+          <td><i class="small material-icons">delete</i></td>
+        </tr>
+        <tr class="timetable-selected-subject">
+          <td>5</td>
+          <td>CSE1002</td>
+          <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
+          <td>L1 + L2 + L11  + L12 + L21 + L22</td>
+          <td class=""><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><br><span class="sub-text-inside">SCOPE</span></td>
+          <td><i class="small material-icons">delete</i></td>
+        </tr>
+        <tr class="timetable-selected-subject">
+          <td>6</td>
+          <td>CSE1002</td>
+          <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
+          <td>L1 + L2 + L11  + L12 + L21 + L22</td>
+          <td class=""><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><br><span class="sub-text-inside">SCOPE</span></td>
+          <td><i class="small material-icons">delete</i></td>
+        </tr>
+        <tr class="timetable-selected-subject">
+          <td>7</td>
+          <td>CSE1002</td>
+          <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
+          <td>L1 + L2 + L11  + L12 + L21 + L22</td>
+          <td class=""><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><br><span class="sub-text-inside">SCOPE</span></td>
+          <td><i class="small material-icons">delete</i></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var timetableArrange = function(){
+      var courseCode = $('#course-list').val();
+      var courseTitle = $("#course-list option:selected").text().replace(courseCode+"-","");
+      var slot = $("#slot-list").val();
+      var faculty = $("#faculty-list").val();
+      if(slot!=0 && faculty!=0 && courseCode!=0){
+        var data = courseCode+"-"+courseTitle;
+        data += "\n" + slot + "\n" + faculty + "\n" + "Credits: ";
+        $("#courses-selected-list").append("<li>"+data+"</li>");
+        if(slot.charAt(0)=="L"){
+          slot = slot.split("+");
+          alert(slot);
+        }
+        var x = "";
+        for(var i=0;i<slot.length();i++){
+          if(slot.charAt(i) == ','){
+
+          }
+          x += slot.charAt(i);
+        }
+      }
+    };
+    $(document).ready(function(){
+      $('.course-list-1').select2();
+      $('.slot-list-1').select2();
+      $('.faculty-list-1').select2();
+    });
+  </script>
+</html>
