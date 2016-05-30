@@ -25,7 +25,7 @@ function findUser (username, callback) {
   }else if(data==null) {
     return callback(null,'not registered')
   }else {
-        return callback(null,1)
+        return callback(null,data)
   }
   })
 }
@@ -39,12 +39,13 @@ passport.deserializeUser(function (username, cb) {
 passport.use(new passportlocal.Strategy(function (username,password,done) {
 
   findUser(username,function (err,data) {
-    console.log(err);
+
     if(err){
       return done(err,null)
     }else if(data==null) {
        return done(null,false)
     }else if(data.password==md5(password)) {
+      console.log("going");
       return done(null,data)
     }
     return done(null,false)
@@ -57,4 +58,4 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine','ejs')
 app.use('/',require('./routes/default.js'))
 app.use('/course',require('./routes/course.js'))
-app.listen(80);
+app.listen(8000);
