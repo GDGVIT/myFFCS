@@ -18,11 +18,14 @@ app.use(passport.session())
 function findUser (username, callback) {
 
   student.userdata(username,function (err,data) {
+
     if(err)
     {
     return callback(err,null)
+  }else if(data==null) {
+    return callback(null,'not registered')
   }else {
-    return callback(null,data)
+        return callback(null,1)
   }
   })
 }
@@ -44,6 +47,7 @@ passport.use(new passportlocal.Strategy(function (username,password,done) {
     }else if(data.password==md5(password)) {
       return done(null,data)
     }
+    return done(null,false)
   })
 }))
 
@@ -52,4 +56,5 @@ passport.use(new passportlocal.Strategy(function (username,password,done) {
 app.use(express.static(__dirname + '/public'));
 app.set('view engine','ejs')
 app.use('/',require('./routes/default.js'))
-app.listen(8000);
+app.use('/course',require('./routes/course.js'))
+app.listen(80);

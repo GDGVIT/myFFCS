@@ -7,7 +7,7 @@ Router.get('/',function (req,res,next) {
   res.render('home',{data:false})
 })
 Router.post('/login',passport.authenticate('local',{
-  failureRedirect:'/',
+  failureRedirect:'/error',
   successRedirect:'/home',
   session:true
 }))
@@ -26,5 +26,8 @@ Router.post('/register',function (req,res,next) {
 })
 Router.get('/home',auth,function (req,res,next) {
    res.render('timetable')
+})
+Router.get('/error',function (req,res,next) {
+res.render('home',{message:'invalid credentials',data:true})
 })
 module.exports=Router
