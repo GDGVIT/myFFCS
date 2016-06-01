@@ -1,9 +1,11 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width" />
     <title>My FFCS|Login</title>
     <!--CSS-->
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
     <!--JS-->
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
@@ -17,13 +19,13 @@
     </script>
     <div class="login-holder">
       <div class="row">
-        <div class="col l8 m8 s12 push-l4">
+        <div class="col l8 m8 s8 push-l4 push-m4 push-s4 ">
           <h4>My FFCS</h4>
           <div class="card z-depth-3">
             <div class="card-content">
               <div class="row">
-                <div class="col s6 m6 l6">
-                  <form method="post" action="/login">
+                <div class="col s6 m6 l6 pull-s1">
+                  <form class="login-form" autocomplete="off" method="post" action="/login">
                     <div class="row">
                       <div class="input-field">
                         <input id="login-regnum" type="text" name="username">
@@ -36,11 +38,10 @@
                         <label for="login-pass">Password</label>
                       </div>
                     </div>
-                    <input type="submit" name="name" value="login">
                   </form>
                 </div>
-                <div class="col s6 m6 l6">
-                  <form action="/register" method="POST" style="border-left: 1px solid #ddd">
+                <div class="col s6 m6 l6" style="border-left: 1px solid #ddd;">
+                  <form class="register-form" autocomplete="off" method="post" action="/register">
                     <div class="row">
                       <div class="input-field">
                         <input id="reg-name" type="text" name="name">
@@ -58,14 +59,43 @@
                         <input id="reg-pass" type="password" name="password">
                         <label for="reg-pass">Password</label>
                       </div>
-                      <button type="submit" class="submit-button">Login/Register</button>
                     </div>
                   </form>
+                  <button type="submit" class="submit-button">Login/Register</button>
                 </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </body>
+  <script type="text/javascript">
+    $('.submit-button').click(function(){
+      if($('.login-form #login-regnum').val().length>0 && $('.login-form #login-pass').val().length>0){
+        if(/[0-9]{2}[A-Z]{3}[0-9]{4}/g.test($('#login-regnum').val())){
+          if($('#login-pass').val().length>=6){
+            $('.login-form').submit();
+          }
+        } else{
+          $("#login-regnum").val("Enter Valid Register Number");
+        }
+      }
+      if($('#reg-name').val().length>0 && $('#reg-regnum').length>0 && $('#reg-pass').val().length>0){
+        if(/[0-9]{2}[A-Z]{3}[0-9]{4}/g.test($('#reg-regnum').val())){
+          if($('#reg-name').length>0){
+            if($("#reg-pass").val().length>=6){
+              $('.register-form').submit();
+            } else{
+              //Password Length Error
+            }
+          } else{
+            $('#reg-name').val("Enter Name!");
+          }
+        } else{
+          $("#reg-regnum").val("Enter Valid Register Number");
+        }
+      }
+    });
+  </script>
 </html>

@@ -1,11 +1,7 @@
-@font-face{
-  font-family: 'Roboto';
-  src: url('../fonts/roboto/Roboto-Regular.woff');
-}
 body{
   font-size: 18px;
   background: #eee;
-  font-family: 'Roboto';
+  font-family: 'Lato';
   overflow-x: hidden;
 }
 select span{
@@ -13,6 +9,7 @@ select span{
 }
 .select2-container--default {min-width: 200px;}
 .login-holder{
+  font-family: 'Lato';
   width: 75%;
   padding: 5%;
 }
@@ -30,11 +27,10 @@ select span{
   padding: 2%;
   border: none;
   position: absolute;
-  top: 76.5%;
-  margin-left: -56.3%;
+  bottom: 0px;
+  left: 0px;
   color: white;
   font-weight: bold;
-  margin-top: 7%;
 }
 .login-holder button:focus{
   border: none;
@@ -61,28 +57,52 @@ select span{
   border: none;
 }
 /*Styling For Mobile Devices*/
-@media screen and (max-width: 420px){
-  body{
+@media screen and (max-width:600px){
+  body
+  {
     font-size: 20px;
+    /*overflow-x: hidden!important;*/
   }
-  .login-holder{
-    width: 50%;
+  .login-holder
+  {
+    width: 100%;
     padding-right: 0px!important;
-    padding: 2%;
-    margin-right: 0px;
+    padding: 0%;
+    margin-left: -35%;
   }
-  .login-holder h4{
+  .login-holder h4
+  {
     font-size: 30px!important;
     text-align: center;
+    position: relative;
+    left: 20vw;
   }
-  .login-holder form{
-    padding: 10%;
-    width: auto;
+  .login-holder .card{
+    height: 100vw;
+    width: 97vw;
   }
-  .login-holder form label{
-    font-size: 18px;
+  .login-holder .login-form{
+    padding: 0px;
+    font-size: 8px;
   }
-  .login-holder button{
+  .login-holder .login-form label{
+    font-size: 11px;
+  }
+  .login-holder .register-form{
+    padding: 0px;
+    margin-left: -8px;
+    padding-left: 12px;
+    font-size: 8px;
+  }
+  .login-holder .register-form label{
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .login-holder .active{
+    font-size: 12px;
+  }
+  .login-holder button
+  {
     width: 100%;
     background-color: #00ac37;
     text-align: center;
@@ -90,12 +110,15 @@ select span{
     font-size: 20px;
     border: none;
     position: absolute;
-    margin-left: -15.6%;
+    bottom: 0px;
+    left: 0px;
+    /*margin-left: -15.6%;*/
     color: white;
     font-weight: bold;
-    margin-top: 8%;
+    /*margin-top: 8%;*/
   }
-  .login-holder button:focus{
+  .login-holder button:focus
+  {
     border: none;
     padding: 2%;
   }
@@ -105,15 +128,114 @@ select span{
     padding: 2%;
     border: none;
   }
+  .timetable-title-panel{
+    width: 100vw;
+  }
+  .timetable-title-panel h4{
+    font-size: 25px!important;
+  }
+  .timetable-title-panel .submit-button{
+    margin-left: 45%;
+    font-size: 12px;
+    padding: 1.95%;
+  }
+  .timetable-menu-list .fa-times{
+    font-size: 25px!important;
+  }
+  .timetable-menu-list .submit-button{
+    display: block;
+    margin-top: 2%;
+    width: 100%!important;
+    position: relative;
+    left: -1.6%;
+  }
+  .timetable-results{
+    height: 50vw;
+    overflow-x: scroll;
+    clear: both;
+  }
+  .timetable-results .custom-card{
+    margin-top: 2%;
+    margin-left: 5%;
+    padding: 1%;
+  }
+  .timetable-results .custom-card-edit{
+    width: 250%!important;
+    padding: 0%!important;
+  }
+  .timetable-results .custom-card-edit .save-tt{
+    padding: 0%!important;
+    padding-left: 5%!important;
+    padding-top: 2%!important;
+    padding-bottom: 2%!important;
+  }
+  .timetable-results .custom-card-edit img:nth-child(2){
+    padding-right: 5%!important;
+    padding-top: 2%!important;
+    padding-bottom: 2%!important;
+    position: relative;
+    left: -60%;
+  }
+  .timetable-results .custom-card-slot{
+    padding: 1%;
+    width: 102%!important;
+    position: relative;
+    left: -3px!important;
+    height: 35px!important;
+  }
+  .timetable-results .custom-card-action{
+    padding: 1%!important;
+  }
+  .timetable-results .custom-card:nth-child(1){
+    margin-top: 0%;
+  }
+  .timetable{
+    font-size: 10px!important;
+    overflow-x: scroll;
+  }
+  .timetable-selected-list{
+    padding: 0%!important;
+    font-size: 8px!important;
+    width: 90%!important;
+    position: relative;
+    left: -10px;
+  }
+  .timetable-selected-table{
+    padding: 0%!important;
+    margin-left: 0%!important;
+  }
+  .timetable-selected-table td{
+    font-size: 8px!important;
+  }
+  .timetable-selected-headings td:nth-child(6){
+    padding: 0%!important;
+    width: 10%!important;
+  }
+  .timetable-selected-headings td:nth-child(4),.timetable-selected-headings td:nth-child(5){
+    padding: 8%!important;
+    margin: 0px!important;
+    text-align: center!important;
+  }
+  .timetable-selected-table .sub-text{
+    font-size: 6px!important;
+    font-weight: 200;
+  }
+  .timetable-selected-table .sub-text-inside{
+    font-size: 6px!important;
+    color: #666;
+  }
+  .timetable-selected-table .material-icons{
+    font-size: 10px;
+  }
+  .timetable-selected-subject td:nth-child(1){
+    padding: 3%!important;
+    font-size: 9px!important;
+  }
 }
-
-
-
-
 
 /*Timetable page styles*/
 .timetable-title-panel{
-  width: 100%;
+
   color: white;
   text-align: left;
   background-color: rgb(73,97,109);
@@ -145,9 +267,11 @@ select span{
   background: rgb(0,233,143);
 }
 .timetable-menu-list{
+  width:100%;
   background: rgb(73,97,109);
   width: 100%;
   padding: 3%;
+  position: absolute;
 }
 .timetable-menu-list .course-list-1{
   width: 30%;
@@ -213,6 +337,16 @@ select span{
   margin-top: 0px;
   overflow-x: scroll;
 }
+.timetable-results .custom-card-edit .save-tt{
+  padding-left: 15%;
+  padding-top: 5%;
+  padding-bottom: 5%
+}
+.timetable-results .custom-card-edit img:nth-child(2){
+  padding-right: 15%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
 .timetable-results .custom-card h5{
   font-size: 18px;
   font-weight: 500;
@@ -247,56 +381,68 @@ select span{
 .timetable-results .custom-card-action-active:hover{
   cursor: pointer;
 }
-.timetable-results{
-
-}
 .timetable{
   color: white;
   font-size: 18px;
   padding: 2%;
+  margin-left: 0;
 }
 .timetable .timetable-timing{
   background-color: #8faec2;
   padding: 1.5%;
+  background: rgb(220,225,227);
+  color: rgb(153,153,153);
+  font-weight: 400;
+}
+.timetable .timetable-header{
+  border: 1px solid rgba(128,128,128,0.2);
+  background: rgb(220,225,227);
+  padding: 2%;
+  background: rgb(220,225,227);
+  color: rgb(153,153,153);
+  font-weight: 400;
 }
 .timetable td{
   border: 1px solid;
   border-color: rgba(128,128,128,0.2);
-  border-bottom: 2px solid white;
-  padding: 1%;
+  text-align: center;
 }
-.timetable .timetable-header{
-  border-bottom: 2px solid white!important;
-  border: 1px solid rgba(128,128,128,0.2);
-  background: #8faec2;
-  padding: 2%;
-}
-
-.timetable .inactive{
-  padding: 2.5%;
-}
-.timetable .inactive:nth-child(even){
-  background: #ddd;
-  padding: 3%;
+.timetable .unselected{
+  background: white;
+  color: rgb(153,153,153);
 }
 .timetable-seminar{
   padding: 2%;
   color: #555;
   text-align: center;
 }
-.timetable .active{
+.timetable .selected{
   background: #00e676;
 }
-.timetable td{
-  border-radius: 0px!important;
+.timetable .clash{
+  background: rgb(250,77,92);
+}
+.timetable .number{
+  font-family: 'Montserrat';
+  position: relative;
+  top: -20px;
+  right: -2px;
+  text-align: center;
+  font-size: 1em;
+  border-radius: 50%;
+  background: white;
 }
 
 .timetable-selected-list{
-  margin: 3%!important;
+  margin: 6%!important;
+  border-radius: 2px;
 }
 .timetable-selected-list .timetable-selected-table .timetable-selected-headings{
   background-color: rgb(73,97,109);
   color: white;
+}
+.timetable-selected-table{
+  font-family: 'Montserrat';
 }
 .sub-text{
   font-weight: 200;
@@ -312,6 +458,9 @@ select span{
 }
 .timetable-selected-list td{
   border-radius: 0px;
+}
+.timetable-selected-subject td:nth-child(1){
+  padding: 2%;
 }
 .timetable-selected-subject{
   background: white;
