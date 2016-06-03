@@ -58,4 +58,5 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine','ejs')
 app.use('/',require('./routes/default.js'))
 app.use('/course',require('./routes/course.js'))
+
 app.listen(8000);

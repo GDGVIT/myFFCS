@@ -48,6 +48,22 @@ return Kefir.stream((emitter)=>{
 })
 }
 
+const getAllData=function () {
+  return Kefir.stream((emitter)=>{
+    model.find({},function (err,data) {
+      if(err){
+        emitter.console.error({status:false,message:"something went wrong on mongodb"});
+      }else {
+        emitter.emit(data)
+      }
+      emitter.end()
+    })
+
+  })
+
+}
+
 exports.getByCourse=getByCourse
 exports.getByFaculty=getByFaculty
 exports.getByCourseCode=getByCourseCode
+exports.getAllData=getAllData
