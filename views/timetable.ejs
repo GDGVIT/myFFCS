@@ -29,20 +29,20 @@
           <select id="course-list" class="course-list-1" name="course-list" style="min-width: 200px">
               <option value="0">Search Course</option>
               <%for(i=0;i<data.length;i++){%>
-              <option value="<%=data[i]._id%>"><%=data[i].name%></option>
+              <option value="<%=data[i].name%>"><%=data[i].name%></option>
              <%}%>
             </select>
             <select id="slot-list" class="slot-list-1" name="slot-list" style="min-width: 200px">
               <option value="0">Search Slot</option>
               <%for(i=0;i<data.length;i++){%>
-              <option value="<%=data[i]._id%>"><%=data[i].slots%></option>
+              <option value="<%=data[i].slots%>"><%=data[i].slots%></option>
              <%}%>
 
 
             </select>
             <select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px">
               <%for(i=0;i<data.length;i++){%>
-              <option value="<%=data[i]._id%>"><%=data[i].faculty%></option>
+              <option value="<%=data[i].faculty%>"><%=data[i].faculty%></option>
              <%}%>
 
             </select>
@@ -367,8 +367,9 @@
           $('.slot-list-1').empty();
           $('.faculty-list-1').empty();
           for(var i in data){
-            $('.slot-list-1').append('<option>'+data[i].slot+'</option>');
-            $('.faculty-list-1').append('<option>'+data[i].faculty+'</option>');
+        
+            $('.slot-list-1').append('<option>'+data.data[i].slot+'</option>');
+            $('.faculty-list-1').append('<option>'+data.data[i].faculty+'</option>');
           }
         },
         error: function(){
@@ -386,9 +387,10 @@
 
           $('.slot-list-1').empty();
           $('.faculty-list-1').empty();
-          for(var i in data){
-            $('.slot-list-1').append('<option>'+data[i].slot+'</option>');
-            $('.faculty-list-1').append('<option>'+data[i].faculty+'</option>');
+          for(var i in data.data){
+
+            $('.slot-list-1').append('<option>'+data.data[i].slot+'</option>');
+            $('.faculty-list-1').append('<option>'+data.data[i].faculty+'</option>');
           }
         },
         error: function(){
