@@ -44,5 +44,14 @@ Router.get('/get',function (req,res,next) {
     res.json(val)
   })
 })
+Router.get('/getalldata',function (req,res,next) {
+var result=course.getAllData()
+result.onValue((val)=>{
+  res.json({status:true,data:val})
+})
+result.onError((val)=>{
+  res.json(val)
+})
+})
 
 module.exports=Router

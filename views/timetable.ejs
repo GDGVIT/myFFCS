@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,6 +19,7 @@
     <script src="js/script.js"></script>
     <script src="js/select2.min.js"></script>
     <script src='js/slick.min.js'></script>
+    <script src='js/jquery-ui.js'></script>
   </head>
   <body>
     <div class="timetable-menu-list">
@@ -25,28 +27,25 @@
         <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
       </div>
       <div class="row">
-        <div class="col s12 m12 l12 push-l3">
+        <div class="col s12 m12 l12 push-l4">
           <select id="course-list" class="course-list-1" name="course-list" style="min-width: 200px">
               <option value="0">Search Course</option>
               <%for(i=0;i<data.length;i++){%>
-              <option value="<%=data[i].name%>"><%=data[i].name%></option>
+              <option value="<%=data[i].courseCode%>"><%=data[i].courseCode+" "+data[i].name%></option>
              <%}%>
             </select>
-            <select id="slot-list" class="slot-list-1" name="slot-list" style="min-width: 200px">
+            <!--select id="slot-list" class="slot-list-1" name="slot-list" style="min-width: 200px">
               <option value="0">Search Slot</option>
-              <%for(i=0;i<data.length;i++){%>
-              <option value="<%=data[i].slots%>"><%=data[i].slots%></option>
-             <%}%>
-
-
-            </select>
+              <option value="L31+L32+L33+L34+L35+L36">L31+L32+L33+L34+L35+L36</option>
+              <option value="A1">A1</option>
+            </select-->
             <select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px">
+              <option value="0">Search Faculty</option>
               <%for(i=0;i<data.length;i++){%>
               <option value="<%=data[i].faculty%>"><%=data[i].faculty%></option>
              <%}%>
-
             </select>
-            <button class="submit-button timetable-results-trigger">Save</button>
+            <button class="submit-button timetable-results-trigger">Search</button>
         </div>
       </div>
     </div>
@@ -59,13 +58,13 @@
       </div>
     </div>
     <div class="row timetable-results">
-      <div class="custom-card z-depth-1  col m3 push-m1 l3 push-l1" draggable="true" ondragstart="drag(event)">
+      <div class="custom-card z-depth-1  col m3 push-m1 l3 push-l1"  >
         <div class="custom-card-header">
           <div class="custom-card-front">
             <h5 class="course-title">Introduction To Innovative Projects</h5>
             <p class="course-faculty">Prof. Gandhimati S.N.S.</p></div>
             <div class="custom-card-edit" style="display:none">
-              <img src="images/edit.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" />
+              <img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" />
               <img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" />
             </div>
         </div>
@@ -74,13 +73,13 @@
           <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
         </div>
       </div>
-      <div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1 " draggable="true" ondragstart="drag(event)">
+      <div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1 "  >
         <div class="custom-card-header">
           <div class="custom-card-front">
             <h5 class="course-title">Introduction To Innovative Projects</h5>
             <p class="course-faculty">Prof. Gandhimati S.N.S.</p></div>
             <div class="custom-card-edit" style="display:none">
-              <img src="images/edit.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" />
+              <img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" />
               <img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" />
             </div>
         </div>
@@ -89,18 +88,18 @@
           <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
         </div>
       </div>
-      <div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1 " draggable="true" ondragstart="drag(event)">
+      <div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1 "  >
         <div class="custom-card-header">
           <div class="custom-card-front">
             <h5 class="course-title">Introduction To Innovative Projects</h5>
             <p class="course-faculty">Prof. Gandhimati S.N.S.</p></div>
             <div class="custom-card-edit" style="display:none">
-              <img src="images/edit.png" class="save-tt" class="left" />
+              <img src="images/add.png" class="save-tt" class="left" />
               <img src="images/delete.png" class="right" />
             </div>
         </div>
         <div class="custom-card-slot row valign-wrapper">
-          <div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">PHY1011<span class="right">L1+L2</span></p></div>
+          <div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">PHY1011<span class="right">G1</span></p></div>
           <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
         </div>
       </div>
@@ -189,7 +188,7 @@
           <td class="ta1 l28 unselected">TA1/L28<span class="number"></span></td>
           <td class="tf1 l29 unselected">TF1/L29<span class="number"></span></td>
           <td class="l30 unselected">L30<span class="number"></span></td>
-          <td class="f2 l55 unselected">F2/L55<span class="number"></span></td>
+          <td class="e2 l55 unselected">E2/L55<span class="number"></span></td>
           <td class="c2 l56 unselected">C2/L56<span class="number"></span></td>
           <td class="ta2 l57 unselected">TA2/L57<span class="number"></span></td>
           <td class="tf2 l58 unselected">TF2/L58<span class="number"></span></td>
@@ -269,7 +268,7 @@
   </body>
   <script type="text/javascript">
     var count = $('.timetable-selected-subject').length;
-    $('.save-tt').click(function(){
+    $(document).on('click','.save-tt',function(){
       var slot = $(this).closest($('.custom-card')).find($('.custom-card-slot .right')).text();
       var courseCode = $(this).closest($('.custom-card')).find($('.custom-card-slot .course-code')).text().replace(slot,"");
       var faculty = $(this).closest($('.custom-card')).find($('.custom-card-front .course-faculty')).text();
@@ -331,10 +330,32 @@
       }
       $(this).closest($('.timetable-selected-subject')).remove();
       count--;
+      var index=1;
+      var current = $('.timetable-selected-subject');
+      for(var i=1;i<=$('.timetable-selected-subject').length;i++){
+        $(current).find($('td:nth-child(1)')).html(index);
+        var slot = $(current).find($('td:nth-child(4)')).html();
+        if(slot.charAt(0)=='l'){
+          slot = slot.split('+');
+          for(var j=0;j<slot.length;j++){
+            var tempSlot = slot[j];
+            tempSlot = tempSlot.toLowerCase();
+            $('.'+tempSlot+' .number').html(index);
+          }
+        }
+        else{
+          slot = slot.toLowerCase();
+          $('.'+slot+' .number').html(index);
+        }
+        current = current.next($('.timetable-selected-subject'));
+        index++;
+      }
+    });
+    $(document).on('click','.custom-card-edit img:nth-child(2)',function(){
+      $(this).closest($('.custom-card')).remove();
     });
     $(document).ready(function(){
       $('.course-list-1').select2();
-      $('.slot-list-1').select2();
       $('.faculty-list-1').select2();
       /*$('.timetable-results').slick({
         dots: false,
@@ -358,18 +379,19 @@
     });
     $(".course-list-1").change(function(){
       var search = $('.course-list-1').select2('data')[0]['text'];
-
       var code = search.split('-')[0];
       $.ajax({
         url: '/course/getbycoursecode/?q='+code,
         datatype: 'json',
-        success: function(data){
+        type: 'GET',
+        success: function(response){
           $('.slot-list-1').empty();
+          //$('.slot-list-1').append('<option value="0">Search Slot</option>');
           $('.faculty-list-1').empty();
-          for(var i in data){
-        
-            $('.slot-list-1').append('<option>'+data.data[i].slot+'</option>');
-            $('.faculty-list-1').append('<option>'+data.data[i].faculty+'</option>');
+          $('.faculty-list-1').append('<option value="0">Select Faculty</option>');
+          for(var i in response.data){
+            //$('.slot-list-1').append('<option>'+response.data[i].slot+'</option>');
+            $('.faculty-list-1').append('<option>'+response.data[i].faculty+'</option>');
           }
         },
         error: function(){
@@ -377,24 +399,49 @@
         }
       });
     });
-    $('.faculty-list-1').change(function(){
-      var search = $('.faculty-list-1').select2('data')[0]['text']
-
+    $(document).on('change','.faculty-list-1',function(){
+      var search = $('.faculty-list-1').select2('data')[0]['text'];
       $.ajax({
-        url: '/course/getbyfaculty/?q='+search,
+        url: 'course/getbyfaculty/?q='+search,
         datatype: 'json',
-        success: function(data){
-
+        type: 'GET',
+        success: function(response){
           $('.slot-list-1').empty();
-          $('.faculty-list-1').empty();
-          for(var i in data.data){
-
-            $('.slot-list-1').append('<option>'+data.data[i].slot+'</option>');
-            $('.faculty-list-1').append('<option>'+data.data[i].faculty+'</option>');
+          //$('.slot-list-1').append('<option value="0">Select Slot</option>');
+          $('.course-list-1').empty();
+          $('.course-list-1').append('<option value="0">Select Course</option>');
+          for(var i in response.data){
+            //$('.slot-list-1').append('<option value="'+response.data[i].slots+'">'+response.data[i].slots+'</option>');
+            var courseCode = response.data[i].courseCode.split('-').join('');
+            var courseTitle = response.data[i].name;
+            var course = courseCode+'-'+courseTitle;
+            $('.course-list-1').append('<option value="'+courseCode+'">'+course+'</option>');
           }
         },
         error: function(){
           alert('Ajax failure');
+        }
+      });
+    });
+    $(document).on('click','.timetable-menu-list .submit-button',function(){
+      var courseCode = $('.course-list-1').select2('data')[0]['text'].split('-')[0];
+      //var slot = $('.slot-list-1').select2('data')[0]['text'];
+      var faculty = $('.faculty-list-1').select2('data')[0]['text'];
+      $.ajax({
+        url: 'course/get/?code=ITE-101&faculty=angulakshmi',//+courseCode+'&faculty='+faculty,
+        type: 'GET',
+        datatype: 'json',
+        success: function(response){
+          $('.timetable-results').empty();
+          for(var i in response.data){
+            var courseTitle = response.data[i].name;
+            var slot = response.data[i].slots;
+            var credits = response.data[i].credits;
+            $('.timetable-results').append('<div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1"><div class="custom-card-header"><div class="custom-card-front"><h5 class="course-title">'+courseTitle+'</h5><p class="course-faculty">'+faculty+'</p></div><div class="custom-card-edit" style="display:none"><img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" /><img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" /></div></div><div class="custom-card-slot row valign-wrapper"><div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">'+courseCode+'<span class="right">'+slot+'</span></p></div><div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></div></div>');
+          }
+        },
+        error: function(){
+          alert('Ajax Error');
         }
       });
     });
