@@ -6,7 +6,7 @@ const auth=require('../middleware/auth.js')
 const course=require('../course/model.js')
 const tokenAuth=require('../middleware/token.js')
 const bodyParser=require('body-parser')
-const pageres=require('pageres')
+//const pageres=require('pageres')
 Router.get('/',function (req,res,next) {
   res.render('home',{data:false})
 })
