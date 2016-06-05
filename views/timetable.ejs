@@ -22,7 +22,7 @@
     <script src='js/jquery-ui.js'></script>
   </head>
   <body>
-    <input type="text" name="token" value="<%=user.token%>">
+    <input type="text" class="user-token" name="token" style="display:none;" value="<%=user.token%>">
     <div class="timetable-menu-list">
       <div class="close">
         <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
@@ -51,6 +51,7 @@
       </div>
       <div class="col s12 m3 l3 valign">
         <button class="submit-button">Add Course</button>
+        <button class="submit-button logout" style="margin-top: 5px;">Logout</button>
       </div>
     </div>
     <div class="row timetable-results">
@@ -69,7 +70,7 @@
           <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
         </div>
       </div>
-      <div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1 "  >
+      <div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1">
         <div class="custom-card-header">
           <div class="custom-card-front">
             <h5 class="course-title">Introduction To Innovative Projects</h5>
@@ -193,6 +194,9 @@
         </tr>
       </table>
     </div>
+    <div class="row save-timetable">
+      <button class="col s12 m4 l4 push-l6 submit-button">Save!</button>
+    </div>
     <div class="row timetable-selected-list z-depth-1">
       <table class="timetable-selected-table">
         <tr class="timetable-selected-headings">
@@ -263,9 +267,8 @@
     </div>
   </body>
   <script type="text/javascript">
-    var count = $('.timetable-selected-subject').length;
     var doneOnce = false;
-    $(".timetable-title-panel .submit-button").click(function(){
+    $(".timetable-title-panel .submit-button:nth-child(1)").click(function(){
       $('.timetable-results').slideUp(400,function(){
         $(".timetable-menu-list").slideDown(400);
         doneOnce = false;
@@ -278,6 +281,7 @@
     });
     $(document).on('click','.save-tt',function(){
       doneOnce = false;
+      var count = $('.timetable-selected-subject').length;
       var slot = $(this).closest($('.custom-card')).find($('.custom-card-slot .right')).text();
       var courseCode = $(this).closest($('.custom-card')).find($('.custom-card-slot .course-code')).text().replace(slot,"");
       var faculty = $(this).closest($('.custom-card')).find($('.custom-card-front .course-faculty')).text();
@@ -285,6 +289,9 @@
       var credits = $(this).closest('.custom-card').attr('data-credits');
       var school = $(this).closest('.custom-card').attr('data-school');
       var courseType = $(this).closest('.custom-card').attr('data-coursetype');
+      var id = $(this).closest('.custom-card').find('.course-id').val();
+      var token = $('.user-token').val();
+      var slotRequest = slot;
       slot = slot.toLowerCase();
       if(slot.charAt(0)!=='l'){
         if($('.'+slot).hasClass('selected')){
@@ -299,10 +306,24 @@
           $('.'+slot+" .number").css("color","#00e676");
           $('.'+slot+" .number").html(count);
           if(count==1)
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'-'+credits+'</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
+            $('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'-'+credits+'</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
           else {
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'-'+credits+'</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
+            $('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'-'+credits+'</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
           }
+          $.ajax({
+            url: '/course/addcourse',
+            headers: {
+              'token': token
+            },
+            type: 'POST',
+            data: {
+              'courseid': id
+            },
+            success: function(response){
+            },
+            error: function(){
+            }
+          });
         }
       } else{
         var isClashing = false;
@@ -325,16 +346,46 @@
             $('.'+tempSlot+" .number").html(count);
           }
           if(count==1){
-            $('<tr class="timetable-selected-subject"><td>'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">Lab Only</span></td><td>'+slot.join('+').toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">SCOPE</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
+            $('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">Lab Only</span></td><td>'+slot.join('+').toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">SCOPE</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
           } else{
-            $('<tr class="timetable-selected-subject"><td>'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">Lab Only</span></td><td>'+slot.join('+').toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">SCOPE</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
+            $('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">Lab Only</span></td><td>'+slot.join('+').toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">SCOPE</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
           }
+          $.ajax({
+            url: '/course/addcourse',
+            headers: {
+              'token': token
+            },
+            type: 'POST',
+            data: {
+              'courseid': id
+            },
+            success: function(response){
+            },
+            error: function(){
+            }
+          });
         }
       }
     });
     $(document).on('click', '.timetable-selected-subject .material-icons',function(){
       var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(4)')).text();
       slot = slot.split('+');
+      var id = $(this).closest($('.timetable-selected-subject')).find($('.course-id')).val();
+      var token = $('.user-token').val();
+      $.ajax({
+        url: '/course/delete/',
+        headers: {
+          'token': token
+        },
+        type: 'POST',
+        data: {
+          'courseid': id
+        },
+        success: function(response){
+        },
+        error: function(){
+        }
+      });
       for(var i in slot){
         var tempSlot = slot[i].replace(' ','').toLowerCase();
         $('.'+tempSlot).addClass('unselected').removeClass('selected').removeClass('clash');
@@ -362,6 +413,7 @@
         current = current.next($('.timetable-selected-subject'));
         index++;
       }
+
     });
     $(document).on('click','.custom-card-edit img:nth-child(2)',function(){
       $(this).closest($('.custom-card')).remove();
@@ -388,6 +440,48 @@
         }
         ]
       });*/
+      $.ajax({
+        url: '/detail',
+        headers: {
+          'token': $('.user-token').val()
+        },
+        type: 'GET',
+        success: function(response){
+          $('.timetable-selected-subject').remove();
+          var count = 1;
+          for(var i in response.data.allotedCourse){
+            var id = response.data.allotedCourse[i]._id;
+            var courseTitle = response.data.allotedCourse[i].name;
+            var faculty = response.data.allotedCourse[i].faculty;
+            var slot = response.data.allotedCourse[i].slots;
+            var credits = response.data.allotedCourse[i].credits;
+            var courseCode = response.data.allotedCourse[i].courseCode;
+            var courseType = 'Lab Only';
+            var school = 'SCOPE';
+            $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
+            if(slot.charAt(0)!=='l'){
+              slot = slot.toLowerCase();
+              $("."+slot).addClass("selected");
+              $("."+slot).removeClass("unselected");
+              $('.'+slot+" .number").css("color","#00e676");
+              $('.'+slot+" .number").html(count);
+            } else{
+              slot = slot.toLowerCase();
+              slot = slot.split('+');
+              for(var j in slot){
+                tempSlot = slot[j];
+                $("."+tempSlot).addClass("selected");
+                $("."+tempSlot).removeClass("unselected");
+                $('.'+tempSlot+" .number").css("color","#00e676");
+                $('.'+tempSlot+" .number").html(count);
+              }
+            }
+            count++;
+          }
+        },
+        error: function(){
+        }
+      })
     });
     $(".course-list-1").change(function(){
       if(!doneOnce){
@@ -458,7 +552,8 @@
             //var school = response.data[i].school;
             var courseType = 'Lab Only';
             var school = 'SCOPE';
-            $('.timetable-results').append('<div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1" data-credits="'+credits+'" data-school="'+school+'" data-coursetype="'+courseType+'"><div class="custom-card-header"><div class="custom-card-front"><h5 class="course-title">'+courseTitle+'</h5><p class="course-faculty">'+faculty+'</p></div><div class="custom-card-edit" style="display:none"><img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" /><img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" /></div></div><div class="custom-card-slot row valign-wrapper"><div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">'+courseCode+'<span class="right">'+slot+'</span></p></div><div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></div></div>');
+            var id = response.data[i]._id;
+            $('.timetable-results').append('<div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1" data-credits="'+credits+'" data-school="'+school+'" data-coursetype="'+courseType+'"><div class="custom-card-header"><div class="custom-card-front"><input class="course-id" type="text" style="display:none" value="'+id+'"><h5 class="course-title">'+courseTitle+'</h5><p class="course-faculty">'+faculty+'</p></div><div class="custom-card-edit" style="display:none"><img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" /><img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" /></div></div><div class="custom-card-slot row valign-wrapper"><div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">'+courseCode+'<span class="right">'+slot+'</span></p></div><div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></div></div>');
           }
         },
         error: function(){
