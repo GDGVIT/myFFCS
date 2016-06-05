@@ -160,8 +160,8 @@ const deleteCourse=function (regno,slot,courseid) {
     })
   })
 }
-const deleteSlot=function (regno,coursecode) {
-  return course.getCourseById(coursecode).flatMap((x)=>{
+const deleteSlot=function (regno,courseid) {
+  return course.getCourseById(courseid).flatMap((x)=>{
     if(x==null){
       return Kefir.constantError("error with course id")
     }else {

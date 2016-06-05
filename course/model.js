@@ -76,8 +76,9 @@ const getByWish=function (faculty,courseCode) {
 }
 
 const getCourseById=(id)=>{
+  console.log(id);
 return Kefir.stream((emitter)=>{
-  model.findOne({courseCode:new RegExp(id,'i')},function (err,data) {
+  model.findOne({_id:id},function (err,data) {
 
     if(err){
       emitter.error(err);
