@@ -75,8 +75,22 @@ const getByWish=function (faculty,courseCode) {
   })
 }
 
+const getCourseById=(id)=>{
+return Kefir.stream((emitter)=>{
+  model.findOne({_id:id},function (err,data) {
+
+    if(err){
+      emitter.error(err);
+    }else {
+
+      emitter.emit(data);
+    }
+  })
+})
+}
 exports.getByCourse=getByCourse
 exports.getByFaculty=getByFaculty
 exports.getByCourseCode=getByCourseCode
 exports.getAllData=getAllData
 exports.getByWish=getByWish
+exports.getCourseById=getCourseById

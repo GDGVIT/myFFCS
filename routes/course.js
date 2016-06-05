@@ -2,6 +2,9 @@ const express=require('express')
 const course=require('../course/model.js')
 const Kefir=require('kefir')
 const Router=express.Router()
+const tokenAuth=require('../middleware/token.js');
+const student=require('../students/model.js')
+const bodyParser=require('body-parser')
 Router.get('/getbycourse',function (req,res,next) {
   var result=course.getByCourse(req.query.q)
 
@@ -52,6 +55,11 @@ result.onValue((val)=>{
 result.onError((val)=>{
   res.json(val)
 })
+})
+Router.post('/addcourse',bodyParser.json(),tokenAuth,function (req,res,next) {
+
+  student.addCourse(req.body.courseid,req.body.regno).log()
+
 })
 
 module.exports=Router

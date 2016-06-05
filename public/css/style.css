@@ -61,7 +61,6 @@ select span{
   body
   {
     font-size: 20px;
-    /*overflow-x: hidden!important;*/
   }
   .login-holder
   {
@@ -129,7 +128,7 @@ select span{
     border: none;
   }
   .timetable-title-panel{
-    width: 100vw;
+    /*width: 100vw;*/
   }
   .timetable-title-panel h4{
     font-size: 25px!important;
@@ -152,7 +151,7 @@ select span{
   .timetable-results{
     height: 50vw;
     overflow-x: scroll;
-    clear: both;
+    width: 100vw;
   }
   .timetable-results .custom-card{
     margin-top: 2%;
@@ -232,6 +231,57 @@ select span{
     font-size: 9px!important;
   }
 }
+/*Styling for Tabs and Medium devices*/
+@media screen and (min-width:601px) and (max-width:1024px){
+  body{
+    overflow-x: hidden;
+  }
+  .login-holder{
+    width: 100%;
+    position: absolute;
+    right: 13vw;
+  }
+  .timetable-title-panel{
+    width: 100vw!important;
+  }
+  .timetable-title-panel .submit-button{
+    font-size: 15px;
+    padding: 2%;
+  }
+  .timetable-results{
+    overflow-x: scroll!important;
+  }
+  .timetable-results .custom-card:nth-child(1){
+    margin-left: -8%!important;
+  }
+  .timetable-results .custom-card{
+    width: 30%!important;
+  }
+  .timetable-results .custom-card-slot{
+    padding: 2%;
+    width: 110%!important;
+    position: relative;
+    left: -10px!important;
+    height: 35px!important;
+  }
+  .timetable{
+    overflow-x: scroll;
+  }
+  .timetable-selected-list{
+    width: 95%!important;
+    position: absolute;
+    right: -3.5%;
+  }
+  .timetable-selected-table{
+    font-size: 13px!important;
+  }
+  .timetable-selected-table .sub-text{
+    font-size: 12px;
+  }
+  .timetable-selected-table .sub-text-inside{
+    font-size: 12px!important;
+  }
+}
 
 /*Timetable page styles*/
 .timetable-title-panel{
@@ -245,6 +295,9 @@ select span{
 .valign-wrapper{
   padding: 0px;
   margin: 0px;
+}
+.timetable-title-panel{
+  width: 100vw;
 }
 .timetable-title-panel a{
   text-decoration: none;
@@ -276,10 +329,10 @@ select span{
 .timetable-menu-list .course-list-1{
   width: 30%;
 }
-.timetable-menu-list .slot-list-1{
+/*.timetable-menu-list .slot-list-1{
   width: 15%;
   margin-left: 10px;
-}
+}*/
 .timetable-menu-list .faculty-list-1{
   width: 30%;
   margin-left: 10px;

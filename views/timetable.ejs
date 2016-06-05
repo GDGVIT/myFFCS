@@ -34,11 +34,6 @@
               <option value="<%=data[i].courseCode%>"><%=data[i].courseCode+" "+data[i].name%></option>
              <%}%>
             </select>
-            <!--select id="slot-list" class="slot-list-1" name="slot-list" style="min-width: 200px">
-              <option value="0">Search Slot</option>
-              <option value="L31+L32+L33+L34+L35+L36">L31+L32+L33+L34+L35+L36</option>
-              <option value="A1">A1</option>
-            </select-->
             <select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px">
               <option value="0">Search Faculty</option>
               <%for(i=0;i<data.length;i++){%>
@@ -268,11 +263,27 @@
   </body>
   <script type="text/javascript">
     var count = $('.timetable-selected-subject').length;
+    var doneOnce = false;
+    $(".timetable-title-panel .submit-button").click(function(){
+      $('.timetable-results').slideUp(400,function(){
+        $(".timetable-menu-list").slideDown(400);
+        doneOnce = false;
+      });
+    });
+    $(".close").click(function(){
+      $(".timetable-menu-list").slideUp(400);
+      $(".timetable-title-panel").show();
+      doneOnce = false;
+    });
     $(document).on('click','.save-tt',function(){
+      doneOnce = false;
       var slot = $(this).closest($('.custom-card')).find($('.custom-card-slot .right')).text();
       var courseCode = $(this).closest($('.custom-card')).find($('.custom-card-slot .course-code')).text().replace(slot,"");
       var faculty = $(this).closest($('.custom-card')).find($('.custom-card-front .course-faculty')).text();
       var courseTitle = $(this).closest($('.custom-card')).find($('.custom-card-front .course-title')).text();
+      var credits = $(this).closest('.custom-card').attr('data-credits');
+      var school = $(this).closest('.custom-card').attr('data-school');
+      var courseType = $(this).closest('.custom-card').attr('data-coursetype');
       slot = slot.toLowerCase();
       if(slot.charAt(0)!=='l'){
         if($('.'+slot).hasClass('selected')){
@@ -287,9 +298,9 @@
           $('.'+slot+" .number").css("color","#00e676");
           $('.'+slot+" .number").html(count);
           if(count==1)
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">Lab Only</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">SCOPE</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
+            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'-'+credits+'</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
           else {
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">Lab Only</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">SCOPE</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
+            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'-'+credits+'</span></td><td>'+slot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
           }
         }
       } else{
@@ -378,57 +389,62 @@
       });*/
     });
     $(".course-list-1").change(function(){
-      var search = $('.course-list-1').select2('data')[0]['text'];
-      var code = search.split('-')[0];
-      $.ajax({
-        url: '/course/getbycoursecode/?q='+code,
-        datatype: 'json',
-        type: 'GET',
-        success: function(response){
-          $('.slot-list-1').empty();
-          //$('.slot-list-1').append('<option value="0">Search Slot</option>');
-          $('.faculty-list-1').empty();
-          $('.faculty-list-1').append('<option value="0">Select Faculty</option>');
-          for(var i in response.data){
-            //$('.slot-list-1').append('<option>'+response.data[i].slot+'</option>');
-            $('.faculty-list-1').append('<option>'+response.data[i].faculty+'</option>');
+      if(!doneOnce){
+        var search = $('.course-list-1').select2('data')[0]['text'];
+        var code = search.split('-')[0];
+        code = code.slice(0,3)+'-'+code.slice(3);
+
+        $.ajax({
+          url: '/course/getbycoursecode/?q='+code,
+          datatype: 'json',
+          type: 'GET',
+          success: function(response){
+            $('.faculty-list-1').empty();
+            console.log(response);
+            $('.faculty-list-1').append('<option value="0">Select Faculty</option>');
+            for(var i in response.data){
+              $('.faculty-list-1').append('<option>'+response.data[i].faculty+'</option>');
+            }
+          },
+          error: function(){
+            //alert('Ajax failure');
           }
-        },
-        error: function(){
-          alert('Ajax failure');
-        }
-      });
+        });
+        doneOnce = true;
+      }
     });
     $(document).on('change','.faculty-list-1',function(){
-      var search = $('.faculty-list-1').select2('data')[0]['text'];
-      $.ajax({
-        url: 'course/getbyfaculty/?q='+search,
-        datatype: 'json',
-        type: 'GET',
-        success: function(response){
-          $('.slot-list-1').empty();
-          //$('.slot-list-1').append('<option value="0">Select Slot</option>');
-          $('.course-list-1').empty();
-          $('.course-list-1').append('<option value="0">Select Course</option>');
-          for(var i in response.data){
-            //$('.slot-list-1').append('<option value="'+response.data[i].slots+'">'+response.data[i].slots+'</option>');
-            var courseCode = response.data[i].courseCode.split('-').join('');
-            var courseTitle = response.data[i].name;
-            var course = courseCode+'-'+courseTitle;
-            $('.course-list-1').append('<option value="'+courseCode+'">'+course+'</option>');
+      if(!doneOnce){
+        var search = $('.faculty-list-1').select2('data')[0]['text'];
+        search = search.toLowerCase();
+        $.ajax({
+          url: '/course/getbyfaculty/?q='+search,
+          datatype: 'json',
+          type: 'GET',
+          success: function(response){
+            $('.course-list-1').empty();
+            $('.course-list-1').append('<option value="0">Select Course</option>');
+            for(var i in response.data){
+              var courseCode = response.data[i].courseCode.split('-').join('');
+              var courseTitle = response.data[i].name;
+              var course = courseCode+'-'+courseTitle;
+              $('.course-list-1').append('<option value="'+courseCode+'">'+course+'</option>');
+            }
+          },
+          error: function(){
+            //alert('Ajax failure');
           }
-        },
-        error: function(){
-          alert('Ajax failure');
-        }
-      });
+        });
+        doneOnce = true;
+      }
     });
     $(document).on('click','.timetable-menu-list .submit-button',function(){
       var courseCode = $('.course-list-1').select2('data')[0]['text'].split('-')[0];
-      //var slot = $('.slot-list-1').select2('data')[0]['text'];
       var faculty = $('.faculty-list-1').select2('data')[0]['text'];
+      courseCode = courseCode.slice(0,3)+'-'+courseCode.slice(3);
+      var tempFaculty = faculty.toLowerCase();
       $.ajax({
-        url: 'course/get/?code=ITE-101&faculty=angulakshmi',//+courseCode+'&faculty='+faculty,
+        url: '/course/get/?code='+courseCode+'&faculty='+tempFaculty,
         type: 'GET',
         datatype: 'json',
         success: function(response){
@@ -437,11 +453,41 @@
             var courseTitle = response.data[i].name;
             var slot = response.data[i].slots;
             var credits = response.data[i].credits;
-            $('.timetable-results').append('<div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1"><div class="custom-card-header"><div class="custom-card-front"><h5 class="course-title">'+courseTitle+'</h5><p class="course-faculty">'+faculty+'</p></div><div class="custom-card-edit" style="display:none"><img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" /><img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" /></div></div><div class="custom-card-slot row valign-wrapper"><div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">'+courseCode+'<span class="right">'+slot+'</span></p></div><div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></div></div>');
+            //var courseType = response.data[i].type;
+            //var school = response.data[i].school;
+            var courseType = 'Lab Only';
+            var school = 'SCOPE';
+            $('.timetable-results').append('<div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1" data-credits="'+credits+'" data-school="'+school+'" data-coursetype="'+courseType+'"><div class="custom-card-header"><div class="custom-card-front"><h5 class="course-title">'+courseTitle+'</h5><p class="course-faculty">'+faculty+'</p></div><div class="custom-card-edit" style="display:none"><img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" /><img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" /></div></div><div class="custom-card-slot row valign-wrapper"><div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">'+courseCode+'<span class="right">'+slot+'</span></p></div><div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></div></div>');
           }
         },
         error: function(){
-          alert('Ajax Error');
+          //alert('Ajax Error');
+        }
+      });
+    });
+
+    $(document).on('click','.timetable-title-panel .submit-button',function(){
+      $.ajax({
+        url: 'course/getalldata/',
+        type: 'GET',
+        datatype: 'json',
+        success: function(response){
+          $('.course-list-1').empty();
+          $('.course-list-1').append('<option value="0">Search Course</option>');
+          $('.faculty-list-1').empty();
+          $('.faculty-list-1').append('<option value="0">Search Faculty</option>');
+          for(var i in response.data){
+            var courseTitle = response.data[i].name;
+            var courseCode = response.data[i].courseCode;
+            var faculty = response.data[i].faculty;
+            courseCode = courseCode.replace('-','');
+            var course = courseCode+'-'+courseTitle;
+            $('.course-list-1').append('<option value="'+courseCode+'">'+course+'</option>');
+            $('.faculty-list-1').append('<option value="'+faculty+'">'+faculty+'</option>');
+          }
+        },
+        error: function(){
+          $.ajax(this);
         }
       });
     });

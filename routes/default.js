@@ -27,8 +27,12 @@ Router.post('/register',function (req,res,next) {
 })
 Router.get('/home',auth,function (req,res,next) {
   var result=course.getAllData();
+
     result.onValue((x)=>{
-      res.render('timetable',{data:x})
+      student.userdata(req.session.passport.user,function (err,user) {
+     res.render('timetable',{data:x,user:user})
+      })
+
     })
     result.onError((x)=>{
       res.send("sorry for inconviniance we will get back to u soon")
