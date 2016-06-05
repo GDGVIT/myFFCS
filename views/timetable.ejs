@@ -511,7 +511,7 @@
           success: function(response){
             $('.faculty-list-1').empty();
             console.log(response);
-            $('.faculty-list-1').append('<option value="0">Select Faculty</option>');
+            //$('.faculty-list-1').append('<option value="0">Select Faculty</option>');
             for(var i in response.data){
               $('.faculty-list-1').append('<option>'+response.data[i].faculty+'</option>');
             }
@@ -533,7 +533,7 @@
           type: 'GET',
           success: function(response){
             $('.course-list-1').empty();
-            $('.course-list-1').append('<option value="0">Select Course</option>');
+            //$('.course-list-1').append('<option value="0">Select Course</option>');
             for(var i in response.data){
               var courseCode = response.data[i].courseCode.split('-').join('');
               var courseTitle = response.data[i].name;
@@ -584,9 +584,9 @@
         datatype: 'json',
         success: function(response){
           $('.course-list-1').empty();
-          $('.course-list-1').append('<option value="0">Search Course</option>');
+          //$('.course-list-1').append('<option value="0">Search Course</option>');
           $('.faculty-list-1').empty();
-          $('.faculty-list-1').append('<option value="0">Search Faculty</option>');
+          //$('.faculty-list-1').append('<option value="0">Search Faculty</option>');
           for(var i in response.data){
             var courseTitle = response.data[i].name;
             var courseCode = response.data[i].courseCode;
