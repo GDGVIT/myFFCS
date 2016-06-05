@@ -298,7 +298,7 @@
           $('.'+slot).addClass('clash');
           $('.'+slot).removeClass('.selected');
           $('.'+slot+" .number").css("color","rgb(250,77,92)");
-          $('.'+slot+" .number").html(count);
+          //$('.'+slot+" .number").html(count);
         } else{
           count++;
           $("."+slot).addClass("selected");
@@ -364,6 +364,14 @@
             error: function(){
             }
           });
+        } else{
+          for(var i in slot){
+            tempSlot = slot[i];
+            $("."+tempSlot).addClass("clash");
+            $("."+tempSlot).removeClass("unselected");
+            $('.'+tempSlot+" .number").css("color","rgb(250,77,92)");
+            //$('.'+tempSlot+" .number").html(count);
+          }
         }
       }
     });
@@ -459,13 +467,7 @@
             var courseType = 'Lab Only';
             var school = 'SCOPE';
             $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
-            if(slot.charAt(0)!=='l'){
-              slot = slot.toLowerCase();
-              $("."+slot).addClass("selected");
-              $("."+slot).removeClass("unselected");
-              $('.'+slot+" .number").css("color","#00e676");
-              $('.'+slot+" .number").html(count);
-            } else{
+            if(slot.charAt(0)=='L'){
               slot = slot.toLowerCase();
               slot = slot.split('+');
               for(var j in slot){
@@ -475,6 +477,12 @@
                 $('.'+tempSlot+" .number").css("color","#00e676");
                 $('.'+tempSlot+" .number").html(count);
               }
+            } else{
+              slot = slot.toLowerCase();
+              $("."+slot).addClass("selected");
+              $("."+slot).removeClass("unselected");
+              $('.'+slot+" .number").css("color","#00e676");
+              $('.'+slot+" .number").html(count);
             }
             count++;
           }

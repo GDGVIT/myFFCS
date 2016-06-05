@@ -41,7 +41,7 @@ Router.get('/home',auth,function (req,res,next) {
       res.send("sorry for inconviniance we will get back to u soon")
     })
 })
-Router.get('/screenshot',function (req,res,next) {
+/*Router.get('/screenshot',function (req,res,next) {
   var result=course.getAllData();
 
     result.onValue((x)=>{
@@ -61,7 +61,7 @@ new pageres({filename:'shot.png'}).src('http://localhost:8080/screenshot?regno=1
 .then((c)=>{
   res.send("check")
 })
-})
+})*/
 Router.get('/error',function (req,res,next) {
 res.render('home',{message:'invalid credentials',data:true})
 })
