@@ -22,8 +22,8 @@ select span{
 }
 .login-holder button{
   padding: 0px;
-  width: 100%;
-  background-color: #00ac37;
+  width: 100%!important;
+  background-color: rgb(0,230,118);
   padding: 2%;
   border: none;
   position: absolute;
@@ -38,13 +38,13 @@ select span{
 }
 .login-holder button:active{
   padding: 0px;
-  background-color: #00ac37;
+  background-color: rgb(0,233,143);
   padding: 2%;
   border: none;
 }
 .submit-button{
-  width: 100%;
-  background-color: rgb(0,223,143);
+  width: 40%!important;
+  background-color: rgb(0,233,143);
   padding: 2%;
   border: none;
   color: white;
@@ -55,6 +55,16 @@ select span{
 }
 .submit-button:active{
   border: none;
+}
+.login-header{
+  font-family: 'Lato';
+  font-size: 20px;
+  text-align: center;
+}
+.register-header{
+  font-family: 'Lato';
+  font-size: 20px;
+  text-align: center;
 }
 /*Styling For Mobile Devices*/
 @media screen and (max-width:600px){
@@ -103,7 +113,7 @@ select span{
   .login-holder button
   {
     width: 100%;
-    background-color: #00ac37;
+    background-color: rgb(0,233,143);
     text-align: center;
     padding: 2%;
     font-size: 20px;
@@ -123,7 +133,7 @@ select span{
   }
   .login-holder button:active{
     padding: 0px;
-    background-color: #00ac37;
+    background-color: rgb(0,233,143);
     padding: 2%;
     border: none;
   }
@@ -134,19 +144,24 @@ select span{
     font-size: 25px!important;
   }
   .timetable-title-panel .submit-button{
-    margin-left: 45%;
+    margin-left: -10%;
     font-size: 12px;
-    padding: 1.95%;
+    width: 50%!important;
+  }
+  .timetable-title-panel .submit-button-logout{
+    margin-left: 0px;
+    font-size: 12px!important;
   }
   .timetable-menu-list .fa-times{
     font-size: 25px!important;
   }
   .timetable-menu-list .submit-button{
-    display: block;
     margin-top: 2%;
-    width: 100%!important;
-    position: relative;
-    left: -1.6%;
+    display: block;
+  }
+  .timetable-menu-list .submit-button{
+    min-width: 30%!important;
+    margin-left: -0.1%!important;
   }
   .timetable-results{
     height: 50vw;
@@ -252,8 +267,20 @@ select span{
     width: 100vw!important;
   }
   .timetable-title-panel .submit-button{
-    font-size: 15px;
-    padding: 2%;
+    font-size: 12px;
+    margin-left: -10%;
+    height: 35px;
+    padding: 0%!important;
+  }
+  .timetable-title-panel .submit-button-logout{
+    margin-top: 1%!important;
+    padding-top: 0px!important;
+    padding-bottom: 3%!important;
+  }
+  .timetable-menu-list .submit-button{
+    margin-top: 1%!important;
+    width: 30%!important;
+    margin-left: -0.1%!important;
   }
   .timetable-results{
     overflow-x: scroll!important;
@@ -337,15 +364,6 @@ select span{
   padding: 1%;
   background: rgb(0,233,143);
 }
-.timetable-title-panel .submit-button-logout:focus{
-  width: 50%;
-  background: rgb(0,233,143);
-  outline: none;
-}
-.timetable-title-panel .submit-button-logout:active{
-  width: 50%;
-  background: rgb(0,233,143);
-}
 .timetable-menu-list{
   width:100%;
   background: rgb(73,97,109);
@@ -366,7 +384,7 @@ select span{
 }
 .timetable-menu-list .submit-button{
   background: rgb(0,233,143);
-  width: 10%;
+  width: 10%!important;
   margin-left: 5px;
   padding: 1%;
 }
@@ -518,7 +536,6 @@ select span{
   padding: 1%;
   width: 10%!important;
   margin-top: -2%!important;
-  background: rgb(0,233,143);
 }
 
 .save-timetable .submit-button:focus{
@@ -578,4 +595,30 @@ select span{
   cursor: pointer;
   margin: 0px!important;
   padding: 0px!important;
+}
+.submit-button{
+  border: 0.5px solid rgba(0,233,143,0.9)!important;
+}
+.submit-button-logout{
+  width: 50%!important;
+  font: 'Montserrat';
+  padding: 1%!important;
+  margin-top: 2%!important;
+  font-weight: 500!important;
+  padding-bottom: 1.5%!important;
+  font-size: 20px!important;
+  background: rgb(97,125,139);
+  border: none;
+  padding: 1%;
+}
+.submit-button-logout:focus{
+  background: rgb(97,125,139);
+  border: none;
+}
+.submit-button-logout:active{
+  background: rgb(97,125,139);
+  border: none;
+}
+.select2-selection__placeholder{
+  color: rgb(215,220,219)!important;
 }
