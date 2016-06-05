@@ -18,8 +18,10 @@
     "lodash": "^4.12.0",
     "md5": "^2.1.0",
     "mongoose": "^4.4.19",
+    "pageres": "^4.1.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "random-token": "0.0.8"
+    "random-token": "0.0.8",
+    "webshot": "^0.18.0"
   }
 }
