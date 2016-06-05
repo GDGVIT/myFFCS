@@ -89,10 +89,10 @@ const addSlots=(regno,courseSlot,allotedSlot,courseId)=>{
 
        if(validator(courseSlot.split('+'),allotedSlot)){
          model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:courseId}},{upsert:true},function (err,data) {
-           model.findOne({regno:regno}).populate('course').select({"password":0}).exec(function (err,data) {
+           model.findOne({regno:regno}).populate('course').select({"password":0,"token":0}).exec(function (err,data) {
              emitter.emit(data)
            })
-           emitter.emit(data)
+
          })
        }else {
          emitter.error("slots are clashing pls check")
@@ -106,11 +106,11 @@ return course.getCourseById(courseId).flatMap((x)=>{
     return Kefir.constantError("error with course id")
   }else {
 
- return kuzhanthaidata(regno,x.slots)
+ return kuzhanthaidata(regno,x.slots,x._id)
   }
 }).flatMap((x)=>{
 
-  return addSlots(regno,x.courseSlot,x.student.allotedSlot,courseId)
+  return addSlots(regno,x.courseSlot,x.student.allotedSlot,x.id)
 })
 }
 
@@ -120,19 +120,59 @@ const stu=(data,cb)=>{
     cb(res)
   })
 }
-const kuzhanthaidata=function (regno,slot) {
+const kuzhanthaidata=function (regno,slot,id) {
   return Kefir.stream((emitter)=>{
     model.findOne({regno:regno},function (err,data) {
        if(err){
          emitter.error('something went wrong');
        }else {
 
-         emitter.emit({student:data,courseSlot:slot})
+         emitter.emit({student:data,courseSlot:slot,id:id})
        }
     })
+  })
+}
+
+const getStudentDetail=function (regno) {
+  return Kefir.stream((emitter)=>{
+    model.findOne({regno:regno}).populate('allotedCourse').select({"password":0,"token":0})
+    .exec(function (err,data) {
+      if(err){
+        emitter.error("something went wrong with db")
+      }else {
+        emitter.emit(data)
+      }
+    })
+  })
+}
+
+const deleteCourse=function (regno,slot,courseid) {
+  return Kefir.stream((emitter)=>{
+    model.update({regno:regno},{$pullAll:{allotedSlot:slot.split('+')},$pull:{allotedCourse:courseid}}).exec(function (err,data) {
+      model.findOne({regno:regno}).populate('allotedCourse').select({"password":0,"token":0})
+      .exec(function (err,data) {
+        if(err){
+          emitter.error("something went wrong with db")
+        }else {
+          emitter.emit(data)
+        }
+      })
+    })
+  })
+}
+const deleteSlot=function (regno,coursecode) {
+  return course.getCourseById(coursecode).flatMap((x)=>{
+    if(x==null){
+      return Kefir.constantError("error with course id")
+    }else {
+
+   return deleteCourse(regno,x.slots,x._id)
+    }
   })
 }
 exports.register=register
 exports.userdata=userdata
 exports.student=stu
 exports.addCourse=addCourse
+exports.getStudentDetail=getStudentDetail
+exports.deleteSlot=deleteSlot

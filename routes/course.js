@@ -58,8 +58,27 @@ result.onError((val)=>{
 })
 Router.post('/addcourse',bodyParser.json(),tokenAuth,function (req,res,next) {
 
-  student.addCourse(req.body.courseid,req.body.regno).log()
 
+  var result=student.addCourse(req.body.coursecode,req.body.regno)
+
+  result.onValue((val)=>{
+      res.json({status:true,data:val})
+  })
+  result.onError((val)=>{
+    res.json({status:false,message:val})
+  })
+
+})
+
+Router.post('/delete',bodyParser.json(),tokenAuth,function (req,res,next) {
+  var result=student.deleteSlot(req.body.regno,req.body.coursecode)
+
+  result.onValue((val)=>{
+      res.json({status:true,data:val})
+  })
+  result.onError((val)=>{
+    res.json({status:false,message:val})
+  })
 })
 
 module.exports=Router

@@ -4,6 +4,8 @@ const passport=require('passport')
 const student=require('../students/model.js')
 const auth=require('../middleware/auth.js')
 const course=require('../course/model.js')
+const tokenAuth=require('../middleware/token.js')
+const bodyParser=require('body-parser')
 Router.get('/',function (req,res,next) {
   res.render('home',{data:false})
 })
@@ -40,5 +42,17 @@ Router.get('/home',auth,function (req,res,next) {
 })
 Router.get('/error',function (req,res,next) {
 res.render('home',{message:'invalid credentials',data:true})
+})
+
+Router.get('/detail',bodyParser.json(),tokenAuth,function (req,res,next) {
+  var result=student.getStudentDetail(req.body.regno);
+
+    result.onValue((x)=>{
+      res.json({status:true,data:x})
+
+    })
+    result.onError((x)=>{
+      res.json({status:false,message:x})
+    })
 })
 module.exports=Router
