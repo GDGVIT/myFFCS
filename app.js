@@ -53,7 +53,6 @@ passport.use(new passportlocal.Strategy(function (username,password,done) {
 }))
 
 
-
 app.use(express.static(__dirname + '/public'));
 app.set('view engine','ejs')
 app.use('/',require('./routes/default.js'))
