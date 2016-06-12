@@ -22,6 +22,7 @@
     <script src='js/jquery-ui.js'></script>
   </head>
   <body>
+
     <input type="text" class="user-token" name="token" style="display:none;" value="<%=user.token%>">
     <div class="timetable-menu-list">
       <div class="close">
@@ -201,7 +202,7 @@
       </table>
     </div>
     <div class="row save-timetable">
-      <button class="col s12 m4 l4 push-l6 submit-button">Save!</button>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://myffcs.in/share?id=<%=share%>"><button class="col s12 m4 l4 push-l6 submit-button">Share!</button></a>
     </div>
     <div class="row timetable-selected-list z-depth-1">
       <table class="timetable-selected-table">

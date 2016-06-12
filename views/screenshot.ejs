@@ -28,15 +28,21 @@
         <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
       </div>
       <div class="row">
-        <div class="col s12 m12 l12 push-l4">
-          <select id="course-list" class="course-list-1" name="course-list" style="min-width: 200px">
-              <option value="0">Search Course</option>
+        <div class="col s12 m12 l12 push-l3">
+          <select id="course-list" class="course-list-1" name="course-list" style="min-width: 200px" data-placeholder="Search Course">
+              <option></option>
               <%for(i=0;i<data.length;i++){%>
               <option value="<%=data[i].courseCode%>"><%=data[i].courseCode+" "+data[i].name%></option>
              <%}%>
             </select>
-            <select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px">
-              <option value="0">Search Faculty</option>
+            <select id="slot-list" class="slot-list-1" name="slot-list" style="min-width: 200px" data-placeholder="Select Slot">
+              <option></option>
+              <option value="B1">B1</option>
+              <option value="A1">A1</option>
+              <option value="L1+L2">L1+L2</option>
+            </select>
+            <select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px" data-placeholder="Search Faculty">
+              <option></option>
               <%for(i=0;i<data.length;i++){%>
               <option value="<%=data[i].faculty%>"><%=data[i].faculty%></option>
              <%}%>
@@ -51,7 +57,7 @@
       </div>
       <div class="col s12 m3 l3 valign">
         <button class="submit-button">Add Course</button>
-        <button class="submit-button logout" style="margin-top: 5px;">Logout</button>
+        <a href="http://localhost:8080/logout"><button class="submit-button-logout" style="margin-top: 5px;">Logout</button></a>
       </div>
     </div>
     <div class="row timetable-results">
@@ -195,7 +201,7 @@
       </table>
     </div>
     <div class="row save-timetable">
-      <button class="col s12 m4 l4 push-l6 submit-button">Save!</button>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://myffcs.in/share?id=<%=share%>"><button class="col s12 m4 l4 push-l6 submit-button">Share!</button></a>
     </div>
     <div class="row timetable-selected-list z-depth-1">
       <table class="timetable-selected-table">
@@ -298,7 +304,7 @@
           $('.'+slot).addClass('clash');
           $('.'+slot).removeClass('.selected');
           $('.'+slot+" .number").css("color","rgb(250,77,92)");
-          $('.'+slot+" .number").html(count);
+          //$('.'+slot+" .number").html(count);
         } else{
           count++;
           $("."+slot).addClass("selected");
@@ -364,6 +370,14 @@
             error: function(){
             }
           });
+        } else{
+          for(var i in slot){
+            tempSlot = slot[i];
+            $("."+tempSlot).addClass("clash");
+            $("."+tempSlot).removeClass("unselected");
+            $('.'+tempSlot+" .number").css("color","rgb(250,77,92)");
+            //$('.'+tempSlot+" .number").html(count);
+          }
         }
       }
     });
@@ -421,6 +435,7 @@
     $(document).ready(function(){
       $('.course-list-1').select2();
       $('.faculty-list-1').select2();
+      $('.slot-list-1').select2();
       /*$('.timetable-results').slick({
         dots: false,
         infinite: true,
@@ -459,13 +474,7 @@
             var courseType = 'Lab Only';
             var school = 'SCOPE';
             $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
-            if(slot.charAt(0)!=='l'){
-              slot = slot.toLowerCase();
-              $("."+slot).addClass("selected");
-              $("."+slot).removeClass("unselected");
-              $('.'+slot+" .number").css("color","#00e676");
-              $('.'+slot+" .number").html(count);
-            } else{
+            if(slot.charAt(0)=='L'){
               slot = slot.toLowerCase();
               slot = slot.split('+');
               for(var j in slot){
@@ -475,6 +484,12 @@
                 $('.'+tempSlot+" .number").css("color","#00e676");
                 $('.'+tempSlot+" .number").html(count);
               }
+            } else{
+              slot = slot.toLowerCase();
+              $("."+slot).addClass("selected");
+              $("."+slot).removeClass("unselected");
+              $('.'+slot+" .number").css("color","#00e676");
+              $('.'+slot+" .number").html(count);
             }
             count++;
           }
@@ -496,7 +511,7 @@
           success: function(response){
             $('.faculty-list-1').empty();
             console.log(response);
-            $('.faculty-list-1').append('<option value="0">Select Faculty</option>');
+            //$('.faculty-list-1').append('<option value="0">Select Faculty</option>');
             for(var i in response.data){
               $('.faculty-list-1').append('<option>'+response.data[i].faculty+'</option>');
             }
@@ -518,7 +533,7 @@
           type: 'GET',
           success: function(response){
             $('.course-list-1').empty();
-            $('.course-list-1').append('<option value="0">Select Course</option>');
+            //$('.course-list-1').append('<option value="0">Select Course</option>');
             for(var i in response.data){
               var courseCode = response.data[i].courseCode.split('-').join('');
               var courseTitle = response.data[i].name;
@@ -569,9 +584,9 @@
         datatype: 'json',
         success: function(response){
           $('.course-list-1').empty();
-          $('.course-list-1').append('<option value="0">Search Course</option>');
+          //$('.course-list-1').append('<option value="0">Search Course</option>');
           $('.faculty-list-1').empty();
-          $('.faculty-list-1').append('<option value="0">Search Faculty</option>');
+          //$('.faculty-list-1').append('<option value="0">Search Faculty</option>');
           for(var i in response.data){
             var courseTitle = response.data[i].name;
             var courseCode = response.data[i].courseCode;

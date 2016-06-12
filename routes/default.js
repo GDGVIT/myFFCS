@@ -10,6 +10,7 @@ const screenshot=require('node-webkit-screenshot')
 const fs=require('fs')
 const phantom=require('phantom')
 const ejs=require('ejs')
+const encryptor=require('simple-encryptor')('illamathianvenaharshananjananalainanayana');
 Router.get('/',function (req,res,next) {
   res.render('home',{data:false})
 })
@@ -35,8 +36,9 @@ Router.get('/home',auth,function (req,res,next) {
   var result=course.getAllData();
 
     result.onValue((x)=>{
+      console.log(x);
       student.userdata(req.session.passport.user,function (err,user) {
-     res.render('timetable',{data:x,user:user})
+     res.render('timetable',{data:x,user:user,share:encryptor.encrypt(user.regno)})
       })
 
     })
@@ -44,12 +46,12 @@ Router.get('/home',auth,function (req,res,next) {
       res.send("sorry for inconviniance we will get back to u soon")
     })
 })
-Router.get('/screenshot',function (req,res,next) {
+Router.get('/share',function (req,res,next) {
   var result=course.getAllData();
 
     result.onValue((x)=>{
-      student.userdata(req.query.regno,function (err,user) {
-     res.render('timetable',{data:x,user:user})
+      student.userdata(encryptor.decrypt(req.query.id),function (err,user) {
+     res.render('screenshot',{data:x,user:user,share:req.query.share})
       })
 
     })

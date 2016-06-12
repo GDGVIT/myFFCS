@@ -15,6 +15,8 @@ app.use(session({name:'session',keys:['mathi','bujima']}))
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.set('view engine','ejs')
+app.use(express.static(__dirname + '/public'));
 function findUser (username, callback) {
 
   student.userdata(username,function (err,data) {
@@ -53,8 +55,7 @@ passport.use(new passportlocal.Strategy(function (username,password,done) {
 }))
 
 
-app.use(express.static(__dirname + '/public'));
-app.set('view engine','ejs')
+
 app.use('/',require('./routes/default.js'))
 app.use('/course',require('./routes/course.js'))
 
