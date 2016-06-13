@@ -48,7 +48,7 @@ Router.get('/home',auth,function (req,res,next) {
 })
 Router.get('/share',function (req,res,next) {
   var result=course.getAllData();
-
+    console.log(encryptor.decrypt(req.query.id));
     result.onValue((x)=>{
       student.userdata(encryptor.decrypt(req.query.id),function (err,user) {
      res.render('screenshot',{data:x,user:user,share:req.query.share})
