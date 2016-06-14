@@ -52,12 +52,12 @@ $(document).ready(function(){
   });*/
 
   if($(window).width()>1100)
-    $('.timetable').css("width","96%");
+    $('.timetable').css("width","100%");
 
 });
 $(window).resize(function()
 {
   if($(window).width()>1100){
-    $('.timetable').css("width","96%");
+    $('.timetable').css("width","100%");
   }
 });

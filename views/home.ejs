@@ -36,7 +36,7 @@ not clash.'>
       <div class="row">
         <div class="col l8 m8 s8 push-l4 push-m4 push-s4 ">
           <h4>My FFCS</h4>
-          <div class="card z-depth-3">
+          <div class="card z-depth-3">  
             <div class="card-content">
               <div class="row">
                 <div class="col s6 m6 l6 pull-s1">
@@ -45,7 +45,7 @@ not clash.'>
                     <div class="row">
                       <div class="input-field">
                         <input id="login-regnum" type="text" name="username">
-                        <label for="login-regnum">Registration Number</label>
+                        <label for="login-regnum" data-error="Enter a valid reg num">Registration Number</label>
                       </div>
                     </div>
                     <div class="row">
@@ -62,19 +62,22 @@ not clash.'>
                     <div class="row">
                       <div class="input-field">
                         <input id="reg-name" type="text" name="name">
-                        <label for="reg-name">Name</label>
+                        <label for="reg-name" data-error="Enter name">Name</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field">
                         <input id="reg-regnum" type="text" name="regno">
-                        <label for="reg-regnum">Registration Number</label>
+                        <label for="reg-regnum" data-error="Enter a valid reg num">Registration Number</label>
                       </div>
+                      <div id="invalid-entry">
+                      </div>
+
                     </div>
                     <div class="row">
                       <div class="input-field">
                         <input id="reg-pass" type="password" name="password">
-                        <label for="reg-pass">Password</label>
+                        <label for="reg-pass" data-error="Password too short">Password</label>
                       </div>
                     </div>
                   </form>
@@ -95,7 +98,10 @@ not clash.'>
             $('.login-form').submit();
           }
         } else{
-          $("#login-regnum").val("Enter Valid Register Number");
+          $("#login-regnum").addClass("invalid");
+          $("#login-regnum").prop("aria-invalid", "true");
+          return false;;
+
         }
       }
       if($('#reg-name').val().length>0 && $('#reg-regnum').length>0 && $('#reg-pass').val().length>0){
@@ -105,12 +111,19 @@ not clash.'>
               $('.register-form').submit();
             } else{
               //Password Length Error
+              $("#reg-pass").addClass("invalid");
+          $("#reg-pass").prop("aria-invalid", "true");
+          return false;;
             }
           } else{
-            $('#reg-name').val("Enter Name!");
+            $("#reg-name").addClass("invalid");
+          $("#reg-name").prop("aria-invalid", "true");
+          return false;;
           }
         } else{
-          $("#reg-regnum").val("Enter Valid Register Number");
+          $("#reg-regnum").addClass("invalid");
+          $("#reg-regnum").prop("aria-invalid", "true");
+          return false;; 
         }
       }
     });

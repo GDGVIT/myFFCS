@@ -12,6 +12,7 @@ select span{
   font-family: 'Lato';
   width: 75%;
   padding: 5%;
+
 }
 .login-holder h4{
   font-size: 30px;
@@ -88,7 +89,7 @@ select span{
   }
   .login-holder .card{
     height: 100vw;
-    width: 97vw;
+    width: 100vw;
   }
   .login-holder .login-form{
     padding: 0px;
@@ -368,7 +369,10 @@ select span{
   width:100%;
   background: rgb(73,97,109);
   width: 100%;
-  padding: 3%;
+  padding-right: 3%;
+  padding-left: 3%;
+  padding-bottom: 2%;
+  padding-top: 0.75%;
   position: absolute;
 }
 .timetable-menu-list .course-list-1{
@@ -520,18 +524,25 @@ select span{
 .timetable .clash{
   background: rgb(250,77,92);
 }
+.timetable{
+  padding: 2.5%;
+  font-size: 0.8em;
+}
 .timetable .number{
   font-family: 'Montserrat';
   position: relative;
   top: -10px;
   right: -2px;
-  padding: 2.5%;
   text-align: center;
-  font-size: 0.8em;
-  border-radius: 50%;
+  border-radius: 100%;
   background: white;
 }
-
+.number{
+  width: 10px;
+  line-height: 0.5px;
+  padding: 7.5%;
+  font-size: 0.7em;
+}
 .save-timetable .submit-button{
   padding: 1%;
   width: 10%!important;
@@ -577,9 +588,9 @@ select span{
 .timetable-selected-subject{
   background: white;
 }
-.timetable-selected-faculty{
+/*.timetable-selected-faculty{
   border-right: 1px solid grey;
-}
+}*/
 .timetable-selected-subject{
   background: white;
 }
@@ -621,4 +632,10 @@ select span{
 }
 .select2-selection__placeholder{
   color: rgb(215,220,219)!important;
+}
+label[data-error]:after {
+    white-space: nowrap;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
