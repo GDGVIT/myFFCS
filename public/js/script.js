@@ -53,6 +53,10 @@ $(document).ready(function(){
 
   if($(window).width()>1100)
     $('.timetable').css("width","100%");
+  else{
+  	$('.timetable').css("width","97.5%");
+
+  }
 
 });
 $(window).resize(function()
