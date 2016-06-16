@@ -47,7 +47,18 @@ return Kefir.stream((emitter)=>{
   })
 })
 }
-
+const getBySlots=function (str) {
+return Kefir.stream((emitter)=>{
+  model.find({slots:new RegExp(str,'i')},(err,data)=>{
+    if(err){
+      emitter.error({status:false,message:'something went wrong the mongodb'});
+    }else {
+      emitter.emit({status:true,data:data})
+    }
+    emitter.end()
+  })
+})
+}
 const getAllData=function () {
   return Kefir.stream((emitter)=>{
     model.find({},function (err,data) {
@@ -62,9 +73,9 @@ const getAllData=function () {
   })
 }
 
-const getByWish=function (faculty,courseCode) {
+const getByWish=function (faculty,courseCode,slot) {
   return Kefir.stream((emitter)=>{
-    model.find({courseCode:new RegExp(courseCode,'i'),faculty:new RegExp(faculty,'i')},function (err,data) {
+    model.find({courseCode:new RegExp(courseCode,'i'),faculty:new RegExp(faculty,'i'),slots:new RegExp(slot,'i')},function (err,data) {
       if(err){
         emitter.error({status:false,message:"something went wrong on mongodb"});
       }else {
@@ -95,3 +106,4 @@ exports.getByCourseCode=getByCourseCode
 exports.getAllData=getAllData
 exports.getByWish=getByWish
 exports.getCourseById=getCourseById
+exports.getBySlots=getBySlots

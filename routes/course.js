@@ -36,9 +36,19 @@ Router.get('/getbyfaculty',function (req,res,next) {
     res.json(val)
   })
 })
+Router.get('/getbyslots',function (req,res,next) {
+  var result=course.getBySlots(req.query.q)
+
+  result.onValue((val)=>{
+    res.json(val)
+  })
+  result.onError((val)=>{
+    res.json(val)
+  })
+})
 Router.get('/get',function (req,res,next) {
 
-  var result=course.getByWish(req.query.faculty,req.query.code)
+  var result=course.getByWish(req.query.faculty,req.query.code,req.query.slot)
 
   result.onValue((val)=>{
     res.json(val)

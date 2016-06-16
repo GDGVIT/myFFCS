@@ -1,4 +1,4 @@
-
+y 
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,20 +20,6 @@
     <script src="js/select2.min.js"></script>
     <script src='js/slick.min.js'></script>
     <script src='js/jquery-ui.js'></script>
-
-    <meta name='description' content='MyFFCS - Make your timetable before FFCS, share it with your friends.'>
-    <meta name = 'description' content = 'Make your own timetable before FFCS starts'>
-    <meta name = 'description' content = 'Choose your credits on myFFCS to make sure your classes do
-
-not clash.'>
-
-    <meta name="keywords" content="myffcs, ffcs, timetable, vit university, myVIT, VIT credit system, VIT timetable, make timetable ">
-    <meta name=”robots” content=”index,follow”>
-
-
-    <meta property="og:title" content="MyFFCS - Make your timetable before FFCS, share it with your friends." />
-    <meta property="og:url" content="http://www.myffcs.in" />
-    <meta property="og:image" content="http://i.imgur.com/XVMAFgj.jpg" />
   </head>
   <body>
 
@@ -76,9 +62,6 @@ not clash.'>
       </div>
     </div>
     <div class="row timetable-results">
-      <div class="close">
-        <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153)"></i>
-      </div>
       <div class="custom-card z-depth-1  col m3 push-m1 l3 push-l1"  >
         <div class="custom-card-header">
           <div class="custom-card-front">
@@ -177,7 +160,7 @@ not clash.'>
           <td class="timetable-header">Wednesday</td>
           <td class="c1 l13 unselected">C1/L13<span class="number"></span></td>
           <td class="a1 l14 unselected">A1/L14<span class="number"></span></td>
-          <td class="f1 unselected">F1<span class="number"></span></td>
+          <td class="f1 unselected">F1/L15<span class="number"></span></td>
           <td class="timetable-seminar" colspan=3>Extramural Hour</td>
           <td class="c2 l43 unselected">C2/L43<span class="number"></span></td>
           <td class="a2 l44 unselected">A2/L44<span class="number"></span></td>
@@ -219,7 +202,7 @@ not clash.'>
       </table>
     </div>
     <div class="row save-timetable">
-      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://myffcs.in/share?id=<%=share%>"><button class="col s12 m3 l3 push-l6 submit-button">Share!</button></a>
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://myffcs.in/share?id=<%=share%>"><button class="col s12 m4 l4 push-l6 submit-button">Share!</button></a>
     </div>
     <div class="row timetable-selected-list z-depth-1">
       <table class="timetable-selected-table">
@@ -566,9 +549,6 @@ not clash.'>
         doneOnce = true;
       }
     });
-    $(document).on('click','.timetable-results .close',function(){
-      $('.timetable-results').slideUp(400);
-    });
     $(document).on('click','.timetable-menu-list .submit-button',function(){
       var courseCode = $('.course-list-1').select2('data')[0]['text'].split('-')[0];
       var faculty = $('.faculty-list-1').select2('data')[0]['text'];
@@ -579,7 +559,7 @@ not clash.'>
         type: 'GET',
         datatype: 'json',
         success: function(response){
-          $('.timetable-results .custom-card').remove();
+          $('.timetable-results').empty();
           for(var i in response.data){
             var courseTitle = response.data[i].name;
             var slot = response.data[i].slots;
