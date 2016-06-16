@@ -173,6 +173,7 @@ select span{
     margin-top: 2%;
     margin-left: 5%;
     padding: 1%;
+    width: 270px;
   }
   .timetable-results .custom-card-edit{
     width: 250%!important;
@@ -204,16 +205,21 @@ select span{
   .timetable-results .custom-card:nth-child(1){
     margin-top: 0%;
   }
+  .timetable-results .close{
+    font-size: 30px!important;
+    top: 10%!important;
+    right: 0%!important;
+  }
   .timetable{
     font-size: 10px!important;
     overflow-x: scroll;
   }
   .save-timetable .submit-button{
-    width: 350%!important;
     font-size: 12px;
     padding: 1%!important;
     position: relative!important;
     left: 50%!important;
+    min-width: 20%!important;
   }
   .timetable-selected-list{
     padding: 0%!important;
@@ -225,6 +231,9 @@ select span{
   .timetable-selected-table{
     padding: 0%!important;
     margin-left: 0%!important;
+  }
+  .timetable-selected-table table{
+    min-width: 80%!important;
   }
   .timetable-selected-table td{
     font-size: 8px!important;
@@ -480,6 +489,12 @@ select span{
 .timetable-results .edit:hover{
   cursor: pointer;
 }
+.timetable-results .close{
+  position: absolute;
+  right: 2%;
+  top: 15%;
+  font-size: 50px;
+}
 .timetable-results .custom-card-action-active:hover{
   cursor: pointer;
 }
@@ -638,4 +653,7 @@ label[data-error]:after {
 }
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.timetable-menu-list{
+  z-index: 100!important;
 }
