@@ -659,3 +659,6 @@ input:-webkit-autofill {
   font-size: 50px;
   margin-top: -3.5%;
 }
+.timetable-results .fa-times{
+  font-size: 35px!important;
+}
