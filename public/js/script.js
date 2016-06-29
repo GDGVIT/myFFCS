@@ -10,11 +10,6 @@ $(document).ready(function(){
     $(".timetable-menu-list").slideUp(400);
     $(".timetable-title-panel").show();
   });*/
-  $('.timetable-results-trigger').click(function(){
-    $('.timetable-menu-list').slideUp("slow",function(){
-      $('.timetable-results').slideDown("slow");
-    });
-  });
   if($(window).width()>=768 && $(window).width()<=1024){
     $('.timetable-menu-list .push-l4').removeClass('push-l4');
   }

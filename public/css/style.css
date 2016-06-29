@@ -157,13 +157,7 @@ select span{
     font-size: 25px!important;
   }
   .timetable-menu-list .submit-button{
-    margin-top: 2%;
-    display: block;
-  }
-  .timetable-menu-list .submit-button{
-    min-width: 30%!important;
-    margin-left: -0.1%!important;
-    min-height: 40px!important;
+
   }
   .timetable-results{
     height: 50vw;
@@ -398,7 +392,8 @@ select span{
   background: rgb(0,233,143);
   width: 10%!important;
   max-height: 30px!important;
-  margin-left: 5px;
+  margin-left: 2.8%;
+  margin-top: 20%;
   padding: 1%;
   padding-top: 1%!important;
   padding-bottom: 3%!important;
@@ -664,5 +659,5 @@ input:-webkit-autofill {
 }
 footer{
   background: #607d8b !important;
-  color: #f2f2f2 !important; 
+  color: #f2f2f2 !important;
 }
