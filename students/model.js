@@ -8,7 +8,8 @@ const course=require('../course/model.js')
 const student=new schema({
     regno:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     password:{
         type:String,
