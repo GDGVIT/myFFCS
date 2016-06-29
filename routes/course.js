@@ -69,7 +69,7 @@ result.onError((val)=>{
 Router.post('/addcourse',bodyParser.json(),tokenAuth,function (req,res,next) {
 
 
-  var result=student.addCourse(req.body.courseid,req.body.regno)
+  var result=student.addCourse(req.body.name,req.body.faculty,req.body.slot,req.body.regno,req.body.credits)
 
   result.onValue((val)=>{
       res.json({status:true,data:val})
@@ -81,7 +81,7 @@ Router.post('/addcourse',bodyParser.json(),tokenAuth,function (req,res,next) {
 })
 
 Router.post('/delete',bodyParser.json(),tokenAuth,function (req,res,next) {
-  var result=student.deleteSlot(req.body.regno,req.body.courseid)
+  var result=student.deleteSlot(req.body.regno,req.body.slot,req.body.name,req.body.faculty,req.body.credits)
 
   result.onValue((val)=>{
       res.json({status:true,data:val})

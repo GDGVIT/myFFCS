@@ -24,7 +24,7 @@ const student=new schema({
       required:true
     },
     token:String,
-    allotedCourse:[{ type: mongoose.Schema.Types.ObjectId, ref: 'course' }]
+    allotedCourse:[{name:String,faculty:String,credits:Number}]
 })
 
 const model=mongoose.model('student',student)
@@ -82,13 +82,13 @@ const userdata=function (regno,cb) {
   })
 }
 
-const addSlots=(regno,courseSlot,allotedSlot,courseId)=>{
+const addSlots=(regno,courseSlot,allotedSlot,name,faculty,totalCredits,credits)=>{
 
 
   return Kefir.stream((emitter)=>{
 
        if(validator(courseSlot.split('+'),allotedSlot)){
-         model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:courseId}},{upsert:true},function (err,data) {
+         model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:{name:name,faculty:faculty,credits:credits}},totalCredits:totalCredits},{upsert:true},function (err,data) {
            model.findOne({regno:regno}).populate('course').select({"password":0,"token":0}).exec(function (err,data) {
              emitter.emit(data)
            })
@@ -100,17 +100,16 @@ const addSlots=(regno,courseSlot,allotedSlot,courseId)=>{
   })
 }
 
-const addCourse=(courseId,regno)=>{
-return course.getCourseById(courseId).flatMap((x)=>{
-  if(x==null){
-    return Kefir.constantError("error with course id")
-  }else {
+const addCourse=(name,faculty,slot,regno,credits)=>{
+return kuzhanthaidata(regno).flatMap((x)=>{
 
- return kuzhanthaidata(regno,x.slots,x._id)
-  }
-}).flatMap((x)=>{
+  //console.log(x.student.totalCredits+credits<=27);
+  if(x.student.totalCredits+credits<=27){
 
-  return addSlots(regno,x.courseSlot,x.student.allotedSlot,x.id)
+  return addSlots(regno,slot,x.student.allotedSlot,name,faculty,x.student.totalCredits+credits,credits)
+}else {
+  return Kefir.constantError("credits should not be more than 27")
+}
 })
 }
 
@@ -127,7 +126,7 @@ const kuzhanthaidata=function (regno,slot,id) {
          emitter.error('something went wrong');
        }else {
 
-         emitter.emit({student:data,courseSlot:slot,id:id})
+         emitter.emit({student:data})
        }
     })
   })
@@ -146,9 +145,9 @@ const getStudentDetail=function (regno) {
   })
 }
 
-const deleteCourse=function (regno,slot,courseid) {
+const deleteCourse=function (regno,slot,name,faculty,credits,totalCredits) {
   return Kefir.stream((emitter)=>{
-    model.update({regno:regno},{$pullAll:{allotedSlot:slot.split('+')},$pull:{allotedCourse:courseid}}).exec(function (err,data) {
+    model.update({regno:regno},{$pullAll:{allotedSlot:slot.split('+')},$pull:{allotedCourse:{name:name,faculty:faculty,credits}},totalCredits:totalCredits}).exec(function (err,data) {
       model.findOne({regno:regno}).populate('allotedCourse').select({"password":0,"token":0})
       .exec(function (err,data) {
         if(err){
@@ -160,14 +159,9 @@ const deleteCourse=function (regno,slot,courseid) {
     })
   })
 }
-const deleteSlot=function (regno,courseid) {
-  return course.getCourseById(courseid).flatMap((x)=>{
-    if(x==null){
-      return Kefir.constantError("error with course id")
-    }else {
-
-   return deleteCourse(regno,x.slots,x._id)
-    }
+const deleteSlot=function (regno,slot,name,faculty,credits) {
+  return kuzhanthaidata(regno).flatMap((x)=>{
+    return deleteCourse(regno,slot,name,faculty,credits,x.student.totalCredits-credits)
   })
 }
 exports.register=register
