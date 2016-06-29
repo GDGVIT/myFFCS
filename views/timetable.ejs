@@ -11,9 +11,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="images/favicon.png" />
     <link href='css/slick.css' rel='stylesheet'>
+
     <!--JS-->
     <script   src="js/jquery.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-71735575-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
     <script src="js/materialize.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/select2.min.js"></script>
@@ -274,6 +287,29 @@
         </tr>
       </table>
     </div>
+    <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">About Google Developers Group-VIT Vellore</h5>
+                <p class="grey-text text-lighten-4">Google Developers Groups was established in VIT on 28th July 2014 and since then 3 successful events were conducted . The group now has 60 Developers ,This groups’s agenda is to introduce new technologies to the students, develop new ideas and polish skills in every possible field including management our faculty coordinator is Prof .P Senthilnathan and has guided us along this journey.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="http://gdgvitvellore.com"><i class="fa fa-phone"></i>&nbsp;&nbsp;Contact Us</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://facebook.com/gdgvitvellore"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Facebook</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://plus.google.com/+gdgvitvellore"><i class="fa fa-google-plus"></i>&nbsp;&nbsp;Google Plus</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 GDG-VIT
+            <a class="grey-text text-lighten-4 right" href="htp://gdgvitvellore.com"><img src="images/logo-color-knockout.svg" class="img-responsive" style="padding:10px;max-width:200px;"></a>
+            </div>
+          </div>
+        </footer>
   </body>
   <script type="text/javascript">
     var doneOnce = false;
@@ -329,8 +365,10 @@
               'courseid': id
             },
             success: function(response){
+              Materialize.toast('Course Added', 4000)
             },
             error: function(){
+              Materialize.toast('There was some error!', 4000)
             }
           });
         }
@@ -369,8 +407,10 @@
               'courseid': id
             },
             success: function(response){
+              Materialize.toast('Course Added', 4000)
             },
             error: function(){
+              Materialize.toast('There was some error!', 4000)
             }
           });
         } else{
@@ -399,8 +439,10 @@
           'courseid': id
         },
         success: function(response){
+          Materialize.toast('Deleted!', 4000)
         },
         error: function(){
+          Materialize.toast('There was some error!', 4000)
         }
       });
       for(var i in slot){
@@ -501,6 +543,7 @@
           }
         },
         error: function(){
+          Materialize.toast('There was some error!', 4000)
         }
       })
     });
