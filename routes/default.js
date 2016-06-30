@@ -6,9 +6,9 @@ const auth=require('../middleware/auth.js')
 const course=require('../course/model.js')
 const tokenAuth=require('../middleware/token.js')
 const bodyParser=require('body-parser')
-const screenshot=require('node-webkit-screenshot')
+
 const fs=require('fs')
-const phantom=require('phantom')
+
 const ejs=require('ejs')
 const encryptor=require('simple-encryptor')('illamathianvenaharshananjananalainanayana');
 Router.get('/',function (req,res,next) {
