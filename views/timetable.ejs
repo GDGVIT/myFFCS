@@ -470,6 +470,7 @@
           $('<tr class="timetable-selected-subject"><td>'+count+'</td><td></td><td>'+courseName+'<br><span class="sub-text-inside">'+credits+'</span></td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
         }
         var token = $('.user-token').val();
+
         $.ajax({
           url: '/course/addcourse',
           headers: {
@@ -483,6 +484,7 @@
             credits: credits
           },
           success: function(response){
+
             Materialize.toast('Course Added', 4000)
           },
           error: function(){
@@ -739,6 +741,7 @@
         },
         type: 'GET',
         success: function(response){
+          console.log(response);
           $('.timetable-selected-subject').remove();
           var count = 1;
           for(var i in response.data.allotedCourse){

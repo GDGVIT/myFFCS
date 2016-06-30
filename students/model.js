@@ -25,7 +25,7 @@ const student=new schema({
       required:true
     },
     token:String,
-    allotedCourse:[{name:String,faculty:String,credits:Number}]
+    allotedCourse:[{name:String,faculty:String,credits:Number,slots:String}]
 })
 
 const model=mongoose.model('student',student)
@@ -89,7 +89,7 @@ const addSlots=(regno,courseSlot,allotedSlot,name,faculty,totalCredits,credits)=
   return Kefir.stream((emitter)=>{
 
        if(validator(courseSlot.split('+'),allotedSlot)){
-         model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:{name:name,faculty:faculty,credits:credits}},totalCredits:totalCredits},{upsert:true},function (err,data) {
+         model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:{name:name,faculty:faculty,credits:credits,slots:courseSlot}},totalCredits:totalCredits},{upsert:true},function (err,data) {
            model.findOne({regno:regno}).populate('course').select({"password":0,"token":0}).exec(function (err,data) {
              emitter.emit(data)
            })
