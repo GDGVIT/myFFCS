@@ -576,7 +576,13 @@
               credits: creditsLab
             },
             success: function(response){
-              Materialize.toast('Course Added', 4000)
+              
+              if(response.status=="true"){
+                Materialize.toast('Course Added', 4000)
+              }
+              else{
+                Materialize.toast('There was some error!', 4000)
+              }
             },
             error: function(){
               Materialize.toast('There was some error!', 4000)
