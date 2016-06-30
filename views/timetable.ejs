@@ -758,13 +758,13 @@
       }
     });*/
     $(document).on('click', '.timetable-selected-subject .material-icons',function(){
-      var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(4)')).text();
+      var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(3)')).text();
       var sendSlot = slot;
       slot = slot.split('+');
       var token = $('.user-token').val();
-      var credits = $(this).closest('.timetable-selected-subject').find('td:nth-child(3) .sub-text-inside').text();
+      var credits = $(this).closest('.timetable-selected-subject').find('td:nth-child(2)').text();
       var faculty = $(this).closest('.timetable-selected-subject').find('.timetable-selected-faculty').text();
-      var courseName = $(this).closest('.timetable-selected-subject').find('td:nth-child(3)').text().replace(credits,"");
+      var courseName = $(this).closest('.timetable-selected-subject').find('td:nth-child(1)').text();
       $.ajax({
         url: '/course/delete/',
         headers: {
@@ -785,7 +785,7 @@
         }
       });
       for(var i in slot){
-        var tempSlot = slot[i].replace(' ','').toLowerCase();
+        var tempSlot = slot[i].toLowerCase();
         $('.'+tempSlot).addClass('unselected').removeClass('selected').removeClass('clash');
         $('.'+tempSlot+' .number').html("");
       }
