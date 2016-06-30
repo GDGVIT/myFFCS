@@ -586,6 +586,7 @@
           for(var i in slot){
             tempSlot = slot[i];
             $("."+tempSlot).addClass("clash");
+            Materialize.toast('Course Clashing!', 4000);
             $("."+tempSlot).removeClass("unselected");
             $('.'+tempSlot+" .number").css("color","rgb(250,77,92)");
             //$('.'+tempSlot+" .number").html(count);
