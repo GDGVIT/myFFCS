@@ -32,20 +32,21 @@ var labValidator=function(slots,slot){
 }
 
 var normalSlotChecker=function(slot){
-    flag=false
+    flag=true
     for(i=0;i<slot.length;i++){
         if(_.indexOf(normalSlot,slot[i])==-1){
             flag=false
             break;
         }
     }
-    return !flag
+    return flag
 }
 
 var validator=function(allotedSlot,slots){
     if(normalSlotChecker(slots)){
         return normalValidator(allotedSlot,slots)
     }else{
+//      console.log("comming");
         return labValidator(allotedSlot,slots)&&normalValidator(allotedSlot,slots)
     }
 }
