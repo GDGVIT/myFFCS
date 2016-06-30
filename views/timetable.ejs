@@ -549,13 +549,15 @@
       if(isClashing){
         for(var i in tSlot){
           slot = tSlot[i].toLowerCase();
-          $('.'+slot).removeClass('selected');
-          //$('.'+slot).addClass('clash');
-          $("."+slot).addTemporaryClass("clash", 4000);
-          Materialize.toast("Course Clashing!",4000);
-          $('.'+slot).addClass('selected');
-          $('.'+slot+" .number").css("color","#00e676");
-          //$('.'+slot+" .number").css("color","rgb(250,77,92)");
+          if($('.'+slot).hasClass('selected')){
+            $('.'+slot).removeClass('selected');
+            //$('.'+slot).addClass('clash');
+            $("."+slot).addTemporaryClass("clash", 4000);
+            Materialize.toast("Course Clashing!",4000);
+            $('.'+slot).addClass('selected');
+            $('.'+slot+" .number").css("color","#00e676");
+            //$('.'+slot+" .number").css("color","rgb(250,77,92)");
+          }
         }
       } else{
         count++;
