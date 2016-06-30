@@ -551,7 +551,7 @@
           slot = tSlot[i].toLowerCase();
           $('.'+slot).removeClass('selected');
           //$('.'+slot).addClass('clash');
-          $("."+slot).addTemporaryClass("clash", 10000);
+          $("."+slot).addTemporaryClass("clash", 4000);
           Materialize.toast("Course Clashing!",4000);
           $('.'+slot).addClass('selected');
           $('.'+slot+" .number").css("color","#00e676");
@@ -669,7 +669,7 @@
           for(var i in slot){
             tempSlot = slot[i];
             //$("."+tempSlot).addClass("clash");
-            $("."+tempSlot).addTemporaryClass("clash", 10000);
+            $("."+tempSlot).addTemporaryClass("clash", 4000);
             Materialize.toast('Course Clashing!', 4000);
             //$('.'+tempSlot+" .number").html(count);
           }
