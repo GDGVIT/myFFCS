@@ -510,6 +510,10 @@
     var currentfaculty = "";
     var currentCredits = 0;
     $(document).on('click','.timetable-menu-list .submit-button',function(){
+      if(!($('.credits-theory input').val()>=1 && $('.credits-theory input').val()<=4)){
+        Materialize.toast("Enter Valid Credits!",4000);
+        return;
+      }
       var courseName = $('.timetable-theory .course').val();
       var count = $('.timetable-selected-subject').length;
       var tSlot = $('.timetable-theory .slot-list-1').select2('data')[0]['text'];
