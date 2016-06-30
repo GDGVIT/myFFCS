@@ -53,6 +53,10 @@
              <input type="text" class="course" name="course">
             <label for="course">Course Name
            </div>
+           <div class="input-field col s12 m2 l2 credits-theory">
+             <input type="number" min="0" max="5" name="credits">
+             <label for="credits">Credits(Including Lab)
+           </div>
            <div class="col s12 m2 l2 valign">
             <select id="slot-list" class="slot-list-1" name="slot-list" data-placeholder="Select Slot">
               <option></option>
@@ -91,9 +95,9 @@
               <option value="D2+TD2+TDD2">D2+TD2+TDD2</option>
             </select>
           </div>
-          <div class="input-field col s12 m2 l2 credits-theory">
-            <input type="number" min="0" max="5" name="credits">
-            <label for="credits">Credits(Including Lab)
+          <div class="input-field col s12 m3 l3 faculty-theory">
+            <input type="text" name="faculty">
+            <label for="faculty">Enter Faculty Name
           </div>
           <div class="input-field col s12 m2 l2 valign has-lab" style="padding-bottom: 3%">
             <input type="checkbox" name="lab" id="lab" class="filled-in">
@@ -105,14 +109,12 @@
               <option value="<%=data[i].faculty%>"><%=data[i].faculty%></option>
              <%}%>
            </select-->
-           <div class="input-field col s12 m3 l3 faculty-theory">
-             <input type="text" name="faculty">
-             <label for="faculty">Enter Faculty Name
-           </div>
+
          </div>
          <div class="row valign-wrapper timetable-lab" style="padding-left: 1%!important">
-           <div class="input-field col s12 m2 l2 pull-l2">
-             <input type="text" name="course-lab" class="course-lab">
+           <div class="input-field col s12 m2 l2 pull-l2 credits-lab">
+             <input type="number" min="0" max="5" name="credits">
+             <label for="credits">Credits(Lab)
            </div>
            <div class="col s12 m2 l2 valign pull-l4" style="padding-left: 3.5%!important">
              <select id="slot-list" class="slot-list-1" name="slot-list" data-placeholder="Select Lab Slot">
@@ -425,9 +427,12 @@
     });
     $('.has-lab input').click(function(){
       if($(this).is(":checked")){
+        hasLab = true;
         $('.timetable-lab .course-lab').val($('.timetable-theory .course').val());
         $('.timetable-lab').show();
-        hasLab = true;
+      } else{
+        $('.timetable-lab').hide();
+        hasLab = false;
       }
     });
     //<------New Code
@@ -496,11 +501,14 @@
       }
        if(hasLab){
         var slot = $('.timetable-lab .slot-list-1').select2('data')[0]['text'];
+        var sendSlotLab = slot;
+        var facultyLab = $('.faculty-lab input').val();
+        var creditsLab = $('.credits-lab input').val();
         var isClashing = false;
+        slot = slot.toLowerCase();
         slot = slot.split('+');
         for(var i in slot){
           tempSlot = slot[i];
-          tempSlot = tempSlot.toLowerCase();
           if($('.'+tempSlot).hasClass('selected')){
             isClashing = true;
           } else{
@@ -517,19 +525,22 @@
             $('.'+tempSlot+" .number").html(count);
           }
           if(count==1)
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td></td><td>'+courseName+'<br><span class="sub-text-inside">'+credits+'</span></td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
+            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td></td><td>'+courseName+'<br><span class="sub-text-inside">'+creditsLab+'</span></td><td>'+sendSlotLab.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+facultyLab+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
           else {
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td></td><td>'+courseName+'<br><span class="sub-text-inside">'+credits+'</span></td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
+            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td></td><td>'+courseName+'<br><span class="sub-text-inside">'+creditsLab+'</span></td><td>'+sendSlotLab.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+facultyLab+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
           }
           var token = $('.user-token').val();
-          /*$.ajax({
+          $.ajax({
             url: '/course/addcourse',
             headers: {
               'token': token
             },
             type: 'POST',
             data: {
-              'courseid': id
+              slot: sendSlotLab,
+              name: courseName,
+              faculty: facultyLab,
+              credits: creditsLab
             },
             success: function(response){
               Materialize.toast('Course Added', 4000)
@@ -537,7 +548,7 @@
             error: function(){
               Materialize.toast('There was some error!', 4000)
             }
-          });*/
+          });
         } else{
           for(var i in slot){
             tempSlot = slot[i];
@@ -747,13 +758,11 @@
           $('.timetable-selected-subject').remove();
           var count = 1;
           for(var i in response.data.allotedCourse){
-            var id = response.data.allotedCourse[i]._id;
-            var courseTitle = response.data.allotedCourse[i].name;
+            var courseName = response.data.allotedCourse[i].name;
             var faculty = response.data.allotedCourse[i].faculty;
             var slot = response.data.allotedCourse[i].slots;
             var credits = response.data.allotedCourse[i].credits;
-            var courseCode = response.data.allotedCourse[i].courseCode;
-            $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
+            $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td>'+count+'</td><td></td><td>'+courseName+'<br><span class="sub-text-inside">'+credits+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
             slot = slot.toLowerCase();
             slot = slot.split('+');
             for(var j in slot){
