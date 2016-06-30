@@ -553,7 +553,9 @@
           //$('.'+slot).addClass('clash');
           $("."+slot).addTemporaryClass("clash", 10000);
           Materialize.toast("Course Clashing!",4000);
-          $('.'+slot+" .number").css("color","rgb(250,77,92)");
+          $('.'+slot).addClass('selected');
+          $('.'+slot+" .number").css("color","#00e676");
+          //$('.'+slot+" .number").css("color","rgb(250,77,92)");
         }
       } else{
         count++;
@@ -669,8 +671,6 @@
             //$("."+tempSlot).addClass("clash");
             $("."+tempSlot).addTemporaryClass("clash", 10000);
             Materialize.toast('Course Clashing!', 4000);
-            $("."+tempSlot).removeClass("unselected");
-            $('.'+tempSlot+" .number").css("color","rgb(250,77,92)");
             //$('.'+tempSlot+" .number").html(count);
           }
         }
