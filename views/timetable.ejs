@@ -666,9 +666,9 @@
       var sendSlot = slot;
       slot = slot.split('+');
       var token = $('.user-token').val();
-      var credits = $(this).closest('.timetable-selected-subject').find('td:nth-child(3) .sub-text-inside').html();
-      var faculty = $(this).closest('.timetable-selected-subject').find('td:nth-child(5)').html();
-      var courseName = $(this).closest('.timetable-selected-subject').find('td:nth-child(2)').html();
+      var credits = $(this).closest('.timetable-selected-subject').find('td:nth-child(3) .sub-text-inside').text();
+      var faculty = $(this).closest('.timetable-selected-subject').find('.timetable-selected-faculty').text();
+      var courseName = $(this).closest('.timetable-selected-subject').find('td:nth-child(3)').text().replace(credits,"");
       $.ajax({
         url: '/course/delete/',
         headers: {
