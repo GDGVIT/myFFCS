@@ -529,6 +529,7 @@ select span{
 }
 .timetable .clash{
   background: rgb(250,77,92);
+  color: white;
 }
 .timetable{
   padding: 2.5%;
@@ -660,4 +661,7 @@ input:-webkit-autofill {
 footer{
   background: #607d8b !important;
   color: #f2f2f2 !important;
+}
+.timetable-menu-list input{
+  color: white!important;
 }
