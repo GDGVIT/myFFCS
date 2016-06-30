@@ -11,7 +11,7 @@ select span{
 
 .select2-container--default 
 {
-  min-width: 200px;
+  min-width: 180px;
 }
 }
 @media(max-width: 750px)
@@ -321,9 +321,6 @@ select span{
     left: 50%!important;
   }
   .timetable-selected-list{
-    width: 95%!important;
-    position: absolute;
-    right: -3.5%;
   }
   .timetable-selected-table{
     font-size: 13px!important;
@@ -407,8 +404,6 @@ select span{
   margin-left: 2.8%;
   margin-top: 20%;
   padding: 1%;
-  padding-top: 1%!important;
-  padding-bottom: 3%!important;
 }
 .timetable-menu-list .close{
   float: right;
@@ -684,4 +679,7 @@ footer{
 }
 .input-field{
   margin: 0 auto;
+}
+label{
+  color: #fff !important;
 }

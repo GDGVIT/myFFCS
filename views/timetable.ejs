@@ -30,8 +30,6 @@
     <script src="js/materialize.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/select2.min.js"></script>
-    <script src='js/slick.min.js'></script>
-    <script src='js/jquery-ui.js'></script>
   </head>
   <body>
 
@@ -48,14 +46,14 @@
               <option value="<%=data[i].courseCode%>"><%=data[i].courseCode+" "+data[i].name%></option>
              <%}%>
            </select-->
-           <div class="row valign-wrapper timetable-theory">
+           <div class="row  timetable-theory">
            <div class="input-field col s12 m2 l2">
-             <input type="text" class="course" name="course">
-            <label for="course">Course Name
+             <input type="text" class="course" name="course" required class="validate">
+            <label for="course">Course Name</label>
            </div>
            <div class="input-field col s12 m2 l2 credits-theory">
-             <input type="number" min="0" max="5" name="credits">
-             <label for="credits">Credits<br>(Including Lab)
+             <input type="number" min="1" max="4" name="credits" data-error="Enter from 1-4 only" required class="validate">
+             <label for="credits">Credits(Theory)</label>
            </div>
            <div class="col s12 m2 l2 valign">
             <select id="slot-list" class="slot-list-1" name="slot-list" data-placeholder="Select Slot">
@@ -96,12 +94,12 @@
             </select>
           </div>
           <div class="input-field col s12 m3 l3 faculty-theory">
-            <input type="text" name="faculty">
-            <label for="faculty">Enter Faculty Name
+            <input type="text" name="faculty" required class="validate">
+            <label for="faculty">Enter Faculty Name</label>
           </div>
-          <div class="input-field col s12 m2 l2 valign has-lab" style="padding-bottom: 3%">
+          <div class="input-field col s12 m2 l2 has-lab" style="padding-bottom: 3%">
             <input type="checkbox" name="lab" id="lab" class="filled-in">
-            <label for="lab">Lab?
+            <label for="lab">Lab?</label>
           </div>
             <!--select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px" data-placeholder="Search Faculty">
               <option></option>
@@ -112,11 +110,11 @@
 
          </div>
          <div class="row valign-wrapper timetable-lab" style="padding-left: 1%!important">
-           <div class="input-field col s12 m2 l2 pull-l2 credits-lab">
-             <input type="number" min="0" max="5" name="credits">
-             <label for="credits">Credits(Lab)
+           <div class="input-field col s12 m2 l2 credits-lab">
+             <input type="number" min="1" max="2" name="credits" data-error="Enter from 1-2 only" required class="validate">
+             <label for="credits">Credits(Lab)</label>
            </div>
-           <div class="col s12 m2 l2 valign pull-l4" style="padding-left: 3.5%!important">
+           <div class="col s12 m2 l2 " style="padding-left: 2.5%!important">
              <select id="slot-list" class="slot-list-1" name="slot-list" data-placeholder="Select Lab Slot">
                <option></option>
                <option value="L1+L2">L1+L2</option>
@@ -149,9 +147,9 @@
                <option value="L59+L60">L59+L60</option>
              </select>
            </div>
-           <div class="input-field col s12 m2 l2 pull-l5 faculty-lab">
+           <div class="input-field col s12 m2 l2 faculty-lab">
              <input type="text" name="faculty-lab">
-             <label for="faculty-lab">Faculty(Lab)
+             <label for="faculty-lab">Faculty(Lab)</label>
            </div>
            </div>
          </div>
@@ -389,13 +387,18 @@
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">About Google Developers Group-VIT Vellore</h5>
-                <p class="grey-text text-lighten-4">Google Developers Groups was established in VIT on 28th July 2014 and since then 3 successful events were conducted . The group now has 60 Developers ,This groups’s agenda is to introduce new technologies to the students, develop new ideas and polish skills in every possible field including management our faculty coordinator is Prof .P Senthilnathan and has guided us along this journey.</p>
+                <p class="grey-text text-lighten-4">Google Developers Groups was established in VIT on 28th July 2014 and since then 6 successful events have been conducted. The group now has 60 Developers whose agenda is to introduce new technologies, projects to the students, develop new ideas and polish skills in every possible field.</p>
               </div>
               <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">About MyFFCS</h5>
+              <h6 class="grey-text text-lighten-3" >Project Lead : <span>Ashiwini Purohit<a target="_blank" href="https://github.com/ashwini0529">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Rishi Raj<atarget="_blank"  href="https://github.com/rishiraj824">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
+              <h6 class="grey-text text-lighten-3" >Frontend : <span>Vishwajeet Jadeja<a target="_blank" href="https://github.com/Vishwajeetsinh98">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Yash Mahajan<a target="_blank" href="https://github.com/yashmahajn10">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
+              <h6 class="grey-text text-lighten-3" >Backend : <span>Balaji<a target="_blank" href="https://github.com/sch00lb0y">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
+              
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="http://gdgvitvellore.com"><i class="fa fa-phone"></i>&nbsp;&nbsp;Contact Us</a></li>
-                  <li><a class="grey-text text-lighten-3" href="http://facebook.com/gdgvitvellore"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Facebook</a></li>
-                  <li><a class="grey-text text-lighten-3" href="https://plus.google.com/+gdgvitvellore"><i class="fa fa-google-plus"></i>&nbsp;&nbsp;Google Plus</a></li>
+                  <li><a target="_blank" class="grey-text text-lighten-3" href="http://gdgvitvellore.com"><i class="fa fa-phone"></i>&nbsp;&nbsp;Contact Us</a></li>
+                  <li><a target="_blank" class="grey-text text-lighten-3" href="http://facebook.com/gdgvitvellore"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Facebook</a></li>
+                  <li><a target="_blank" class="grey-text text-lighten-3" href="https://plus.google.com/+gdgvitvellore"><i class="fa fa-google-plus"></i>&nbsp;&nbsp;Google Plus</a></li>
                 </ul>
               </div>
             </div>
