@@ -679,6 +679,9 @@ footer{
 }
 @media(max-width: 700px){
   .input-field label{
-    font-size: 10px !important;
+    font-size: 9px !important;
   }
+}
+.input-field{
+  margin: 0 auto;
 }
