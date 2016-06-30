@@ -72,7 +72,9 @@ Router.post('/addcourse',bodyParser.json(),tokenAuth,function (req,res,next) {
   var result=student.addCourse(req.body.name,req.body.faculty,req.body.slot,req.body.regno,req.body.credits)
 
   result.onValue((val)=>{
-      res.json({status:true,data:val})
+    console.log('hey');
+    console.log(val);
+    res.json({status:true,data:val})
   })
   result.onError((val)=>{
     res.json({status:false,message:val})

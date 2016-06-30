@@ -85,16 +85,34 @@ const userdata=function (regno,cb) {
 
 const addSlots=(regno,courseSlot,allotedSlot,name,faculty,totalCredits,credits)=>{
 
-
   return Kefir.stream((emitter)=>{
-
+    console.log(totalCredits);
+    console.log('lelu');
        if(validator(courseSlot.split('+'),allotedSlot)){
-         model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:{name:name,faculty:faculty,credits:credits,slots:courseSlot}},totalCredits:totalCredits},{upsert:true},function (err,data) {
-           model.findOne({regno:regno}).populate('course').select({"password":0,"token":0}).exec(function (err,data) {
-             emitter.emit(data)
-           })
-
+         model.findOne({
+            regno:regno,
+            'allotedCourse.slots':courseSlot,
+            'allotedCourse.name':name,
+            'allotedCourse.faculty':faculty,
+            'allotedCourse.credits':credits
+          }).exec(function(err, data){
+           if(data){
+             console.log(data);
+           }
+           else{
+             console.log(data);
+             model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:{name:name,faculty:faculty,credits:credits,slots:courseSlot}},totalCredits:totalCredits},{upsert:true},function (err,data) {
+               model.findOne({regno:regno}).populate('course').select({"password":0,"token":0}).exec(function (err,data) {
+                 emitter.emit(data)
+               })
+             })
+           }
          })
+        //  model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:{name:name,faculty:faculty,credits:credits,slots:courseSlot}},totalCredits:totalCredits},{upsert:true},function (err,data) {
+        //    model.findOne({regno:regno}).populate('course').select({"password":0,"token":0}).exec(function (err,data) {
+        //      emitter.emit(data)
+        //    })
+        //  })
        }else {
          emitter.error("slots are clashing pls check")
        }
@@ -103,11 +121,12 @@ const addSlots=(regno,courseSlot,allotedSlot,name,faculty,totalCredits,credits)=
 
 const addCourse=(name,faculty,slot,regno,credits)=>{
 return kuzhanthaidata(regno).flatMap((x)=>{
-
-  //console.log(x.student.totalCredits+credits<=27);
-  if(x.student.totalCredits+credits<=27){
-
-  return addSlots(regno,slot,x.student.allotedSlot,name,faculty,x.student.totalCredits+credits,credits)
+  const totalCredits = parseInt(x.student.totalCredits)
+  const courseCredits = parseInt(credits)
+  const calculatedCredits = totalCredits + courseCredits
+  console.log(calculatedCredits);
+  if(calculatedCredits<=27){
+  return addSlots(regno,slot,x.student.allotedSlot,name,faculty,calculatedCredits,courseCredits)
 }else {
   return Kefir.constantError("credits should not be more than 27")
 }
@@ -126,7 +145,6 @@ const kuzhanthaidata=function (regno,slot,id) {
        if(err){
          emitter.error('something went wrong');
        }else {
-
          emitter.emit({student:data})
        }
     })
