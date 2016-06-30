@@ -683,3 +683,14 @@ footer{
 label{
   color: #fff !important;
 }
+.login-form label{
+  color: #333 !important;
+}
+.register-form label{
+  color: #333 !important;
+}
+[type="checkbox"].filled-in:not(:checked)+label:after {
+    
+    border: 2px solid #fff !important;
+  
+}
