@@ -50,5 +50,5 @@ var validator=function(allotedSlot,slots){
         return labValidator(allotedSlot,slots)&&normalValidator(allotedSlot,slots)
     }
 }
-
+console.log(validator(['B2'],['L37']));
 module.exports=validator

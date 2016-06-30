@@ -88,6 +88,17 @@ Router.get('/detail',bodyParser.json(),tokenAuth,function (req,res,next) {
     })
 })
 
+Router.get('/userdetail',function (req,res,next) {
+  var result=student.getStudentDetail(req.query.regno);
+
+    result.onValue((x)=>{
+      res.json({status:true,data:x})
+
+    })
+    result.onError((x)=>{
+      res.json({status:false,message:x})
+    })
+})
 Router.get('/logout',auth,function (req,res,next) {
   req.logout()
   res.redirect('/')
