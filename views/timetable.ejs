@@ -72,7 +72,7 @@
               <option value="G2">G2</option>
               <option value="A1+TA1">A1+TA1</option>
               <option value="A2+TA2">A2+TA2</option>
-              <option value="B1+TB1">B1+ TB1</option>
+              <option value="B1+TB1">B1+TB1</option>
               <option value="B2+TB2">B2+TB2</option>
               <option value="C1+TC1">C1+TC1</option>
               <option value="C2+TC2">C2+TC2</option>
@@ -107,7 +107,7 @@
            </select-->
            <div class="input-field col s12 m3 l3 faculty-theory">
              <input type="text" name="faculty">
-             <label for="faculty">Enter Faculty Name(Theory)
+             <label for="faculty">Enter Faculty Name
            </div>
          </div>
          <div class="row valign-wrapper timetable-lab" style="padding-left: 1%!important">
@@ -154,7 +154,7 @@
            </div>
          </div>
          <div class="row">
-            <button class="submit-button timetable-results-trigger">Add</button>
+            <button class="submit-button timetable-results-trigger ">Add</button>
           </div>
         </div>
       </div>
@@ -486,9 +486,11 @@
           success: function(response){
 
             Materialize.toast('Course Added', 4000)
+            console.log("Data sent");
           },
           error: function(){
             Materialize.toast('There was some error!', 4000)
+            console.log("Data not sent");
           }
         });
       }
@@ -663,10 +665,10 @@
         },
         type: 'POST',
         data: {
-          slot: sendSlot,
-          name: courseName,
-          faculty: faculty,
-          credits: credits
+            slot: sendSlot,
+            name: courseName,
+            faculty: faculty,
+            credits: credits
         },
         success: function(response){
           Materialize.toast('Deleted!', 4000)

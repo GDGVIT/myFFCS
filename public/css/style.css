@@ -7,7 +7,19 @@ body{
 select span{
   min-width: 200px !important;
 }
-.select2-container--default {min-width: 200px;}
+@media(min-width: 1000px){
+
+.select2-container--default 
+{
+  min-width: 200px;
+}
+}
+@media(max-width: 750px)
+{
+.select2-container--default{
+  width: auto !important
+}
+}
 .login-holder{
   font-family: 'Lato';
   width: 75%;
@@ -390,8 +402,8 @@ select span{
 }
 .timetable-menu-list .submit-button{
   background: rgb(0,233,143);
-  width: 10%!important;
-  max-height: 30px!important;
+  width: 20%!important;
+  max-height: 60px !important;
   margin-left: 2.8%;
   margin-top: 20%;
   padding: 1%;
@@ -664,4 +676,9 @@ footer{
 }
 .timetable-menu-list input{
   color: white!important;
+}
+@media(max-width: 700px){
+  .input-field label{
+    font-size: 10px !important;
+  }
 }
