@@ -330,8 +330,8 @@
     <div class="row timetable-selected-list z-depth-1">
       <table class="timetable-selected-table">
         <tr class="timetable-selected-headings">
-          <td style="padding: 2%;">S.No.</td>
-          <td>Course Name</td>
+          <!--td style="padding: 2%;">S.No.</td-->
+          <td style="padding: 2%;">Course Name</td>
           <td>Course Credits</td>
           <td>Slot</td>
           <td>Faculty</td>
@@ -442,6 +442,58 @@
       $(".timetable-title-panel").show();
       doneOnce = false;
     });
+    $('.credits-theory input').change(function(){
+      if($(this).val()>=5){
+        $(this).val(0);
+        Materialize.toast("Credits Can be maximum 4!",4000);
+      } else{
+        if($(this).val()==1){
+          $('.slot-list-1').empty();
+          $('.slot-list-1').append('<option></option>');
+          $('.slot-list-1').append('<option value="A1+TA1">A1+TA1</option>');
+          $('.slot-list-1').append('<option value="A2+TA2">A2+TA2</option>');
+          $('.slot-list-1').append('<option value="B1+TB1">B1+TB1</option>');
+          $('.slot-list-1').append('<option value="B2+TB2">B2+TB2</option>');
+          $('.slot-list-1').append('<option value="C1+TC1">C1+TC1</option>');
+          $('.slot-list-1').append('<option value="C2+TC2">C2+TC2</option>');
+          $('.slot-list-1').append('<option value="D1+TD1">D1+TD1</option>');
+          $('.slot-list-1').append('<option value="D2+TD2">D2+TD2</option>');
+          $('.slot-list-1').append('<option value="E1+TE1">E1+TE1</option>');
+          $('.slot-list-1').append('<option value="E2+TE2">E2+TE2</option>');
+          $('.slot-list-1').append('<option value="F1+TF1">F1+TF1</option>');
+          $('.slot-list-1').append('<option value="F2+TF2">F2+TF2</option>');
+          $('.slot-list-1').append('<option value="G1+TG1">G1+TG1</option>');
+          $('.slot-list-1').append('<option value="G2+TG2">G2+TG2</option>');
+          $('.slot-list-1').append('<option value="L1+L2">L1+L2</option><option value="L3+L4">L3+L4</option><option value="L5+L6">L5+L6</option><option value="L7+L8">L7+L8</option><option value="L9+L10">L9+L10</option><option value="L11+L12">L11+L12</option><option value="L13+L14">L13+L14</option><option value="L19+L20">L19+L20</option><option value="L21+L22">L21+L22</option><option value="L23+L24">L23+L24</option><option value="L25+L26">L25+L26</option><option value="L27+L28">L27+L28</option><option value="L29+L30">L29+L30</option><option value="L31+L32">L31+L32</option><option value="L33+L34">L33+L34</option><option value="L35+L36">L35+L36</option><option value="L37+L38">L37+L38</option><option value="L39+L40">L39+L40</option><option value="L41+L42">L41+L42</option><option value="L43+L44">L43+L44</option><option value="L45+L46">L45+L46</option><option value="L47+L48">L47+L48</option><option value="L49+L50">L49+L50</option><option value="L51+L52">L51+L52</option><option value="L53+L54">L53+L54</option><option value="L55+L56">L55+L56</option><option value="L57+L58">L57+L58</option><option value="L59+L60">L59+L60</option>')
+        } else if($(this).val()==2){
+          $('.slot-list-1').empty();
+          $('.slot-list-1').append('<option></option>');
+          $('.slot-list-1').append('<option value="A1">A1</option><option value="A2">A2</option><option value="B1">B1</option><option value="B2">B2</option><option value="C1">C1</option><option value="C2">C2</option><option value="D1">D1</option><option value="D2">D2</option><option value="E1">E1</option><option value="E2">E2</option><option value="F1">F1</option><option value="F2">F2</option><option value="G1">G1</option><option value="G2">G2</option>');
+          $('.slot-list-1').append('<option value="L1+L2+L3">L1+L2+L3</option><option value="L4+L5+L6">L4+L5+L6</option><option value="L7+L8+L9">L7+L8+L9</option><option value="L10+L11+L12">L10+L11+L12</option><option value="L19+L20+L21">L19+L20+L21</option><option value="L22+L23+L24">L22+L23+L24</option><option value="L25+L26+L27">L25+L26+L27</option><option value="L28+L29+L30">L28+L29+L30</option><option value="L31+L32+L33">L31+L32+L33</option><option value="L34+L35+L36">L34+L35+L36</option><option value="L37+L38+L39">L37+L38+L39</option><option value="L40+L41+L42">L40+L41+L42</option>');
+        } else if($(this).val()==3){
+          $('.slot-list-1').empty();
+          $('.slot-list-1').append('<option></option>');
+          $('.slot-list-1').append('<option value="A1+TA1">A1+TA1</option>');
+          $('.slot-list-1').append('<option value="A2+TA2">A2+TA2</option>');
+          $('.slot-list-1').append('<option value="B1+TB1">B1+TB1</option>');
+          $('.slot-list-1').append('<option value="B2+TB2">B2+TB2</option>');
+          $('.slot-list-1').append('<option value="C1+TC1">C1+TC1</option>');
+          $('.slot-list-1').append('<option value="C2+TC2">C2+TC2</option>');
+          $('.slot-list-1').append('<option value="D1+TD1">D1+TD1</option>');
+          $('.slot-list-1').append('<option value="D2+TD2">D2+TD2</option>');
+          $('.slot-list-1').append('<option value="E1+TE1">E1+TE1</option>');
+          $('.slot-list-1').append('<option value="E2+TE2">E2+TE2</option>');
+          $('.slot-list-1').append('<option value="F1+TF1">F1+TF1</option>');
+          $('.slot-list-1').append('<option value="F2+TF2">F2+TF2</option>');
+          $('.slot-list-1').append('<option value="G1+TG1">G1+TG1</option>');
+          $('.slot-list-1').append('<option value="G2+TG2">G2+TG2</option>');
+        } else if($(this).val()==4){
+          $('.slot-list-1').empty();
+          $('.slot-list-1').append('<option></option>');
+          $('.slot-list-1').append('<option value="A1+TA1+TAA1">A1+TA1+TAA1</option><option value="A2+TA2+TAA2">A2+TA2+TAA2</option><option value="B2+TB2+TBB2">B2+TB2+TBB2</option><option value="C2+TC2+TCC2">C2+TC2+TCC2</option><option value="D2+TD2+TDD2">D2+TD2+TDD2</option>');
+        }
+      }
+    });
     $('.has-lab input').click(function(){
       if($(this).is(":checked")){
         hasLab = true;
@@ -518,9 +570,9 @@
             },
             success: function(response){
               if(count==1)
-                $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
+                $('<tr class="timetable-selected-subject">'+'<td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
               else {
-                $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
+                $('<tr class="timetable-selected-subject">'+'<td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
               }
               Materialize.toast('Course Added', 4000)
               console.log("Data sent");
@@ -558,9 +610,9 @@
             $('.'+tempSlot+" .number").html(count);
           }
           if(count==1)
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlotLab.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+facultyLab+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
+            $('<tr class="timetable-selected-subject">'+'<td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlotLab.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+facultyLab+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
           else {
-            $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlotLab.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+facultyLab+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
+            $('<tr class="timetable-selected-subject">'+'<td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlotLab.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+facultyLab+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
           }
           var token = $('.user-token').val();
           $.ajax({
@@ -576,7 +628,7 @@
               credits: creditsLab
             },
             success: function(response){
-              
+
               if(response.status==true){
                 Materialize.toast('Course Added', 4000)
               }
@@ -802,7 +854,7 @@
             var faculty = response.data.allotedCourse[i].faculty;
             var slot = response.data.allotedCourse[i].slots;
             var credits = response.data.allotedCourse[i].credits;
-            $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td>'+count+'</td><td></td><td>'+courseName+'<br><span class="sub-text-inside">'+credits+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
+            $('.timetable-selected-table').append('<tr class="timetable-selected-subject">'+'<td>'+courseName+'</td><td>'+''+credits+'</td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
             slot = slot.toLowerCase();
             slot = slot.split('+');
             for(var j in slot){
