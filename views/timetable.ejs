@@ -407,7 +407,7 @@
               <h6 class="grey-text text-lighten-3" >Frontend : <span>Vishwajeet Jadeja<a target="_blank" href="https://github.com/Vishwajeetsinh98">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Yash Mahajan<a target="_blank" href="https://github.com/yashmahajan10">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
               <h6 class="grey-text text-lighten-3" >Backend : <span>Balaji<a target="_blank" href="https://github.com/sch00lb0y">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
               <h6 class="grey-text text-lighten-3" >Design : <span>Rajat Mukati<a target="_blank" href="https://m.facebook.com/profile.php?id=100001552041806">&nbsp;<i class="fa fa-facebook grey-text"></i>&nbsp;</a> &nbsp; </span><span>Vignesh Shankar<a target="_blank"  href="https://facebook.com/vickyjuly09">&nbsp;<i class="fa fa-facebook grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
-              
+
                 <ul>
                   <li><a target="_blank" class="grey-text text-lighten-3" href="http://gdgvitvellore.com"><i class="fa fa-phone"></i>&nbsp;&nbsp;Contact Us</a></li>
                   <li><a target="_blank" class="grey-text text-lighten-3" href="http://facebook.com/gdgvitvellore"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Facebook</a></li>
@@ -452,6 +452,10 @@
       }
     });
     //<------New Code
+    var currSlot = "";
+    var currentCourse = "";
+    var currentfaculty = "";
+    var currentCredits = 0;
     $(document).on('click','.timetable-menu-list .submit-button',function(){
       var courseName = $('.timetable-theory .course').val();
       var count = $('.timetable-selected-subject').length;
@@ -485,35 +489,47 @@
           $('.'+slot+" .number").css("color","#00e676");
           $('.'+slot+" .number").html(count);
         }
-        if(count==1)
-          $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
-        else {
-          $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
-        }
         var token = $('.user-token').val();
 
-        $.ajax({
-          url: '/course/addcourse',
-          headers: {
-            'token': token
-          },
-          type: 'POST',
-          data: {
-            slot: sendSlot,
-            name: courseName,
-            faculty: faculty,
-            credits: credits
-          },
-          success: function(response){
+        if(currentCourse === courseName && currentSlot === slot && currentfaculty === faculty && currentCredits === credits){
+          console.log(currentCourse);
+        }
+        else{
+          currentCourse = courseName;
+          currentSlot = slot;
+          currentfaculty = faculty;
+          currentCredits = credits;
+          sendRequest();
+        }
 
-            Materialize.toast('Course Added', 4000)
-            console.log("Data sent");
-          },
-          error: function(){
-            Materialize.toast('There was some error!', 4000)
-            console.log("Data not sent");
-          }
-        });
+        function sendRequest(){
+          $.ajax({
+            url: '/course/addcourse',
+            headers: {
+              'token': token
+            },
+            type: 'POST',
+            data: {
+              slot: sendSlot,
+              name: courseName,
+              faculty: faculty,
+              credits: credits
+            },
+            success: function(response){
+              if(count==1)
+                $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-headings');
+              else {
+                $('<tr class="timetable-selected-subject"><td>'+count+'</td><td>'+courseName+'</td><td>'+credits+'</td><td>'+sendSlot.toUpperCase()+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+'</span></td><td><i class="small material-icons">delete</i></td></tr>').insertAfter('.timetable-selected-subject:nth-child('+count+")");
+              }
+              Materialize.toast('Course Added', 4000)
+              console.log("Data sent");
+            },
+            error: function(){
+              Materialize.toast('There was some error!', 4000)
+              console.log("Data not sent");
+            }
+          });
+        }
       }
        if(hasLab){
         var slot = $('.timetable-lab .slot-list-1').select2('data')[0]['text'];

@@ -100,7 +100,6 @@ const addSlots=(regno,courseSlot,allotedSlot,name,faculty,totalCredits,credits)=
              console.log(data);
            }
            else{
-             console.log(data);
              model.update({regno:regno},{$pushAll:{allotedSlot:courseSlot.split('+')},$push:{allotedCourse:{name:name,faculty:faculty,credits:credits,slots:courseSlot}},totalCredits:totalCredits},{upsert:true},function (err,data) {
                model.findOne({regno:regno}).populate('course').select({"password":0,"token":0}).exec(function (err,data) {
                  emitter.emit(data)

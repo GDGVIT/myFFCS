@@ -73,7 +73,6 @@ Router.post('/addcourse',bodyParser.json(),tokenAuth,function (req,res,next) {
 
   result.onValue((val)=>{
     console.log('hey');
-    console.log(val);
     res.json({status:true,data:val})
   })
   result.onError((val)=>{
