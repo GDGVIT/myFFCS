@@ -2,11 +2,18 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width" />
-    <title>MY FFCS | Timetable</title>
+    <title>myFFCS | Here's My Timetable</title>
     <!--CSS-->
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="css/select2.min.css" rel="stylesheet">
+    <meta name='description' content='MyFFCS - Make your timetable before FFCS, share it with your friends.'>
+    <meta name = 'description' content = 'Make your own timetable before FFCS starts'>
+    <meta name = 'description' content = 'Choose your credits on myFFCS to make sure your classes do not clash.'>    
+    <meta name=”robots” content=”index,follow”>
+    <meta property="og:title" content="MyFFCS - Make your timetable before FFCS, share it with your friends." />
+      <meta property="og:url" content="http://www.myffcs.in" />         
+      <meta property="og:image" content="http://i.imgur.com/XVMAFgj.jpg" />         
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
@@ -34,7 +41,7 @@
   <body>
 
     <input type="text" class="user-token" name="token" style="display:none;" value="<%=user.token%>">
-    <div class="timetable-menu-list">
+    <!-- <!-- <div class="timetable-menu-list">
       <div class="close">
         <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
       </div>
@@ -46,7 +53,7 @@
               <option value="<%=data[i].courseCode%>"><%=data[i].courseCode+" "+data[i].name%></option>
              <%}%>
            </select-->
-           <div class="row  timetable-theory">
+          <!--  <div class="row  timetable-theory">
            <div class="input-field col s12 m2 l2">
              <input type="text" class="course" name="course" required class="validate">
             <label for="course">Course Name</label>
@@ -136,7 +143,7 @@
           <div class="input-field col s12 m3 l3 faculty-theory">
             <input type="text" name="faculty" required class="validate">
             <label for="faculty">Enter Faculty Name</label>
-          </div>
+          </div> -->
       <!--    <div class="input-field col s12 m2 l2 has-lab" style="padding-bottom: 3%">
             <input type="checkbox" name="lab" id="lab" class="filled-in">
             <label for="lab">Lab?</label>
@@ -147,31 +154,20 @@
               <option value="<%=data[i].faculty%>"><%=data[i].faculty%></option>
              <%}%>
            </select-->
-
+<!-- 
          </div>
-         <div class="row timetable-lab" >
-           <div class="input-field col s12 m2 l2 credits-lab">
-             <input type="number" min="1" max="2" name="credits" data-error="Enter from 1-2 only" required class="validate">
-             <label for="credits">Credits(Lab)</label>
-           </div>
-           <div class="col s12 m2 l2 " style="padding-left: 1.5%!important">
-             <select id="slot-list" class="slot-list-1" name="slot-list" data-placeholder="Select Lab Slot">
-               <option></option>
-
-             </select>
-           </div>
-           <div class="input-field col s12 m2 l2 faculty-lab">
-             <input type="text" name="faculty-lab">
-             <label for="faculty-lab">Faculty(Lab)</label>
-           </div>
-           </div>
          </div>
          <div class="row">
             <button class="submit-button timetable-results-trigger ">Add</button>
           </div>
         </div>
-      </div>
-    </div>
+      </div> --> 
+    </div> 
+    <style type="text/css">
+      td  {
+     padding: 0px !important;
+     } 
+    </style>
     <div class="row timetable-title-panel valign-wrapper" style="padding-bottom: 1%;">
       <div class="col s12 m8 l8 valign">
         <a href="#"><h4 style="font-family: Montserrat">My FFCS</h4></a>
@@ -182,9 +178,9 @@
       </div>
     </div>
     <div class="row timetable-results">
-      <div class="close">
+      <!-- <div class="close">
         <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
-      </div>
+      </div> -->
       <!--div class="custom-card z-depth-1  col m3 push-m1 l3 push-l1"  >
         <div class="custom-card-header">
           <div class="custom-card-front">
@@ -405,7 +401,7 @@
               <div class="col l4 offset-l2 s12">
               <h5 class="white-text">About MyFFCS</h5>
               <h6 class="grey-text text-lighten-3" >Project Lead : <span>Ashwini Purohit<a target="_blank" href="https://github.com/ashwini0529">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Rishi Raj<a target="_blank"  href="https://github.com/rishiraj824">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
-              <h6 class="grey-text text-lighten-3" >Frontend : <span>Vishwajeet Jadeja<a target="_blank" href="https://github.com/Vishwajeetsinh98">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Yash Mahajan<a target="_blank" href="https://github.com/yashmahajan10">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
+              <h6 class="grey-text text-lighten-3" >Frontend : <span>Vishwajeet<a target="_blank" href="https://github.com/Vishwajeetsinh98">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Yash Mahajan<a target="_blank" href="https://github.com/yashmahajan10">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
               <h6 class="grey-text text-lighten-3" >Backend : <span>Balaji<a target="_blank" href="https://github.com/sch00lb0y">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
               <h6 class="grey-text text-lighten-3" >Design : <span>Rajat Mukati<a target="_blank" href="https://m.facebook.com/profile.php?id=100001552041806">&nbsp;<i class="fa fa-facebook grey-text"></i>&nbsp;</a> &nbsp; </span><span>Vignesh Shankar<a target="_blank"  href="https://facebook.com/vickyjuly09">&nbsp;<i class="fa fa-facebook grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
 
