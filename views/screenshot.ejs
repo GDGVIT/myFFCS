@@ -21,7 +21,7 @@
     <script src="js/select2.min.js"></script>
     <script src='js/slick.min.js'></script>
     <script src='js/jquery-ui.js'></script>
-    
+
     <meta name='description' content='MyFFCS - Make your timetable before FFCS, share it with your friends.'>
     <meta name = 'description' content = 'Make your own timetable before FFCS starts'>
     <meta name = 'description' content = 'Choose your credits on myFFCS to make sure your classes do
@@ -30,8 +30,8 @@ not clash.'>
 
     <meta name="keywords" content="myffcs, ffcs, timetable, vit university, myVIT, VIT credit system, VIT timetable, make timetable ">
     <meta name=”robots” content=”index,follow”>
-    
-    
+
+
     <meta property="og:title" content="MyFFCS - Make your timetable before FFCS, share it with your friends." />
     <meta property="og:url" content="http://www.myffcs.in" />
     <meta property="og:image" content="http://i.imgur.com/XVMAFgj.jpg" />
@@ -72,8 +72,8 @@ not clash.'>
         <a href="#"><h4 style="font-family: Montserrat">My FFCS</h4></a>
       </div>
       <div class="col s12 m3 l3 valign">
-        <button class="submit-button">Add Course</button>
-        <a href="/logout"><button class="submit-button-logout" style="margin-top: 5px;">Logout</button></a>
+      <!--  <button class="submit-button">Add Course</button>-->
+      <!--  <a href="/logout"><button class="submit-button-logout" style="margin-top: 5px;">Logout</button></a>-->
       </div>
     </div>
     <div class="row timetable-results">
@@ -221,7 +221,7 @@ not clash.'>
       <table class="timetable-selected-table">
         <tr class="timetable-selected-headings">
           <td style="padding: 2%;">S.No.</td>
-          <td>Course Code</td>
+
           <td>Course Name<br><span class="sub-text">Course Type</span></td>
           <td>Slot</td>
           <td>Faculty<br><span class="sub-text">School</span></td>
@@ -487,7 +487,7 @@ not clash.'>
             var courseCode = response.data.allotedCourse[i].courseCode;
             var courseType = 'Lab Only';
             var school = 'SCOPE';
-            $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+courseCode+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td><td><i class="small material-icons">delete</i></td></tr>');
+            $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+(count)+'</td><td>'+courseTitle+'<br><span class="sub-text-inside">'+courseType+'</span></td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p><span class="sub-text-inside">'+school+'</span></td></tr>');
             if(slot.charAt(0)=='L'){
               slot = slot.toLowerCase();
               slot = slot.split('+');

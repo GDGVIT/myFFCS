@@ -52,8 +52,8 @@
             <label for="course">Course Name</label>
            </div>
            <div class="input-field col s12 m2 l2 credits-theory">
-             <input type="number" min="2" max="4" name="credits" data-error="Enter from 1-4 only" required class="validate">
-             <label for="credits">Credits(Theory)</label>
+             <input type="number" min="1" max="4" name="credits" data-error="Enter from 1-4 only" required class="validate">
+             <label for="credits">Credits</label>
            </div>
            <div class="col s12 m2 l2">
             <select id="slot-list" class="slot-list-1" name="slot-list" data-placeholder="Select Slot">
@@ -91,16 +91,56 @@
               <option value="B2+TB2+TBB2">B2+TB2+TBB2</option>
               <option value="C2+TC2+TCC2">C2+TC2+TCC2</option>
               <option value="D2+TD2+TDD2">D2+TD2+TDD2</option>
+              <option value="L1+L2">L1+L2</option>
+              <option value="L3+L4">L3+L4</option>
+              <option value="L5+L6">L5+L6</option>
+              <option value="L7+L8">L7+L8</option>
+              <option value="L9+L10">L9+L10</option>
+              <option value="L11+L12">L11+L12</option>
+              <option value="L13+L14">L13+L14</option>
+              <option value="L19+L20">L19+L20</option>
+              <option value="L21+L22">L21+L22</option>
+              <option value="L23+L24">L23+L24</option>
+              <option value="L25+L26">L25+L26</option>
+              <option value="L27+L28">L27+L28</option>
+              <option value="L29+L30">L29+L30</option>
+              <option value="L31+L32">L31+L32</option>
+              <option value="L33+L34">L33+L34</option>
+              <option value="L35+L36">L35+L36</option>
+              <option value="L37+L38">L37+L38</option>
+              <option value="L39+L40">L39+L40</option>
+              <option value="L41+L42">L41+L42</option>
+              <option value="L43+L44">L43+L44</option>
+              <option value="L45+L46">L45+L46</option>
+              <option value="L47+L48">L47+L48</option>
+              <option value="L49+L50">L49+L50</option>
+              <option value="L51+L52">L51+L52</option>
+              <option value="L53+L54">L53+L54</option>
+              <option value="L55+L56">L55+L56</option>
+              <option value="L57+L58">L57+L58</option>
+              <option value="L59+L60">L59+L60</option>
+              <option value="L1+L2+L3">L1+L2+L3</option>
+              <option value="L4+L5+L6">L4+L5+L6</option>
+              <option value="L7+L8+L9">L7+L8+L9</option>
+              <option value="L10+L11+L12">L10+L11+L12</option>
+              <option value="L19+L20+L21">L19+L20+L21</option>
+              <option value="L22+L23+L24">L22+L23+L24</option>
+              <option value="L25+L26+L27">L25+L26+L27</option>
+              <option value="L28+L29+L30">L28+L29+L30</option>
+              <option value="L31+L32+L33">L31+L32+L33</option>
+              <option value="L34+L35+L36">L34+L35+L36</option>
+              <option value="L37+L38+L39">L37+L38+L39</option>
+              <option value="L40+L41+L42">L40+L41+L42</option>
             </select>
           </div>
           <div class="input-field col s12 m3 l3 faculty-theory">
             <input type="text" name="faculty" required class="validate">
             <label for="faculty">Enter Faculty Name</label>
           </div>
-          <div class="input-field col s12 m2 l2 has-lab" style="padding-bottom: 3%">
+      <!--    <div class="input-field col s12 m2 l2 has-lab" style="padding-bottom: 3%">
             <input type="checkbox" name="lab" id="lab" class="filled-in">
             <label for="lab">Lab?</label>
-          </div>
+          </div>-->
             <!--select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px" data-placeholder="Search Faculty">
               <option></option>
               <%for(i=0;i<data.length;i++){%>
@@ -117,46 +157,7 @@
            <div class="col s12 m2 l2 " style="padding-left: 1.5%!important">
              <select id="slot-list" class="slot-list-1" name="slot-list" data-placeholder="Select Lab Slot">
                <option></option>
-               <option value="L1+L2">L1+L2</option>
-               <option value="L3+L4">L3+L4</option>
-               <option value="L5+L6">L5+L6</option>
-               <option value="L7+L8">L7+L8</option>
-               <option value="L9+L10">L9+L10</option>
-               <option value="L11+L12">L11+L12</option>
-               <option value="L13+L14">L13+L14</option>
-               <option value="L19+L20">L19+L20</option>
-               <option value="L21+L22">L21+L22</option>
-               <option value="L23+L24">L23+L24</option>
-               <option value="L25+L26">L25+L26</option>
-               <option value="L27+L28">L27+L28</option>
-               <option value="L29+L30">L29+L30</option>
-               <option value="L31+L32">L31+L32</option>
-               <option value="L33+L34">L33+L34</option>
-               <option value="L35+L36">L35+L36</option>
-               <option value="L37+L38">L37+L38</option>
-               <option value="L39+L40">L39+L40</option>
-               <option value="L41+L42">L41+L42</option>
-               <option value="L43+L44">L43+L44</option>
-               <option value="L45+L46">L45+L46</option>
-               <option value="L47+L48">L47+L48</option>
-               <option value="L49+L50">L49+L50</option>
-               <option value="L51+L52">L51+L52</option>
-               <option value="L53+L54">L53+L54</option>
-               <option value="L55+L56">L55+L56</option>
-               <option value="L57+L58">L57+L58</option>
-               <option value="L59+L60">L59+L60</option>
-               <option value="L1+L2+L3">L1+L2+L3</option>
-               <option value="L4+L5+L6">L4+L5+L6</option>
-               <option value="L7+L8+L9">L7+L8+L9</option>
-               <option value="L10+L11+L12">L10+L11+L12</option>
-               <option value="L19+L20+L21">L19+L20+L21</option>
-               <option value="L22+L23+L24">L22+L23+L24</option>
-               <option value="L25+L26+L27">L25+L26+L27</option>
-               <option value="L28+L29+L30">L28+L29+L30</option>
-               <option value="L31+L32+L33">L31+L32+L33</option>
-               <option value="L34+L35+L36">L34+L35+L36</option>
-               <option value="L37+L38+L39">L37+L38+L39</option>
-               <option value="L40+L41+L42">L40+L41+L42</option>
+
              </select>
            </div>
            <div class="input-field col s12 m2 l2 faculty-lab">
