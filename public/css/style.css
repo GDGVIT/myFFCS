@@ -9,7 +9,7 @@ select span{
 }
 @media(min-width: 1000px){
 
-.select2-container--default 
+.select2-container--default
 {
   min-width: 180px;
 }
@@ -169,7 +169,6 @@ select span{
     font-size: 25px!important;
   }
   .timetable-menu-list .submit-button{
-
   }
   .timetable-results{
     height: 50vw;
@@ -401,8 +400,8 @@ select span{
   background: rgb(0,233,143);
   width: 20%!important;
   max-height: 60px !important;
-  margin-left: 2.8%;
-  margin-top: 10%;
+  margin-left: 1.8%;
+  margin-top: 12%;
   padding: 1%;
 }
 .timetable-menu-list .close{
@@ -690,7 +689,7 @@ label{
   color: #333 !important;
 }
 [type="checkbox"].filled-in:not(:checked)+label:after {
-    
+
     border: 2px solid #fff !important;
-  
+
 }
