@@ -435,6 +435,23 @@
         doneOnce = false;
       //});
     });
+    (function($){
+
+    $.fn.extend({
+
+        addTemporaryClass: function(className, duration) {
+            var elements = this;
+            setTimeout(function() {
+                elements.removeClass(className);
+            }, duration);
+
+            return this.each(function() {
+                $(this).addClass(className);
+            });
+        }
+    });
+
+})(jQuery);
     $(".close").click(function(){
       $(".timetable-menu-list").slideUp(400);
       $('.timetable-menu-list input').val("");
@@ -533,7 +550,8 @@
         for(var i in tSlot){
           slot = tSlot[i].toLowerCase();
           $('.'+slot).removeClass('selected');
-          $('.'+slot).addClass('clash');
+          //$('.'+slot).addClass('clash');
+          $("."+slot).addTemporaryClass("clash", 10000);
           $('.'+slot+" .number").css("color","rgb(250,77,92)");
         }
       } else{
@@ -647,7 +665,8 @@
         } else{
           for(var i in slot){
             tempSlot = slot[i];
-            $("."+tempSlot).addClass("clash");
+            //$("."+tempSlot).addClass("clash");
+            $("."+tempSlot).addTemporaryClass("clash", 10000);
             Materialize.toast('Course Clashing!', 4000);
             $("."+tempSlot).removeClass("unselected");
             $('.'+tempSlot+" .number").css("color","rgb(250,77,92)");
@@ -757,6 +776,7 @@
         }
       }
     });*/
+
     $(document).on('click', '.timetable-selected-subject .material-icons',function(){
       var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(3)')).text();
       var sendSlot = slot;
