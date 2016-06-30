@@ -55,6 +55,6 @@ lab['L57']='TA2'
 lab['L58']='TF2'
 lab['L59']='TDD2'
 lab['L60']='L60'
-var slots=['TG1','A1','F1','D1','TB1','TAA1','B1','G1','E1','TC1','C1','TA1','TF1','A2','F2','D2']
+var slots=['A1','A2','B1','B2','C1','C2','D1','D2','F1','F2','E1','E2','G1','G2','TA1','TA2','TB1','TB2','TC1','TC2','TD1','TD2','TE1','TE2','TF1','TF2','TG1','TG2','TAA1','TAA2','TBB1','TBB2','TCC1','TCC2','TDD1','TDD2']
 exports.lab=lab
 exports.slots=slots

@@ -185,7 +185,7 @@
       <div class="close">
         <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
       </div>
-      <div class="custom-card z-depth-1  col m3 push-m1 l3 push-l1"  >
+      <!--div class="custom-card z-depth-1  col m3 push-m1 l3 push-l1"  >
         <div class="custom-card-header">
           <div class="custom-card-front">
             <h5 class="course-title">Introduction To Innovative Projects</h5>
@@ -229,7 +229,7 @@
           <div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">PHY1011<span class="right">G1</span></p></div>
           <div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
         </div>
-      </div>
+      </div-->
     </div>
     <div class="row timetable">
       <table>
@@ -337,7 +337,7 @@
           <td>Faculty</td>
           <td></td>
         </tr>
-        <tr class="timetable-selected-subject">
+        <!--tr class="timetable-selected-subject">
           <td>1</td>
           <td>CSE1002</td>
           <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
@@ -392,7 +392,7 @@
           <td>L1 + L2 + L11  + L12 + L21 + L22</td>
           <td><p class="timetable-selected-faculty">Prof. Nagaraja Rao</p><span class="sub-text-inside">SCOPE</span></td>
           <td><i class="small material-icons">delete</i></td>
-        </tr>
+        </tr-->
       </table>
     </div>
     <footer class="page-footer">
@@ -404,7 +404,7 @@
               </div>
               <div class="col l4 offset-l2 s12">
               <h5 class="white-text">About MyFFCS</h5>
-              <h6 class="grey-text text-lighten-3" >Project Lead : <span>Ashiwini Purohit<a target="_blank" href="https://github.com/ashwini0529">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Rishi Raj<a target="_blank"  href="https://github.com/rishiraj824">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
+              <h6 class="grey-text text-lighten-3" >Project Lead : <span>Ashwini Purohit<a target="_blank" href="https://github.com/ashwini0529">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Rishi Raj<a target="_blank"  href="https://github.com/rishiraj824">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
               <h6 class="grey-text text-lighten-3" >Frontend : <span>Vishwajeet Jadeja<a target="_blank" href="https://github.com/Vishwajeetsinh98">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span><span>Yash Mahajan<a target="_blank" href="https://github.com/yashmahajan10">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
               <h6 class="grey-text text-lighten-3" >Backend : <span>Balaji<a target="_blank" href="https://github.com/sch00lb0y">&nbsp;<i class="fa fa-github grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
               <h6 class="grey-text text-lighten-3" >Design : <span>Rajat Mukati<a target="_blank" href="https://m.facebook.com/profile.php?id=100001552041806">&nbsp;<i class="fa fa-facebook grey-text"></i>&nbsp;</a> &nbsp; </span><span>Vignesh Shankar<a target="_blank"  href="https://facebook.com/vickyjuly09">&nbsp;<i class="fa fa-facebook grey-text"></i>&nbsp;</a> &nbsp; </span></h6>
@@ -435,6 +435,23 @@
         doneOnce = false;
       //});
     });
+    (function($){
+
+    $.fn.extend({
+
+        addTemporaryClass: function(className, duration) {
+            var elements = this;
+            setTimeout(function() {
+                elements.removeClass(className);
+            }, duration);
+
+            return this.each(function() {
+                $(this).addClass(className);
+            });
+        }
+    });
+
+})(jQuery);
     $(".close").click(function(){
       $(".timetable-menu-list").slideUp(400);
       $('.timetable-menu-list input').val("");
@@ -469,7 +486,7 @@
           $('.slot-list-1').empty();
           $('.slot-list-1').append('<option></option>');
           $('.slot-list-1').append('<option value="A1">A1</option><option value="A2">A2</option><option value="B1">B1</option><option value="B2">B2</option><option value="C1">C1</option><option value="C2">C2</option><option value="D1">D1</option><option value="D2">D2</option><option value="E1">E1</option><option value="E2">E2</option><option value="F1">F1</option><option value="F2">F2</option><option value="G1">G1</option><option value="G2">G2</option>');
-          $('.slot-list-1').append('<option value="L1+L2+L3">L1+L2+L3</option><option value="L4+L5+L6">L4+L5+L6</option><option value="L7+L8+L9">L7+L8+L9</option><option value="L10+L11+L12">L10+L11+L12</option><option value="L19+L20+L21">L19+L20+L21</option><option value="L22+L23+L24">L22+L23+L24</option><option value="L25+L26+L27">L25+L26+L27</option><option value="L28+L29+L30">L28+L29+L30</option><option value="L31+L32+L33">L31+L32+L33</option><option value="L34+L35+L36">L34+L35+L36</option><option value="L37+L38+L39">L37+L38+L39</option><option value="L40+L41+L42">L40+L41+L42</option>');
+          $('.slot-list-1').append('<option value="L1+L2+L3">L1+L2+L3</option><option value="L4+L5+L6">L4+L5+L6</option><option value="L7+L8+L9">L7+L8+L9</option><option value="L10+L11+L12">L10+L11+L12</option><option value="L19+L20+L21">L19+L20+L21</option><option value="L22+L23+L24">L22+L23+L24</option><option value="L25+L26+L27">L25+L26+L27</option><option value="L28+L29+L30">L28+L29+L30</option><option value="L31+L32+L33">L31+L32+L33</option><option value="L34+L35+L36">L34+L35+L36</option><option value="L37+L38+L39">L37+L38+L39</option><option value="L40+L41+L42">L40+L41+L42</option><option value="L43+L44+L45">L43+L44+L45</option><option value="L46+L47+L48">L46+L47+L48</option><option value="L49+L50+L51">L49+L50+L51</option><option value="L52+L53+L54">L52+L53+L54</option><option value="L55+L56+L57">L55+L56+L57</option><option value="L58+L59+L60">L58+L59+L60</option>');
         } else if($(this).val()==3){
           $('.slot-list-1').empty();
           $('.slot-list-1').append('<option></option>');
@@ -532,9 +549,15 @@
       if(isClashing){
         for(var i in tSlot){
           slot = tSlot[i].toLowerCase();
-          $('.'+slot).removeClass('selected');
-          $('.'+slot).addClass('clash');
-          $('.'+slot+" .number").css("color","rgb(250,77,92)");
+          if($('.'+slot).hasClass('selected')){
+            $('.'+slot).removeClass('selected');
+            //$('.'+slot).addClass('clash');
+            $("."+slot).addTemporaryClass("clash", 4000);
+            Materialize.toast("Course Clashing!",4000);
+            $('.'+slot).addClass('selected');
+            $('.'+slot+" .number").css("color","#00e676");
+            //$('.'+slot+" .number").css("color","rgb(250,77,92)");
+          }
         }
       } else{
         count++;
@@ -647,10 +670,9 @@
         } else{
           for(var i in slot){
             tempSlot = slot[i];
-            $("."+tempSlot).addClass("clash");
+            //$("."+tempSlot).addClass("clash");
+            $("."+tempSlot).addTemporaryClass("clash", 4000);
             Materialize.toast('Course Clashing!', 4000);
-            $("."+tempSlot).removeClass("unselected");
-            $('.'+tempSlot+" .number").css("color","rgb(250,77,92)");
             //$('.'+tempSlot+" .number").html(count);
           }
         }
@@ -757,14 +779,15 @@
         }
       }
     });*/
+
     $(document).on('click', '.timetable-selected-subject .material-icons',function(){
-      var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(4)')).text();
+      var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(3)')).text();
       var sendSlot = slot;
       slot = slot.split('+');
       var token = $('.user-token').val();
-      var credits = $(this).closest('.timetable-selected-subject').find('td:nth-child(3) .sub-text-inside').text();
+      var credits = $(this).closest('.timetable-selected-subject').find('td:nth-child(2)').text();
       var faculty = $(this).closest('.timetable-selected-subject').find('.timetable-selected-faculty').text();
-      var courseName = $(this).closest('.timetable-selected-subject').find('td:nth-child(3)').text().replace(credits,"");
+      var courseName = $(this).closest('.timetable-selected-subject').find('td:nth-child(1)').text();
       $.ajax({
         url: '/course/delete/',
         headers: {
@@ -786,7 +809,7 @@
         }
       });
       for(var i in slot){
-        var tempSlot = slot[i].replace(' ','').toLowerCase();
+        var tempSlot = slot[i].toLowerCase();
         $('.'+tempSlot).addClass('unselected').removeClass('selected').removeClass('clash');
         $('.'+tempSlot+' .number').html("");
       }
