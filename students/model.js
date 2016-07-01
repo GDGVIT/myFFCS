@@ -25,7 +25,12 @@ const student=new schema({
       required:true
     },
     token:String,
-    allotedCourse:[{name:String,faculty:String,credits:Number,slots:String}]
+    allotedCourse:[{name:String,faculty:String,credits:Number,slots:String}],
+    newAllotedCourse:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'courses'
+}],
+newAllotedSlot:['String']
 })
 
 const model=mongoose.model('student',student)
@@ -152,7 +157,7 @@ const kuzhanthaidata=function (regno,slot,id) {
 
 const getStudentDetail=function (regno) {
   return Kefir.stream((emitter)=>{
-    model.findOne({regno:regno}).populate('allotedCourse').select({"password":0,"token":0})
+    model.findOne({regno:regno}).populate('newAllotedCourse').select({"password":0,"token":0})
     .exec(function (err,data) {
       if(err){
         emitter.error("something went wrong with db")
@@ -188,3 +193,4 @@ exports.student=stu
 exports.addCourse=addCourse
 exports.getStudentDetail=getStudentDetail
 exports.deleteSlot=deleteSlot
+exports.model=model

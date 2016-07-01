@@ -37,6 +37,7 @@ Router.get('/home',auth,function (req,res,next) {
 
     result.onValue((x)=>{
       // console.log(x);
+
       student.userdata(req.session.passport.user,function (err,user) {
      res.render('timetable',{data:x,user:user,share:encryptor.encrypt(user.regno)})
       })
