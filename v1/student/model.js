@@ -16,7 +16,7 @@ return kuzhanthaidata(regno,courseId).flatMap((x)=>{
        emitter.emit(data)
      })
    }else {
-     emitter.emit('course is clashing')
+     emitter.error('course is clashing')
    }
   })
 })
