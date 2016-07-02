@@ -419,9 +419,8 @@
             $("."+slot).addTemporaryClass("clash", 4000);
             Materialize.toast("Course Clashing!",4000);
             $('.'+slot).addClass('selected');
+            $('.'+slot).css('color', 'white');
             $('.'+slot+" .number").css("color","#00e676");
-          } else{
-            isClashing = false;
           }
         }
         if(!isClashing){
@@ -462,8 +461,11 @@
         } else{
           for(var i in slot){
             tempSlot = slot[i];
-            $("."+tempSlot).addClass("clash");
             $("."+tempSlot).removeClass("unselected");
+            $("."+tempSlot).addTemporaryClass("clash", 4000);
+            Materialize.toast("Course Clashing!",4000);
+            $("."+tempSlot).addClass("unselected");
+            $('.'+tempSlot).css('color', 'white');
             $('.'+tempSlot+" .number").css("color","rgb(250,77,92)");
             //$('.'+tempSlot+" .number").html(count);
           }
@@ -495,7 +497,6 @@
           Materialize.toast("Some Error Found" , 40000);
         }
       });
-      alert(slot);
       for(var i in slot){
         var tempSlot = slot[i].replace(' ','').toLowerCase();
         $('.'+tempSlot).addClass('unselected').removeClass('selected').removeClass('clash');
@@ -572,7 +573,7 @@
             if (response.status==true){
               $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+courseCode+'</td><td>'+courseTitle+'</td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p></td><td><i class="small material-icons">delete</i></td></tr>');
             }
-            
+
 
             //if(slot.charAt(0)=='L'){
               slot = slot.toLowerCase();
