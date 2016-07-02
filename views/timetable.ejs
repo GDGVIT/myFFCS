@@ -46,26 +46,29 @@
         <i class="fa fa-times" aria-hidden="true" style="color: rgb(127,144,153);font-size: 50px"></i>
       </div>
       <div class="row">
-        <div class="col s12 m12 l12 ">
+        <div class="col s12 m2 l2 push-l4 valign">
           <select id="course-list" class="course-list-1" name="course-list" style="min-width: 200px" data-placeholder="Search Course">
               <option></option>
               <%for(i=0;i<data.length;i++){%>
               <option value="<%=data[i].courseCode%>"><%=data[i].courseCode%></option>
              <%}%>
             </select>
+          </div>
+          <div class="col s12 m2 l2 push-l4 valign">
             <select id="slot-list" class="slot-list-1" name="slot-list" style="min-width: 200px" data-placeholder="Select Slot">
               <option></option>
               <option value="B1">B1</option>
               <option value="A1">A1</option>
               <option value="L1+L2">L1+L2</option>
             </select>
+          </div>
             <!-- <select id="faculty-list" class="faculty-list-1" name="faculty-list" style="min-width: 200px" data-placeholder="Search Faculty">
               <option></option>
               <%for(i=0;i<data.length;i++){%>
               <option value="<%=data[i].faculty%>"><%=data[i].faculty%></option>
              <%}%>
             </select>
- -->            <button class="submit-button timetable-results-trigger">Search</button>
+ -->    <div class="col s12 m3 l3 push-l1"><button class="submit-button timetable-results-trigger">Search</button></div>
         </div>
       </div>
     </div>
@@ -227,7 +230,7 @@
     <div class="row timetable-selected-list z-depth-1">
       <table class="timetable-selected-table">
         <tr class="timetable-selected-headings">
-          <td>Course Code</td>
+          <td style="padding: 2%">Course Code</td>
           <td>Course Name</td>
           <td>Slot</td>
           <td>Faculty<br><span class="sub-text">School</span></td>
@@ -325,11 +328,11 @@
     var doneOnce = false;
     var hasLab = false;
     $(".timetable-title-panel .submit-button:nth-child(1)").click(function(){
-      //$('.timetable-results').slideUp(400,function(){
+      $('.timetable-results').slideUp(400,function(){
         $(".timetable-menu-list").slideDown(400);
         $('.timetable-lab').hide();
         doneOnce = false;
-      //});
+      });
     });
     (function($){
 
@@ -367,7 +370,7 @@
       var token = $('.user-token').val();
       var slotRequest = slot;
       slot = slot.toLowerCase();
-      if(slot.charAt(0)!=='l'){
+      /*if(slot.charAt(0)!=='l'){
         if($('.'+slot).hasClass('selected')){
           $('.'+slot).addClass('clash');
           $('.'+slot).removeClass('.selected');
@@ -405,7 +408,8 @@
             }
           });
         }
-      } else{
+      }*/
+       //else{
         var isClashing = false;
         slot = slot.split('+');
         for(var i in slot){
@@ -464,10 +468,10 @@
             //$('.'+tempSlot+" .number").html(count);
           }
         }
-      }
+      //}
     });
     $(document).on('click', '.timetable-selected-subject .material-icons',function(){
-      var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(4)')).text();
+      var slot = $(this).closest($('.timetable-selected-subject')).find($('.timetable-selected-subject td:nth-child(3)')).text();
       slot = slot.split('+');
       var id = $(this).closest($('.timetable-selected-subject')).find($('.course-id')).val();
       var token = $('.user-token').val();
@@ -491,6 +495,7 @@
           Materialize.toast("Some Error Found" , 40000);
         }
       });
+      alert(slot);
       for(var i in slot){
         var tempSlot = slot[i].replace(' ','').toLowerCase();
         $('.'+tempSlot).addClass('unselected').removeClass('selected').removeClass('clash');
@@ -557,15 +562,16 @@
         success: function(response){
           $('.timetable-selected-subject').remove();
           var count = 1;
-          for(var i in response.data.allotedCourse){
-            var id = response.data.allotedCourse[i]._id;
-            var courseTitle = response.data.allotedCourse[i].name;
-            var faculty = response.data.allotedCourse[i].faculty;
-            var slot = response.data.allotedCourse[i].slots;
-            var credits = response.data.allotedCourse[i].credits;
-            var courseCode = response.data.allotedCourse[i].courseCode;
+          for(var i in response.data.newAllotedCourse){
+            var id = response.data.newAllotedCourse[i]._id;
+            var courseTitle = response.data.newAllotedCourse[i].courseName;
+            var faculty = response.data.newAllotedCourse[i].faculty;
+            var slot = response.data.newAllotedCourse[i].slots;
+            var credits = response.data.newAllotedCourse[i].credits;
+            var courseCode = response.data.newAllotedCourse[i].courseCode;
             $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+courseCode+'</td><td>'+courseTitle+'</td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p></td><td><i class="small material-icons">delete</i></td></tr>');
-            if(slot.charAt(0)=='L'){
+
+            //if(slot.charAt(0)=='L'){
               slot = slot.toLowerCase();
               slot = slot.split('+');
               for(var j in slot){
@@ -575,18 +581,18 @@
                 $('.'+tempSlot+" .number").css("color","#00e676");
                 $('.'+tempSlot+" .number").html(count);
               }
-            } else{
+            /*}else{
               slot = slot.toLowerCase();
               $("."+slot).addClass("selected");
               $("."+slot).removeClass("unselected");
               $('.'+slot+" .number").css("color","#00e676");
               $('.'+slot+" .number").html(count);
-            }
+            }*/
             count++;
           }
         },
         error: function(){
-          Materialize.toast("Some Error Found" , 40000);
+          Materialize.toast("Some Error Found" , 4000);
         }
       })
     });
@@ -649,7 +655,7 @@
       }
     });*/
     $(document).on('change','.course-list-1',function(){
-      if(!doneOnce){
+      //if(!doneOnce){
         var search = $('.course-list-1').select2('data')[0]['text'];
         /*var search = $('.slot-list-1').select2('data')[0]['text'];*/
         $.ajax({
@@ -659,30 +665,26 @@
           success: function(response){
             /*$('.course-list-1').empty();
             $('.course-list-1').append('<option></option>');*/
-
             $('.slot-list-1').prop('disabled', false);
             $('.slot-list-1').empty();
             $('.slot-list-1').append('<option></option>');
             /*$('.slot-list-1').append('<option value="'+response.data[i].slots+'">'+response.data[i].slots+'</option>')*/
             console.log(response.data[0]);
             for(var i in response.data){
-
               $('.slot-list-1').append('<option value="'+response.data[i]+'">'+response.data[i]+'</option>');
               console.log(response.data[i]);
             }
-
-
           },
           error: function(){
-            Materialize.toast("Some Error Found" , 40000);
+            Materialize.toast("Some Error Found" , 4000);
           }
         });
         doneOnce = true;
-      }
+      //}
     });
     $(document).on('click','.timetable-menu-list .submit-button',function(){
-      if(!doneOnce)
-        return;
+      /*if(!doneOnce)
+        return;*/
        var search1 = $('.course-list-1').select2('data')[0]['text'];
         var search   = $('.slot-list-1').select2('data')[0]['text'];
         search = search.replace('+','%2B');
@@ -692,7 +694,7 @@
         datatype: 'json',
         success: function(response){
           $('.timetable-results').empty();
-          $('.timetable-results').show();
+          $('.timetable-results').slideDown(400);
           $('.timetable-menu-list').hide();/*
           console.log(response.data[0].faculty);*/
           for(var i in response.data){
@@ -709,7 +711,7 @@
           }
         },
         error: function(){
-          Materialize.toast("Some Error Found" , 40000);
+          Materialize.toast("Some Error Found" , 4000);
           //alert('Ajax Error');
         }
       });

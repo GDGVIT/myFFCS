@@ -157,18 +157,26 @@ select span{
     font-size: 25px!important;
   }
   .timetable-title-panel .submit-button{
-    margin-left: -10%;
+    margin-left: -1%!important;
     font-size: 12px;
     width: 50%!important;
+    max-width: 80px!important;
   }
   .timetable-title-panel .submit-button-logout{
-    margin-left: 0px;
+    margin-left: -0px;
+    max-width: 80px;
+    margin-bottom: 3px;
+    padding: 1%;
     font-size: 12px!important;
   }
   .timetable-menu-list .fa-times{
     font-size: 25px!important;
   }
   .timetable-menu-list .submit-button{
+    position: relative;
+    top: -30px!important;
+    left: -18%!important;
+    min-width: 200px;
   }
   .timetable-results{
     height: 50vw;
@@ -400,7 +408,7 @@ select span{
   background: rgb(0,233,143);
   width: 20%!important;
   max-height: 60px !important;
-  margin-left: 1.8%;
+  margin-left: 18%;
   margin-top: 12%;
   padding: 1%;
 }
