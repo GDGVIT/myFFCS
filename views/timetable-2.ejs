@@ -9,11 +9,11 @@
     <link href="css/select2.min.css" rel="stylesheet">
     <meta name='description' content='MyFFCS - Make your timetable before FFCS, share it with your friends.'>
     <meta name = 'description' content = 'Make your own timetable before FFCS starts'>
-    <meta name = 'description' content = 'Choose your credits on myFFCS to make sure your classes do not clash.'>  
+    <meta name = 'description' content = 'Choose your credits on myFFCS to make sure your classes do not clash.'>
     <meta name=”robots” content=”index,follow”>
     <meta property="og:title" content="MyFFCS - Make your timetable before FFCS, share it with your friends." />
-      <meta property="og:url" content="http://www.myffcs.in" />         
-      <meta property="og:image" content="http://i.imgur.com/XVMAFgj.jpg" /> 
+      <meta property="og:url" content="http://www.myffcs.in" />
+      <meta property="og:image" content="http://i.imgur.com/XVMAFgj.jpg" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
@@ -234,7 +234,7 @@
           <td></td>
         </tr>
         <tr class="timetable-selected-subject">
-          
+
           <td>CSE1002</td>
           <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
           <td>L1 + L2 + L11  + L12 + L21 + L22</td>
@@ -242,7 +242,7 @@
           <td><i class="small material-icons">delete</i></td>
         </tr>
         <tr class="timetable-selected-subject">
-          
+
           <td>CSE1002</td>
           <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
           <td>L1 + L2 + L11  + L12 + L21 + L22</td>
@@ -250,7 +250,7 @@
           <td><i class="small material-icons">delete</i></td>
         </tr>
         <tr class="timetable-selected-subject">
-          
+
           <td>CSE1002</td>
           <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
           <td>L1 + L2 + L11  + L12 + L21 + L22</td>
@@ -258,7 +258,7 @@
           <td><i class="small material-icons">delete</i></td>
         </tr>
         <tr class="timetable-selected-subject">
-          
+
           <td>CSE1002</td>
           <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
           <td>L1 + L2 + L11  + L12 + L21 + L22</td>
@@ -266,7 +266,7 @@
           <td><i class="small material-icons">delete</i></td>
         </tr>
         <tr class="timetable-selected-subject">
-          
+
           <td>CSE1002</td>
           <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
           <td>L1 + L2 + L11  + L12 + L21 + L22</td>
@@ -282,7 +282,7 @@
           <td><i class="small material-icons">delete</i></td>
         </tr>
         <tr class="timetable-selected-subject">
-          
+
           <td>CSE1002</td>
           <td>Problem Solving And Programming<br><span class="sub-text-inside">Lab Only</span></td>
           <td>L1 + L2 + L11  + L12 + L21 + L22</td>
@@ -391,7 +391,7 @@
             },
             type: 'POST',
             data: {
-              'courseid': id
+              'courseId': id
             },
             success: function(response){
               if (response.status==true) {
@@ -441,7 +441,7 @@
             },
             type: 'POST',
             data: {
-              'courseid': id
+              'courseId': id
             },
             success: function(response){
               if(response.status==true){
@@ -477,14 +477,14 @@
         },
         type: 'POST',
         data: {
-          'courseid': id
+          'courseId': id
         },
         success: function(response){
           if (response.status == true) {Materialize.toast("Course Deleted!" , 40000);}
           else{
             Materialize.toast("Some Error Found" , 40000);
           }
-          
+
         },
         error: function(){
           Materialize.toast("Some Error Found" , 40000);
@@ -593,7 +593,7 @@
    /* $(".course-list-1").change(function(){
       if(!doneOnce){
         var search = $('.course-list-1').select2('data')[0]['text'];
-        
+
         $.ajax({
           url: '/v1/course/getbycoursecode/?q='+search,
           datatype: 'json',
@@ -605,7 +605,7 @@
             $('.slot-list-1').append('<option value="'+response.data[i].slots+'">'+response.data[i].slots+'</option>')
             console.log(response.data[0]);
             for(var i in response.data){
-              
+
               $('.slot-list-1').append('<option value="'+response.data[i]+'">'+response.data[i]+'</option>');
               console.log(response.data[i]);
             }
@@ -658,19 +658,19 @@
           success: function(response){
             /*$('.course-list-1').empty();
             $('.course-list-1').append('<option></option>');*/
-                    
+
             $('.slot-list-1').prop('disabled', false);
             $('.slot-list-1').empty();
             $('.slot-list-1').append('<option></option>');
             /*$('.slot-list-1').append('<option value="'+response.data[i].slots+'">'+response.data[i].slots+'</option>')*/
             console.log(response.data[0]);
             for(var i in response.data){
-              
+
               $('.slot-list-1').append('<option value="'+response.data[i]+'">'+response.data[i]+'</option>');
               console.log(response.data[i]);
             }
-          
-           
+
+
           },
           error: function(){
             Materialize.toast("Some Error Found" , 40000);
@@ -695,15 +695,16 @@
           $('.timetable-menu-list').hide();/*
           console.log(response.data[0].faculty);*/
           for(var i in response.data){
+
             var courseTitle = response.data[i].courseName;
             var courseCode = response.data[i].courseCode;
             var slot = response.data[i].slots;
-            var credits = response.data[i].credits;/*
-            var faculty = response.data[i].faculty;*/
+            var credits = response.data[i].credits;
+            var faculty = response.data[i].faculty;
             //var courseType = response.data[i].type;
             //var school = response.data[i].school;
             var id = response.data[i]._id;
-            $('.timetable-results').append('<div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1" ><div class="custom-card-header"><div class="custom-card-front"><input class="course-id" type="text" style="display:none" value="'+id+'"><h5 class="course-title">'+courseTitle+'</h5><p class="course-faculty"></p></div><div class="custom-card-edit" style="display:none"><img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" /><img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" /></div></div><div class="custom-card-slot row valign-wrapper"><div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">'+courseCode+'<span class="right">'+slot+'</span></p></div><div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></div></div>');
+            $('.timetable-results').append('<div class="custom-card z-depth-1 col m3 push-m1 l3 push-l1" ><div class="custom-card-header"><div class="custom-card-front"><input class="course-id" type="text" style="display:none" value="'+id+'"><h5 class="course-title">'+courseTitle+'</h5><p class="course-faculty">'+faculty+'</p></div><div class="custom-card-edit" style="display:none"><img src="images/add.png" class="save-tt" style="padding-left: 15%;padding-top: 5%;padding-bottom: 5%" class="left" /><img src="images/delete.png" style="padding-right: 15%;padding-top: 5%;padding-bottom: 5%" class="right" /></div></div><div class="custom-card-slot row valign-wrapper"><div class="col s10 m10 l10"  style="border-right: 1px solid;border-color: rgb(123,123,123)"><p class="course-code">'+courseCode+'<span class="right">'+slot+'</span></p></div><div class="col s2 m2 l2 valign custom-card-action front" style="padding: 1%;text-align: center;font-size: 20px;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></div></div>');
           }
         },
         error: function(){
