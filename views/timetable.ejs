@@ -20,7 +20,14 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="images/favicon.png" />
     <link href='css/slick.css' rel='stylesheet'>
-
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=1627396500917650";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <!--JS-->
     <script   src="js/jquery.js"></script>
     <!-- Google Analytics -->
@@ -695,7 +702,7 @@
         return;*/
        var search1 = $('.course-list-1').select2('data')[0]['text'];
         var search   = $('.slot-list-1').select2('data')[0]['text'];
-        search = search.replace('+','%2B');
+       search = search.replace(/\+/g,"%2B");
       $.ajax({
         url: '/v1/course/getcourse/?courseCode='+search1+'&slots='+search,
         type: 'GET',
