@@ -68,7 +68,7 @@
               <option value="<%=data[i].faculty%>"><%=data[i].faculty%></option>
              <%}%>
             </select>
- -->    <div class="col s12 m3 l3 push-l1"><button class="submit-button timetable-results-trigger">Search</button></div>
+ -->    <div class="col s12 m3 l3 " style="text-align: center; margin-top: 60px;"><button class="submit-button timetable-results-trigger">Search</button></div>
         </div>
       </div>
     </div>
@@ -569,7 +569,10 @@
             var slot = response.data.newAllotedCourse[i].slots;
             var credits = response.data.newAllotedCourse[i].credits;
             var courseCode = response.data.newAllotedCourse[i].courseCode;
-            $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+courseCode+'</td><td>'+courseTitle+'</td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p></td><td><i class="small material-icons">delete</i></td></tr>');
+            if (response.status==true){
+              $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+courseCode+'</td><td>'+courseTitle+'</td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p></td><td><i class="small material-icons">delete</i></td></tr>');
+            }
+            
 
             //if(slot.charAt(0)=='L'){
               slot = slot.toLowerCase();
