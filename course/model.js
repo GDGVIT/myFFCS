@@ -61,7 +61,7 @@ return Kefir.stream((emitter)=>{
 }
 const getAllData=function () {
   return Kefir.stream((emitter)=>{
-    model.find({},function (err,data) {
+    model.find({}).distinct('courseCode').exec(function (err,data) {
       if(err){
         emitter.error({status:false,message:"something went wrong on mongodb"});
       }else {
