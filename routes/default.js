@@ -47,6 +47,21 @@ Router.get('/home',auth,function (req,res,next) {
       res.send("sorry for inconviniance we will get back to u soon")
     })
 })
+Router.get('/test',auth,function (req,res,next) {
+  var result=course.getAllData();
+
+    result.onValue((x)=>{
+      // console.log(x);
+
+      student.userdata(req.session.passport.user,function (err,user) {
+     res.render('timetable-2',{data:x,user:user,share:encryptor.encrypt(user.regno)})
+      })
+
+    })
+    result.onError((x)=>{
+      res.send("sorry for inconviniance we will get back to u soon")
+    })
+})
 Router.get('/share',function (req,res,next) {
   var result=course.getAllData();
     console.log(encryptor.decrypt(req.query.id));
