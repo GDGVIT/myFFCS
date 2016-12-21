@@ -45,10 +45,8 @@
     <script src="js/script.js"></script>
     <script src="js/select2.min.js"></script>
   </head>
-  <body><!--
+  <body>
 
-     <input type="text" class="user-token" name="token" style="display:none;" value="<%=user.token%>">-->
-   
     <div class="row timetable-title-panel ">
       <div class="col s12 m8 l8 ">
         <a href="#"><h4 style="font-family: Montserrat">My FFCS</h4></a>
@@ -533,7 +531,7 @@
         ]
       });*/
       $.ajax({
-        url: '/detail',
+        url: '/userdetail?regno=<%=user.regno%>',
         headers: {
           'token': $('.user-token').val()
         },
@@ -549,7 +547,7 @@
             var credits = response.data.newAllotedCourse[i].credits;
             var courseCode = response.data.newAllotedCourse[i].courseCode;
             if (response.status==true){
-              $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+courseCode+'</td><td>'+courseTitle+'</td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p></td><td><i class="small material-icons">delete</i></td></tr>');
+              $('.timetable-selected-table').append('<tr class="timetable-selected-subject"><td><input class="course-id" style="display: none;" value="'+id+'">'+courseCode+'</td><td>'+courseTitle+'</td><td>'+slot+'</td><td class=""><p class="timetable-selected-faculty">'+faculty+'</p></td></tr>');
             }
 
 
