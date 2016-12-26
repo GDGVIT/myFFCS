@@ -59,5 +59,7 @@ passport.use(new passportlocal.Strategy(function (username,password,done) {
 app.use('/',require('./routes/default.js'))
 app.use('/course',require('./routes/course.js'))
 app.use('/v1/course',require('./v1/course/course.js'))
+app.use('/v2/course',require('./v2/course/course.js'))
 app.use('/v1/student',require('./v1/student/student.js'))
+app.use('/v2/student',require('./v2/student/student.js'))
 app.listen(8080);

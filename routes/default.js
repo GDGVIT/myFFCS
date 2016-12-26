@@ -39,7 +39,7 @@ Router.get('/home',auth,function (req,res,next) {
       // console.log(x);
 
       student.userdata(req.session.passport.user,function (err,user) {
-     res.render('timetable',{data:x,user:user,share:encryptor.encrypt(user.regno)})
+     res.render('newtt',{data:x,user:user,share:encryptor.encrypt(user.regno)})
       })
 
     })
@@ -54,7 +54,7 @@ Router.get('/oldtimetable',auth,function (req,res,next) {
       // console.log(x);
 
       student.userdata(req.session.passport.user,function (err,user) {
-     res.render('oldtt',{data:x,user:user,share:encryptor.encrypt(user.regno)})
+     res.render('timetable',{data:x,user:user,share:encryptor.encrypt(user.regno)})
       })
 
     })
@@ -120,6 +120,18 @@ Router.get('/detail',bodyParser.json(),tokenAuth,function (req,res,next) {
       res.json({status:false,message:x})
     })
 })
+Router.get('/detail2',bodyParser.json(),tokenAuth,function (req,res,next) {
+  var result=student.getStudentDetail2(req.body.regno);
+
+    result.onValue((x)=>{
+      res.json({status:true,data:x})
+
+    })
+    result.onError((x)=>{
+      res.json({status:false,message:x})
+    })
+})
+
 
 Router.get('/userdetail',function (req,res,next) {
   var result=student.getStudentDetail(req.query.regno);
