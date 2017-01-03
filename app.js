@@ -7,7 +7,7 @@ const bodyParser=require('body-parser')
 const mongoose=require('mongoose')
 const student=require('./students/model.js')
 const md5=require('md5')
-mongoose.connect("mongodb://balaji:mathi@ds019053.mlab.com:19053/myffcs")
+mongoose.connect(process.env.MLAB)
 app.use(session({name:'session',keys:['mathi','bujima']}))
   app.use(bodyParser.urlencoded({
     extended: false
