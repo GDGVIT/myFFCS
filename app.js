@@ -8,7 +8,7 @@ const mongoose=require('mongoose')
 const student=require('./students/model.js')
 const md5=require('md5')
 mongoose.connect(process.env.MLAB)
-app.use(session({name:'session',keys:['mathi','bujima']}))
+app.use(session({name:'session',keys:[process.env.secret]}))
   app.use(bodyParser.urlencoded({
     extended: false
   }));
