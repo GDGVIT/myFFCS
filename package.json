@@ -20,7 +20,7 @@
     "lodash": "^4.12.0",
     "md5": "^2.1.0",
     "merge-descriptors": "^1.0.1",
-    "mongoose": "^4.4.19",
+    "mongoose": "^5.11.7",
     "node-phantom": "^0.2.5",
     "pageres": "^4.1.2",
     "passport": "^0.3.2",
